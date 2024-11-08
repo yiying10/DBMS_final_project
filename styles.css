@@ -1,0 +1,76 @@
+/* 基本重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    height: 100vh;
+}
+
+/* 側邊導覽列樣式 */
+.sidebar {
+    background-color: #102a49; /* 深藍色 */
+    color: #ffffff;
+    width: 200px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.sidebar ul {
+    list-style: none;
+    width: 100%;
+}
+
+.sidebar li {
+    margin: 15px 0;
+}
+
+.sidebar a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.2em;
+    display: block;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.sidebar a:hover {
+    background-color: #3b5f8f; /* 淡藍色的 hover 效果 */
+}
+
+/* 主要內容區域樣式 */
+.content {
+    padding: 20px;
+    flex: 1;
+    overflow-y: auto;
+}
+
+h1 {
+    color: #1a3a5f;
+}
+
+/* 登入按鈕樣式 */
+.login-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background-color: #1a3a5f; /* 深藍色 */
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.login-button:hover {
+    background-color: #3b5f8f; /* 淡藍色的 hover 效果 */
+}
