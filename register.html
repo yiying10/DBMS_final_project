@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>R~Pokemon Go！註冊頁面</title>
+    <link rel="stylesheet" href="register.css">
+</head>
+<body>
+    <div class="register-container">
+        <?php if (isset($_GET['message'])): ?>
+            <p class="message"><?php echo htmlspecialchars($_GET['message']); ?></p>
+        <?php endif; ?>
+
+        <form class="register-form" action="register.php" method="POST">
+            <div class="input-group">
+                <label for="name">姓名</label>
+                <input type="text" id="name" name="name" placeholder="請輸入姓名" required>
+            </div>
+            <div class="input-group">
+                <label for="username">帳號</label>
+                <input type="text" id="username" name="username" placeholder="請輸入帳號" required>
+            </div>
+            <div class="input-group">
+                <label for="password">密碼</label>
+                <input type="password" id="password" name="password" placeholder="請輸入密碼" required>
+            </div>
+            <button type="submit" class="register-button">註冊</button>
+        </form>
+    </div>
+</body>
+</html>
