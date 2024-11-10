@@ -6,7 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo "非 POST 請求";
     exit();
 }
-
+?>
 <?php
 // 資料庫連線設定
 $servername = "localhost";
