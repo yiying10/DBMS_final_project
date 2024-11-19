@@ -1,3 +1,8 @@
+<?php
+session_start();
+$is_logged_in = isset($_SESSION['user_name']);
+?>
+
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
@@ -9,15 +14,16 @@
 <body>
     <nav class="sidebar">
         <ul>
-            <li><a href="home.html">首頁</a></li>
-            <li><a href="generate.html">卡牌生成區</a></li>
-            <li><a href="cards.html">卡牌圖鑑</a></li>
-            <li><a href="reference.html">關於我們</a></li>
+            <li><a href="home.php">首頁</a></li>
+            <li><a href="generate.php">卡牌生成區</a></li>
+            <li><a href="cards.php">卡牌圖鑑</a></li>
+            <li><a href="reference.php">關於我們</a></li>
         </ul>
     </nav>
 
-    <a href="login.html" class="login-button-link">
-        <button class="login-button">登入 / 註冊</button>
+    <p class="welcome">歡迎, <?php echo htmlspecialchars($_SESSION['user_name']); ?></p>
+    <a href="logout.php">
+        <button class="login-button">登出</button>
     </a>
     
     <main class="content">
