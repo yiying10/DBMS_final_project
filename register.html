@@ -8,22 +8,18 @@
 </head>
 <body>
     <div class="register-container">
-        <?php if (isset($_GET['message'])): ?>
-            <p class="message"><?php echo htmlspecialchars($_GET['message']); ?></p>
-        <?php endif; ?>
-
+        <h2>註冊</h2>
         <form class="register-form" action="register.php" method="POST">
             <div class="input-group">
-                <label for="name">姓名</label>
-                <input type="text" id="name" name="name" placeholder="請輸入姓名" required>
+                <input type="text" id="user_name" name="user_name" placeholder="姓名" required>
             </div>
+            <br>
             <div class="input-group">
-                <label for="username">帳號</label>
-                <input type="text" id="username" name="username" placeholder="請輸入帳號" required>
+                <input type="text" id="account" name="account" placeholder="帳號" required>
             </div>
+            <br>
             <div class="input-group">
-                <label for="password">密碼</label>
-                <input type="password" id="password" name="password" placeholder="請輸入密碼" required>
+                <input type="password" id="password" name="password" placeholder="密碼" required>
             </div>
             <button type="submit" class="register-button">註冊</button>
         </form>

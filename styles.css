@@ -56,21 +56,36 @@ h1 {
     color: #1a3a5f;
 }
 
-/* 登入按鈕樣式 */
-.login-button {
+/* 使用者資訊區域 */
+.user-info {
     position: absolute;
-    top: 20px;
+    top: 10px;
     right: 20px;
-    padding: 10px 20px;
-    background-color: #1a3a5f; /* 深藍色 */
-    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* 向右對齊 */
+    gap: 10px; /* 控制「歡迎」與按鈕之間的距離 */
+    white-space: nowrap; /* 防止換行 */
+}
+
+.welcome {
+    font-size: 16px;
+    margin: 0; /* 移除多餘的內外距 */
+    color: #1a3a5f; /* 可調整成適合的顏色 */
+}
+
+.login-button {
+    padding: 5px 15px;
+    font-size: 14px;
+    background-color: #007BFF;
+    color: white;
     border: none;
     border-radius: 5px;
-    font-size: 1em;
     cursor: pointer;
+    white-space: nowrap; /* 防止按鈕文字換行 */
     transition: background-color 0.3s;
 }
 
 .login-button:hover {
-    background-color: #3b5f8f; /* 淡藍色的 hover 效果 */
+    background-color: #0056b3;
 }
