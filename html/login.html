@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>R~Pokemon Go！登入頁面</title>
+    <link rel="stylesheet" href="../css/login.css">
+    <script>
+        function validateForm() {
+            const username = document.getElementById("username").value.trim();
+            const password = document.getElementById("password").value.trim();
+
+            if (!username) {
+                alert("帳號空白！");
+                return false;
+            }
+            if (!password) {
+                alert("密碼空白！");
+                return false;
+            }
+            return true; // 若皆有填寫則送出表單
+        }
+    </script>
+</head>
+<body>
+    <div class="login-container">
+        <div class="avatar">
+            <img src="../images/icon.png" alt="頭像">
+        </div>
+
+        <!-- 登入表單，設定 action 對應 login.php -->
+        <form class="login-form" action="../php/login.php" method="POST" onsubmit="return validateForm();">
+            <div class="input-group">
+                <label for="username"><i class="icon-user"></i></label>
+                <input type="text" id="username" name="username" placeholder="請輸入帳號">
+            </div>
+            <div class="input-group">
+                <label for="password"><i class="icon-lock"></i></label>
+                <input type="password" id="password" name="password" placeholder="請輸入密碼">
+            </div>
+
+            <button type="submit" class="login-button">立即登入</button>
+
+            <div class="register">
+                    沒有帳號？ <a href="../html/register.html" class="register-link">立即註冊</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
