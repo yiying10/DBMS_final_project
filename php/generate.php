@@ -54,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     while ($row = $result->fetch_assoc()) {
         // 將圖片轉換為 base64 格式
-        $image_path = "../csv/pokemon_images/" . strtolower($row['Name']) . ".png";
+        $image_path = "../images/pokemon_images/" . strtolower($row['Name']) . ".png";
         try {
             if (file_exists($image_path)) {
                 $image_data = base64_encode(file_get_contents($image_path));
