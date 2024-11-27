@@ -1,7 +1,7 @@
 USE Pokemon;
 CREATE TABLE df_pokemon (
-    ID INT NOT NULL PRIMARY KEY,                -- 每個寶可夢唯一的編號
-    Name VARCHAR(100) NOT NULL,                 -- 寶可夢的名稱
+    ID INT NOT NULL,                -- 每個寶可夢唯一的編號
+    Name VARCHAR(100) NOT NULL PRIMARY KEY,                 -- 寶可夢的名稱
     Species VARCHAR(100) DEFAULT NULL,          -- 物種名稱
     Variant VARCHAR(50) DEFAULT NULL,           -- 變種名稱，例如 "Mega" 或 "Gigantamax"
     Generation INT NOT NULL,                    -- 第幾世代

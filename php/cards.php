@@ -17,7 +17,7 @@ $is_logged_in = isset($_SESSION['user_name']);
     <nav class="sidebar">
         <ul>
             <li><a href="../php/home.php">首頁</a></li>
-            <li><a href="../html/generate.html" id="card-generation-link">卡牌生成區</a></li>
+            <li><a href="../php/generate.php" id="card-generation-link">卡牌生成區</a></li>
             <li><a href="../php/cards.php">卡牌圖鑑</a></li>
             <li><a href="../php/reference.php">關於我們</a></li>
         </ul>
@@ -54,7 +54,7 @@ $is_logged_in = isset($_SESSION['user_name']);
                     e.preventDefault(); // 停止跳轉
                     alert("登入後即可使用");
                 } else {
-                    cardGenerationLink.href = "../html/generate.html"; // 設定連結目標
+                    cardGenerationLink.href = "../php/generate.php"; // 設定連結目標
                 }
             });
         });
