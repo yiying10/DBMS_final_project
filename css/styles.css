@@ -45,6 +45,18 @@ body {
     background-color: #3b5f8f; /* 淡藍色的 hover 效果 */
 }
 
+.sidebar li a.active {
+    background-color: #e3f2fd;
+}
+
+.sidebar li a:hover {
+    background-color: #bbdefb;
+}
+
+.sidebar li a.current {
+    background-color: #e3f2fd;
+}
+
 /* 主要內容區域樣式 */
 .content {
     padding: 20px;
@@ -88,4 +100,12 @@ h1 {
 
 .login-button:hover {
     background-color: #0056b3;
+}
+
+/* 添加頁面特定的樣式 */
+body[data-page="generate"] .sidebar li a[href*="generate.php"],
+body[data-page="illustrated_book"] .sidebar li a[href*="illustrated_book.php"],
+body[data-page="booklet"] .sidebar li a[href*="booklet.php"],
+body[data-page="package"] .sidebar li a[href*="package.php"] {
+    background-color: #e3f2fd;
 }

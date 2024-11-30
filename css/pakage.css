@@ -1,0 +1,141 @@
+body {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+}
+
+.card-item {
+    width: 100px;
+    height: 150px;
+    perspective: 1000px;
+    margin-bottom: 20px;
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+    cursor: pointer;
+}
+
+.card-inner.card-flipped {
+    transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.card-back {
+    background-color: #001f3f;
+    border: 2px solid #0074D9;
+    color: #ffffff;
+}
+
+.card-front {
+    background-color: #ffffff;
+    color: #000000;
+    transform: rotateY(180deg);
+    padding: 5px;
+}
+
+.card-front img {
+    max-width: 90%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.draw-button {
+    background-color: #0074D9;
+    color: #ffffff;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    margin: 20px 0;
+    transition: background-color 0.3s;
+}
+
+.draw-button:hover {
+    background-color: #0056a3;
+}
+
+.collection-button {
+    background-color: #2ecc71;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+}
+
+.collection-button:hover {
+    background-color: #27ae60;
+}
+
+.card-info {
+    font-size: 12px;
+    margin: 2px 0;
+}
+
+.pokemon-logo {
+    font-size: 16px;
+    font-weight: bold;
+    color: #ffd700;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.pack-container {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.pack-image {
+    width: 200px;
+    height: 300px;
+    margin: 0 auto 20px;
+    transition: transform 0.3s;
+}
+
+.pack-image:hover {
+    transform: scale(1.05);
+}
+
+.pack-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.card-results {
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.card-results.show {
+    opacity: 1;
+}

@@ -13,12 +13,14 @@ $is_logged_in = isset($_SESSION['user_name']);
     <link rel="stylesheet" href="../css/styles.css">
 </head>
 
-<body>
+<body data-page="home">
     <nav class="sidebar">
         <ul>
             <li><a href="../php/home.php">首頁</a></li>
             <li><a href="../php/generate.php" id="card-generation-link">卡牌生成區</a></li>
-            <li><a href="../php/cards.php">卡牌圖鑑</a></li>
+            <li><a href="../php/illustrated_book.php">卡牌圖鑑</a></li>
+            <li><a href="../php/pakage.php" id="pakage-link">抽卡區</a></li>
+            <li><a href="../php/booklet.php" id="booklet-link">卡冊</a></li>
             <li><a href="../php/reference.php">關於我們</a></li>
         </ul>
     </nav>
@@ -70,13 +72,30 @@ $is_logged_in = isset($_SESSION['user_name']);
         document.addEventListener("DOMContentLoaded", function () {
             const isLoggedIn = <?php echo $is_logged_in ? 'true' : 'false'; ?>;
             const cardGenerationLink = document.getElementById("card-generation-link");
+            const pakageLink = document.getElementById("pakage-link");
+            const bookletLink = document.getElementById("booklet-link");
 
+            // 卡牌生成區權限控制
             cardGenerationLink.addEventListener("click", function (e) {
                 if (!isLoggedIn) {
-                    e.preventDefault(); // 停止跳轉
+                    e.preventDefault();
                     alert("登入後即可使用");
-                } else {
-                    cardGenerationLink.href = "../php/generate.php"; // 設定連結目標
+                }
+            });
+
+            // 抽卡區權限控制
+            pakageLink.addEventListener("click", function (e) {
+                if (!isLoggedIn) {
+                    e.preventDefault();
+                    alert("登入後即可使用");
+                }
+            });
+
+            // 卡冊權限控制
+            bookletLink.addEventListener("click", function (e) {
+                if (!isLoggedIn) {
+                    e.preventDefault();
+                    alert("登入後即可使用");
                 }
             });
         });

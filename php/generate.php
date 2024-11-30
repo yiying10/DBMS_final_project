@@ -1,9 +1,15 @@
 <?php
 session_start();
 $is_logged_in = isset($_SESSION['user_name']);
+$has_generated = isset($_SESSION['has_generated']);
 
 if (!$is_logged_in) {
     header("Location: login.php");
+    exit();
+}
+
+if (!$has_generated && !isset($_SESSION['selected_pokemon'])) {
+    echo "<script>alert('請先從圖鑑選擇寶可夢進行生成！'); window.location.href='illustrated_book.php';</script>";
     exit();
 }
 
@@ -39,6 +45,13 @@ while ($row = $rarity_result->fetch_assoc()) {
 while ($row = $type_result->fetch_assoc()) {
     $type_options[] = $row['Type1'];
 }
+
+// 獲取背景圖片選項
+$background_dir = "../images/card_background/";
+$background_images = array_diff(scandir($background_dir), array('..', '.'));
+
+// 如果是從圖鑑過來的，獲取選中的寶可夢
+$selected_pokemon = isset($_SESSION['selected_pokemon']) ? $_SESSION['selected_pokemon'] : null;
 
 // 處理篩選請求
 // 處理篩選請求
@@ -82,219 +95,39 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>卡牌生成</title>
     <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/generate.css">
     <style>
-        .content {
-            display: flex;
-            background-color: #f5f6fa;
-            min-height: 100vh;
+        .background-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 10px;
+            margin: 20px 0;
         }
 
-        .left-panel {
-            width: 300px;
-            background-color: #102a49;
-            padding: 20px;
-            color: white;
-            height: 100vh;
-            overflow-y: auto;
-            position: fixed;
-            left: 0;
-        }
-
-        .right-panel {
-            flex: 1;
-            margin-left: 500px;
-            transition: margin-left 0.3s ease;
-            padding: 0;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .right-panel.sidebar-collapsed {
-            margin-left: 300px;
-        }
-
-        .search-form {
-            width: 100%;
-            margin-bottom: 20px;
-        }
-
-        .search-form select {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            background-color: white;
-        }
-
-        .search-form button {
-            width: 100%;
-            padding: 10px;
-            background-color: #1e4b8d;
-            color: white;
-            border: none;
-            border-radius: 5px;
+        .background-option {
             cursor: pointer;
-            transition: background-color 0.3s;
+            border: 2px solid transparent;
+            padding: 5px;
         }
 
-        .search-form button:hover {
-            background-color: #2c5aa0;
+        .background-option.selected {
+            border-color: #007bff;
         }
 
-        .card-list {
-            max-height: calc(100vh - 100px);
-            overflow-y: auto;
+        .background-option img {
             width: 100%;
-            padding: 0;
-            list-style: none;
+            height: auto;
         }
 
-        .card-item {
-            background-color: white;
-            margin: 10px 0;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        .save-options {
+            margin-top: 20px;
             display: flex;
-            align-items: center;
-        }
-
-        .card-item img {
-            width: 80px;
-            height: 80px;
-            object-fit: contain;
-            margin-right: 15px;
-        }
-
-        .card-info {
-            flex: 1;
-            color: #000;
-        }
-
-        .card-info p {
-            margin: 5px 0;
-            color: #000;
-        }
-
-        .card-item button {
-            background-color: #102a49;
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .card-item button:hover {
-            background-color: #1e4b8d;
-        }
-
-        .canvas-container {
-            position: fixed;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        #downloadButton {
-            background-color: #102a49;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 10px;
-            transition: background-color 0.3s;
-        }
-
-        #downloadButton:hover {
-            background-color: #1e4b8d;
-        }
-
-        .sidebar {
-            width: 200px;
-            height: 100vh;
-            position: fixed;
-            left: 0;
-            background-color: #102a49;
-            transition: transform 0.3s ease;
-            z-index: 1000;
-        }
-
-        .sidebar.collapsed {
-            transform: translateX(-200px);
-        }
-
-        .toggle-btn {
-            position: fixed;
-            left: 200px;
-            top: 10px;
-            background-color: #102a49;
-            color: white;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-            z-index: 1000;
-            transition: left 0.3s ease;
-            border-radius: 0 5px 5px 0;
-        }
-
-        .toggle-btn.collapsed {
-            left: 0;
-        }
-
-        .content {
-            margin-left: 200px;
-            transition: margin-left 0.3s ease;
-        }
-
-        .content.full-width {
-            margin-left: 0;
-        }
-
-        .left-panel {
-            width: 300px;
-            background-color: #102a49;
-            padding: 20px;
-            color: white;
-            height: 100vh;
-            overflow-y: auto;
-            position: fixed;
-            left: 200px;
-            transition: left 0.3s ease;
-        }
-
-        .left-panel h2 {
-            margin-top: 0;
-            padding-top: 0;
-        }
-
-        .left-panel.sidebar-collapsed {
-            left: 0;
-        }
-
-        .right-panel {
-            margin-left: 500px;
-            transition: margin-left 0.3s ease;
-        }
-
-        .right-panel.sidebar-collapsed {
-            margin-left: 300px;
+            gap: 10px;
         }
     </style>
 </head>
 
-<body>
+<body data-page="generate">
     <button class="toggle-btn" onclick="toggleSidebar()">
         <span id="toggle-icon">◀</span>
     </button>
@@ -303,13 +136,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <ul>
             <li><a href="../php/home.php">首頁</a></li>
             <li><a href="../php/generate.php">卡牌生成區</a></li>
-            <li><a href="../php/cards.php">卡牌圖鑑</a></li>
+            <li><a href="../php/illustrated_book.php">卡牌圖鑑</a></li>
+            <li><a href="../php/pakage.php">抽卡區</a></li>
+            <li><a href="../php/booklet.php">卡冊</a></li>
             <li><a href="../php/reference.php">關於我們</a></li>
         </ul>
     </nav>
 
     <main class="content">
         <div class="left-panel">
+            <h2>選擇卡牌背景</h2>
+            <div class="background-options">
+                <?php foreach ($background_images as $bg): ?>
+                    <div class="background-option" onclick="selectBackground('<?php echo $bg; ?>')">
+                        <img src="<?php echo $background_dir . $bg; ?>" alt="背景選項">
+                    </div>
+                <?php endforeach; ?>
+            </div>
+
             <h2>選擇分類生成卡牌</h2>
             <form method="POST" action="generate.php" class="search-form">
                 <label for="rarity">選擇稀有度:</label>
@@ -365,13 +209,109 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="right-panel">
             <div class="canvas-container">
                 <canvas id="cardCanvas" width="500" height="700"></canvas>
-                <button id="downloadButton" style="display:none;" onclick="downloadCard()">下載卡牌</button>
+                <div class="save-options" style="display:none;">
+                    <button onclick="downloadCard()">下載卡牌</button>
+                    <button onclick="saveToBooklet()">保存到卡冊</button>
+                </div>
             </div>
         </div>
     </main>
 
     <script src="../js/generate_card.js"></script>
     <script>
+        let selectedBackground = '';
+
+        function selectBackground(bgName) {
+            selectedBackground = bgName;
+            document.querySelectorAll('.background-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            event.currentTarget.classList.add('selected');
+        }
+
+        function generateCard(imageUrl, name, rarity, type1, type2) {
+            if (!selectedBackground) {
+                alert('請先選擇卡牌背景！');
+                return;
+            }
+
+            const canvas = document.getElementById('cardCanvas');
+            const ctx = canvas.getContext('2d');
+
+            // 清空畫布
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // 載入背景圖片
+            const bgImg = new Image();
+            bgImg.onload = function () {
+                ctx.drawImage(bgImg, 0, 0, canvas.width, canvas.height);
+
+                // 繪製內層米色底圖
+                ctx.fillStyle = '#f5f5dc';
+                roundRect(ctx, 30, 30, canvas.width - 60, canvas.height - 60, 20);
+
+                // 載入寶可夢圖片
+                const pokemonImg = new Image();
+                pokemonImg.onload = function () {
+                    // 在上半部分繪製寶可夢圖片
+                    const imgWidth = canvas.width - 100;
+                    const imgHeight = (canvas.height - 100) * 0.6;
+                    ctx.drawImage(pokemonImg, 50, 50, imgWidth, imgHeight);
+
+                    // 添加文字描述
+                    ctx.fillStyle = '#000';
+                    ctx.font = '20px Arial';
+                    let y = imgHeight + 100;
+                    ctx.fillText(`名稱: ${name}`, 60, y);
+                    ctx.fillText(`稀有度: ${rarity}`, 60, y + 30);
+                    ctx.fillText(`屬性: ${type1}${type2 ? ' / ' + type2 : ''}`, 60, y + 60);
+
+                    // 顯示保存選項
+                    document.querySelector('.save-options').style.display = 'flex';
+                };
+                pokemonImg.src = imageUrl;
+            };
+            bgImg.src = '../images/card_background/' + selectedBackground;
+
+            $_SESSION['has_generated'] = true;
+        }
+
+        function roundRect(ctx, x, y, width, height, radius) {
+            ctx.beginPath();
+            ctx.moveTo(x + radius, y);
+            ctx.arcTo(x + width, y, x + width, y + height, radius);
+            ctx.arcTo(x + width, y + height, x, y + height, radius);
+            ctx.arcTo(x, y + height, x, y, radius);
+            ctx.arcTo(x, y, x + width, y, radius);
+            ctx.closePath();
+            ctx.fill();
+        }
+
+        function saveToBooklet() {
+            const canvas = document.getElementById('cardCanvas');
+            const imageData = canvas.toDataURL('image/png');
+
+            fetch('save_to_booklet.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    imageData: imageData,
+                    background: selectedBackground,
+                    pokemonName: currentPokemonName
+                })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('成功保存到卡冊！');
+                    } else {
+                        alert('保存失敗：' + data.message);
+                    }
+                });
+        }
+
         function toggleSidebar() {
             const sidebar = document.querySelector('.sidebar');
             const content = document.querySelector('.content');

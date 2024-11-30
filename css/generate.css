@@ -1,0 +1,192 @@
+/* 基本布局 */
+.content {
+    display: flex;
+    background-color: #f5f6fa;
+    min-height: 100vh;
+    margin-left: 200px;
+    transition: margin-left 0.3s ease;
+}
+
+.content.full-width {
+    margin-left: 0;
+}
+
+/* Sidebar 样式 */
+.sidebar {
+    width: 200px;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    background-color: #102a49;
+    transition: transform 0.3s ease;
+    z-index: 1000;
+}
+
+.sidebar.collapsed {
+    transform: translateX(-200px);
+}
+
+.toggle-btn {
+    position: fixed;
+    left: 200px;
+    top: 10px;
+    background-color: #102a49;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 1000;
+    transition: left 0.3s ease;
+    border-radius: 0 5px 5px 0;
+}
+
+.toggle-btn.collapsed {
+    left: 0;
+}
+
+/* 左侧面板 */
+.left-panel {
+    width: 300px;
+    background-color: #102a49;
+    padding: 20px;
+    color: white;
+    height: 100vh;
+    overflow-y: auto;
+    position: fixed;
+    left: 200px;
+    transition: left 0.3s ease;
+}
+
+.left-panel.sidebar-collapsed {
+    left: 0;
+}
+
+.left-panel h2 {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+/* 右侧面板 */
+.right-panel {
+    flex: 1;
+    margin-left: 500px;
+    transition: margin-left 0.3s ease;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.right-panel.sidebar-collapsed {
+    margin-left: 300px;
+}
+
+/* 搜索表单 */
+.search-form {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.search-form select {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: white;
+}
+
+.search-form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #1e4b8d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.search-form button:hover {
+    background-color: #2c5aa0;
+}
+
+/* 卡片列表 */
+.card-list {
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+    width: 100%;
+    padding: 0;
+    list-style: none;
+}
+
+.card-item {
+    background-color: white;
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+}
+
+.card-item img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin-right: 15px;
+}
+
+.card-info {
+    flex: 1;
+    color: #000;
+}
+
+.card-info p {
+    margin: 5px 0;
+    color: #000;
+}
+
+.card-item button {
+    background-color: #102a49;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.card-item button:hover {
+    background-color: #1e4b8d;
+}
+
+/* Canvas 容器 */
+.canvas-container {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#downloadButton {
+    background-color: #102a49;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+}
+
+#downloadButton:hover {
+    background-color: #1e4b8d;
+}

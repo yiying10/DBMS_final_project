@@ -1,0 +1,7 @@
+USE Pokemon;
+
+CREATE TABLE ability (
+    Ability VARCHAR(30),
+    Hidden BOOLEAN DEFAULT FALSE,
+    Name VARCHAR(20) NOT NULL PRIMARY KEY
+);
