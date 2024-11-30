@@ -38,13 +38,11 @@ $conn->set_charset("utf8mb4");
     <nav class="sidebar">
         <ul>
             <li><a href="../php/home.php">首頁</a></li>
-            <li><a href="../php/generate.php">卡牌生成區</a></li>
+            <li><a href="../php/generate.php" id="card-generation-link">卡牌生成區</a></li>
             <li><a href="../php/illustrated_book.php">卡牌圖鑑</a></li>
-            <li><a href="../php/booklet.php">我的卡冊</a></li>
-            <li><a href="../php/package.php">抽卡包</a></li>
-            <?php if ($is_logged_in): ?>
-                <li><a href="../php/logout.php">登出</a></li>
-            <?php endif; ?>
+            <li><a href="../php/pakage.php" id="pakage-link">抽卡區</a></li>
+            <li><a href="../php/booklet.php" id="booklet-link">卡冊</a></li>
+            <li><a href="../php/reference.php">關於我們</a></li>
         </ul>
     </nav>
 
@@ -102,7 +100,11 @@ $conn->set_charset("utf8mb4");
             <div class="pokemon-grid">
                 <?php
                 // 顯示 SQL 查詢
-                $sql = "SELECT * FROM df_pokemon WHERE image_url IS NOT NULL AND image_url != ''";
+                $sql = "SELECT * FROM df_pokemon 
+                        WHERE image_url IS NOT NULL AND image_url != '' 
+                        AND Type1 IS NOT NULL AND Type1 != ''
+                        AND Rarity IS NOT NULL AND Rarity != ''";
+
                 echo "<!-- SQL 查詢: $sql -->";
 
                 $result = $conn->query($sql);
@@ -114,27 +116,31 @@ $conn->set_charset("utf8mb4");
                             $name = $row['Name'];
                             $rarity = $row['Rarity'];
                             $type = $row['Type1'];
-                            $image_url = $row['image_url'];
 
-                            echo "<!-- 處理寶可夢: $name -->";
+                            // 檢查圖片是否存在
+                            $imageFileName = strtolower(str_replace(' ', '-', $name));
+                            $imagePath = "../images/pokemon_images/{$imageFileName}.png";
 
-                            // 檢查圖片文件是否存在
-                            $image_path = str_replace('../', '', $image_url);
-                            echo "<!-- 圖片路徑: $image_path -->";
-
-                            echo '<div class="pokemon-card" 
-                                      data-name="' . htmlspecialchars($name) . '"
-                                      data-rarity="' . htmlspecialchars(strtolower($rarity)) . '"
-                                      data-type="' . htmlspecialchars(strtolower($type)) . '">';
-                            echo '<img src="' . htmlspecialchars($image_url) . '" alt="' . htmlspecialchars($name) . '" 
-                                      style="width: 150px; height: 150px; object-fit: contain;">';
-                            echo '<h3>' . htmlspecialchars($name) . '</h3>';
-                            echo '<button class="detail-btn" onclick="showDetails(\'' . htmlspecialchars($name) . '\', \'' .
-                                htmlspecialchars($rarity) . '\', \'' . htmlspecialchars($type) . '\', \'' .
-                                htmlspecialchars($image_url) . '\', \'' . htmlspecialchars($row['Type2']) . '\', \'' .
-                                htmlspecialchars($row['Total']) . '\')">詳細資訊</button>';
-                            echo '<button class="generate-btn" onclick="redirectToCardGenerator(\'' . htmlspecialchars($name) . '\')">生成卡牌</button>';
-                            echo '</div>';
+                            if (file_exists($imagePath)) {
+                                echo '<div class="pokemon-card" 
+                                          data-name="' . htmlspecialchars($name) . '"
+                                          data-rarity="' . htmlspecialchars(strtolower($rarity)) . '"
+                                          data-type="' . htmlspecialchars(strtolower($type)) . '">';
+                                echo '<img src="' . htmlspecialchars($imagePath) . '" alt="' . htmlspecialchars($name) . '" 
+                                          style="width: 150px; height: 150px; object-fit: contain;">';
+                                echo '<h3>' . htmlspecialchars($name) . '</h3>';
+                                echo '<button class="detail-btn" onclick="showDetails(\'' . htmlspecialchars($name) . '\', \'' .
+                                    htmlspecialchars($rarity) . '\', \'' . htmlspecialchars($type) . '\', \'' .
+                                    htmlspecialchars($imagePath) . '\', \'' . htmlspecialchars($row['Type2']) . '\', \'' .
+                                    htmlspecialchars($row['Total']) . '\')">詳細資訊</button>';
+                                echo '<button class="generate-btn" onclick="redirectToCardGenerator(\'' .
+                                    htmlspecialchars($name) . '\', \'' .
+                                    htmlspecialchars($rarity) . '\', \'' .
+                                    htmlspecialchars($type) . '\', \'' .
+                                    htmlspecialchars($imagePath) . '\', \'' .
+                                    htmlspecialchars($row['Type2']) . '\')">生成卡牌</button>';
+                                echo '</div>';
+                            }
                         }
                     } else {
                         echo "<p>沒有找到任何寶可夢。</p>";

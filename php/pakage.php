@@ -7,7 +7,7 @@ if (!$is_logged_in) {
     exit();
 }
 
-// 資料庫連線
+// 資料庫連線設置
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -89,12 +89,29 @@ function generateRandomCards($rarities, $conn)
         <h1>抽卡區</h1>
 
         <div id="packContainer" class="pack-container">
-            <div class="pack-image">
-                <img src="../images/pakage.png" alt="卡包">
+            <div class="pack-item">
+                <form method="POST" action="pakage.php" class="draw-form">
+                    <button type="submit" class="pack-button">
+                        <img src="../images/pakage.png" alt="卡包">
+                    </button>
+                </form>
             </div>
-            <form method="POST" action="pakage.php" id="drawForm">
-                <button type="submit" id="openPackButton" class="draw-button">開封卡包</button>
-            </form>
+
+            <div class="pack-item">
+                <form method="POST" action="pakage.php" class="draw-form">
+                    <button type="submit" class="pack-button">
+                        <img src="../images/pakage.png" alt="卡包">
+                    </button>
+                </form>
+            </div>
+
+            <div class="pack-item">
+                <form method="POST" action="pakage.php" class="draw-form">
+                    <button type="submit" class="pack-button">
+                        <img src="../images/pakage.png" alt="卡包">
+                    </button>
+                </form>
+            </div>
         </div>
 
         <?php if (!empty($random_cards)): ?>
@@ -134,6 +151,42 @@ function generateRandomCards($rarities, $conn)
     </main>
 
     <script src="../js/pakage.js"></script>
+
+    <style>
+        .content {
+            background: none;
+        }
+
+        .pack-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 50px;
+            margin: 50px auto;
+            max-width: 1200px;
+        }
+
+        .pack-item {
+            flex: 0 0 auto;
+        }
+
+        .pack-button {
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .pack-button:hover {
+            transform: scale(1.1);
+        }
+
+        .pack-button img {
+            width: 300px;
+            height: auto;
+        }
+    </style>
 </body>
 
 </html>

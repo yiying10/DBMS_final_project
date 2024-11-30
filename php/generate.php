@@ -1,90 +1,80 @@
 <?php
 session_start();
+
+// 資料庫連線設定
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "Pokemon";
+
+// 建立連線
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// 檢查連線
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// 設定編碼
+$conn->set_charset("utf8mb4");
+
 $is_logged_in = isset($_SESSION['user_name']);
-$has_generated = isset($_SESSION['has_generated']);
+$selected_pokemon = isset($_SESSION['selected_pokemon']) ? $_SESSION['selected_pokemon'] : null;
 
 if (!$is_logged_in) {
     header("Location: login.php");
     exit();
 }
 
-if (!$has_generated && !isset($_SESSION['selected_pokemon'])) {
-    echo "<script>alert('請先從圖鑑選擇寶可夢進行生成！'); window.location.href='illustrated_book.php';</script>";
+if (!$selected_pokemon) {
+    header("Location: illustrated_book.php");
     exit();
 }
 
-// 資料庫連線
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "Pokemon";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-    die("資料庫連接失敗：" . $conn->connect_error);
-}
-
-// 初始化變數
-$rarity_options = [];
-$type_options = [];
-$search_results = [];
-$selected_rarity = "";
-$selected_type = "";
-
-// 獲取分類選項（稀有度和屬性）
-$rarity_query = "SELECT DISTINCT Rarity FROM df_pokemon WHERE Rarity IS NOT NULL";
-$type_query = "SELECT DISTINCT Type1 FROM df_pokemon WHERE Type1 IS NOT NULL";
-
-$rarity_result = $conn->query($rarity_query);
-$type_result = $conn->query($type_query);
-
-while ($row = $rarity_result->fetch_assoc()) {
-    $rarity_options[] = $row['Rarity'];
-}
-while ($row = $type_result->fetch_assoc()) {
-    $type_options[] = $row['Type1'];
-}
-
 // 獲取背景圖片選項
-$background_dir = "../images/card_background/";
-$background_images = array_diff(scandir($background_dir), array('..', '.'));
+$normal_dir = "../images/card_background/normal/";
+$rare_dir = "../images/card_background/rare/";
+$normal_images = array_diff(scandir($normal_dir), array('..', '.'));
+$rare_images = array_diff(scandir($rare_dir), array('..', '.'));
 
-// 如果是從圖鑑過來的，獲取選中的寶可夢
-$selected_pokemon = isset($_SESSION['selected_pokemon']) ? $_SESSION['selected_pokemon'] : null;
+// 在頁面加載時處理 ability 數據
+function getShortestAbility($pokemonName, $conn)
+{
+    $sql = "SELECT a.Ability, ad.Description 
+            FROM ability a 
+            LEFT JOIN ability_description ad ON a.Ability = ad.Name 
+            WHERE a.Name = ?";
 
-// 處理篩選請求
-// 處理篩選請求
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $selected_rarity = $_POST['rarity'];
-    $selected_type = $_POST['type'];
-
-    $query = "SELECT Name, Rarity, Type1, Type2 FROM df_pokemon WHERE Rarity = ? AND Type1 = ?";
-    $stmt = $conn->prepare($query);
-    $stmt->bind_param("ss", $selected_rarity, $selected_type);
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $pokemonName);
     $stmt->execute();
     $result = $stmt->get_result();
 
+    $abilities = [];
     while ($row = $result->fetch_assoc()) {
-        // 將圖片轉換為 base64 格式
-        $image_path = "../images/pokemon_images/" . strtolower($row['Name']) . ".png";
-        try {
-            if (file_exists($image_path)) {
-                $image_data = base64_encode(file_get_contents($image_path));
-                $row['image_url'] = 'data:image/png;base64,' . $image_data;
-            } else {
-                // 如果找不到對應的圖片，使用一個簡單的錯誤提示
-                $row['image_url'] = '';
-                error_log("找不到圖片: " . $image_path);
-            }
-        } catch (Exception $e) {
-            $row['image_url'] = '';
-            error_log("圖片處理錯誤: " . $e->getMessage());
-        }
-        $search_results[] = $row;
+        $abilities[] = [
+            'name' => $row['Ability'],
+            'description' => $row['Description']
+        ];
     }
+
+    if (!empty($abilities)) {
+        $shortestAbility = $abilities[0];
+        foreach ($abilities as $ability) {
+            if (strlen($ability['name']) < strlen($shortestAbility['name'])) {
+                $shortestAbility = $ability;
+            }
+        }
+        return $shortestAbility;
+    }
+
+    return null;
 }
 
+// 將能力添加到寶可夢數據中
+if ($selected_pokemon) {
+    $selected_pokemon['ability'] = getShortestAbility($selected_pokemon['name'], $conn);
+}
 ?>
 
 <!DOCTYPE html>
@@ -96,42 +86,142 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>卡牌生成</title>
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/generate.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700&display=swap"
+        rel="stylesheet">
     <style>
+        body {
+            font-family: 'Cinzel', 'Noto Sans TC', serif;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Cinzel', 'Noto Sans TC', serif;
+            font-weight: 700;
+        }
+
+        .sidebar a {
+            font-family: 'Cinzel', 'Noto Sans TC', serif;
+            font-weight: 500;
+        }
+
+        .background-type-selector button {
+            font-family: 'Cinzel', 'Noto Sans TC', serif;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        .save-options button {
+            font-family: 'Cinzel', 'Noto Sans TC', serif;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
         .background-options {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-            gap: 10px;
-            margin: 20px 0;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 15px;
+            padding: 20px;
         }
 
         .background-option {
+            width: 120px;
+            height: 120px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            overflow: hidden;
             cursor: pointer;
-            border: 2px solid transparent;
-            padding: 5px;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .background-option:hover {
+            transform: translateY(-5px);
+            border-color: #007bff;
         }
 
         .background-option.selected {
             border-color: #007bff;
+            box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
         }
 
         .background-option img {
             width: 100%;
-            height: auto;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .canvas-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        #cardCanvas {
+            border: 1px solid #ccc;
+            margin: 20px auto;
+            border-radius: 25px;
         }
 
         .save-options {
             margin-top: 20px;
-            display: flex;
-            gap: 10px;
+        }
+
+        .save-options button {
+            padding: 10px 20px;
+            margin: 0 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .save-options button:hover {
+            background-color: #0056b3;
+        }
+
+        .background-type-selector {
+            margin-bottom: 20px;
+            text-align: center;
+            border: 1px solid #ddd;
+            display: inline-flex;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .background-type-selector button {
+            padding: 8px 25px;
+            background-color: #f8f9fa;
+            border: none;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .background-type-selector button:first-child {
+            border-right: 1px solid #ddd;
+        }
+
+        .background-type-selector button.active {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .background-section {
+            display: none;
+        }
+
+        .background-section.active {
+            display: block;
         }
     </style>
 </head>
 
 <body data-page="generate">
-    <button class="toggle-btn" onclick="toggleSidebar()">
-        <span id="toggle-icon">◀</span>
-    </button>
-
+    <!-- Sidebar -->
     <nav class="sidebar">
         <ul>
             <li><a href="../php/home.php">首頁</a></li>
@@ -143,191 +233,258 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </ul>
     </nav>
 
-    <main class="content">
+    <div class="content">
         <div class="left-panel">
             <h2>選擇卡牌背景</h2>
-            <div class="background-options">
-                <?php foreach ($background_images as $bg): ?>
-                    <div class="background-option" onclick="selectBackground('<?php echo $bg; ?>')">
-                        <img src="<?php echo $background_dir . $bg; ?>" alt="背景選項">
+            <div class="background-type-selector">
+                <button onclick="switchBackgroundType('normal')" class="active">純色背景</button>
+                <button onclick="switchBackgroundType('rare')">閃亮背景</button>
+            </div>
+
+            <div id="normal-backgrounds" class="background-section background-options active">
+                <?php foreach ($normal_images as $bg): ?>
+                    <div class="background-option" onclick="selectBackground('normal/<?php echo $bg; ?>')">
+                        <img src="<?php echo $normal_dir . $bg; ?>" alt="純色背景選項">
                     </div>
                 <?php endforeach; ?>
             </div>
 
-            <h2>選擇分類生成卡牌</h2>
-            <form method="POST" action="generate.php" class="search-form">
-                <label for="rarity">選擇稀有度:</label>
-                <select id="rarity" name="rarity" required>
-                    <option value="">-- 請選擇 --</option>
-                    <?php foreach ($rarity_options as $rarity): ?>
-                        <option value="<?php echo htmlspecialchars($rarity); ?>" <?php echo ($rarity == $selected_rarity) ? "selected" : ""; ?>>
-                            <?php echo htmlspecialchars($rarity); ?>
-                        </option>
-                    <?php endforeach; ?>
-                </select>
-
-                <label for="type">選擇屬性:</label>
-                <select id="type" name="type" required>
-                    <option value="">-- 請選擇 --</option>
-                    <?php foreach ($type_options as $type): ?>
-                        <option value="<?php echo htmlspecialchars($type); ?>" <?php echo ($type == $selected_type) ? "selected" : ""; ?>>
-                            <?php echo htmlspecialchars($type); ?>
-                        </option>
-                    <?php endforeach; ?>
-                </select>
-
-                <button type="submit">篩選</button>
-            </form>
-
-            <?php if (!empty($search_results)): ?>
-                <ul class="card-list">
-                    <?php foreach ($search_results as $pokemon): ?>
-                        <li class="card-item">
-                            <img src="<?php echo htmlspecialchars($pokemon['image_url']); ?>"
-                                alt="<?php echo htmlspecialchars($pokemon['Name']); ?>">
-                            <div class="card-info">
-                                <p>名稱: <?php echo htmlspecialchars($pokemon['Name']); ?></p>
-                                <p>稀有度: <?php echo htmlspecialchars($pokemon['Rarity']); ?></p>
-                                <p>屬性:
-                                    <?php echo htmlspecialchars($pokemon['Type1']); ?>
-                                    <?php echo $pokemon['Type2'] ? " / " . htmlspecialchars($pokemon['Type2']) : ""; ?>
-                                </p>
-                            </div>
-                            <button onclick="generateCard(
-                                '<?php echo htmlspecialchars($pokemon['image_url']); ?>',
-                                '<?php echo htmlspecialchars($pokemon['Name']); ?>',
-                                '<?php echo htmlspecialchars($pokemon['Rarity']); ?>',
-                                '<?php echo htmlspecialchars($pokemon['Type1']); ?>',
-                                '<?php echo htmlspecialchars($pokemon['Type2'] ?? ''); ?>'
-                            )">生成卡牌</button>
-                        </li>
-                    <?php endforeach; ?>
-                </ul>
-            <?php endif; ?>
+            <div id="rare-backgrounds" class="background-section background-options">
+                <?php foreach ($rare_images as $bg): ?>
+                    <div class="background-option" onclick="selectBackground('rare/<?php echo $bg; ?>')">
+                        <img src="<?php echo $rare_dir . $bg; ?>" alt="閃亮背景選項">
+                    </div>
+                <?php endforeach; ?>
+            </div>
         </div>
 
         <div class="right-panel">
             <div class="canvas-container">
                 <canvas id="cardCanvas" width="500" height="700"></canvas>
-                <div class="save-options" style="display:none;">
-                    <button onclick="downloadCard()">下載卡牌</button>
-                    <button onclick="saveToBooklet()">保存到卡冊</button>
+                <div class="save-options">
+                    <button onclick="downloadCard()" class="download-btn">下載卡牌</button>
                 </div>
             </div>
         </div>
-    </main>
+    </div>
 
-    <script src="../js/generate_card.js"></script>
     <script>
-        let selectedBackground = '';
+        // 確保 pokemonData 是全局可用的
+        let currentPokemonData = <?php echo json_encode($selected_pokemon); ?>;
+        console.log('Pokemon Data:', currentPokemonData); // 添加調試信息
 
-        function selectBackground(bgName) {
-            selectedBackground = bgName;
+        function switchBackgroundType(type) {
+            document.querySelectorAll('.background-type-selector button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector(`button[onclick="switchBackgroundType('${type}')"]`).classList.add('active');
+
+            document.getElementById('normal-backgrounds').style.display = type === 'normal' ? 'grid' : 'none';
+            document.getElementById('rare-backgrounds').style.display = type === 'rare' ? 'grid' : 'none';
+        }
+
+        function selectBackground(bgPath) {
             document.querySelectorAll('.background-option').forEach(opt => {
                 opt.classList.remove('selected');
             });
-            event.currentTarget.classList.add('selected');
-        }
 
-        function generateCard(imageUrl, name, rarity, type1, type2) {
-            if (!selectedBackground) {
-                alert('請先選擇卡牌背景！');
-                return;
+            const selectedBg = document.querySelector(`.background-option[onclick*="${bgPath}"]`);
+            if (selectedBg) {
+                selectedBg.classList.add('selected');
             }
 
+            generateCard(currentPokemonData, '../images/card_background/' + bgPath);
+        }
+
+        function generateCard(pokemonData, backgroundName) {
             const canvas = document.getElementById('cardCanvas');
             const ctx = canvas.getContext('2d');
+            console.log('Generating card with background:', backgroundName);
 
-            // 清空畫布
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            // 處理寶可夢名稱：
+            // displayName 保持原始格式（大寫開頭，空格）用於顯示
+            // imageFileName 轉小寫且空格換成-，用於圖片路徑
+            const displayName = pokemonData.name; // 保持原始名稱
+            const imageFileName = pokemonData.name.toLowerCase().replace(/\s+/g, '-'); // 轉小寫且空格換成-
+            const pokemonImagePath = `../images/pokemon_images/${imageFileName}.png`;
+            console.log('Pokemon image path:', pokemonImagePath);
 
-            // 載入背景圖片
             const bgImg = new Image();
-            bgImg.onload = function () {
-                ctx.drawImage(bgImg, 0, 0, canvas.width, canvas.height);
-
-                // 繪製內層米色底圖
-                ctx.fillStyle = '#f5f5dc';
-                roundRect(ctx, 30, 30, canvas.width - 60, canvas.height - 60, 20);
-
-                // 載入寶可夢圖片
-                const pokemonImg = new Image();
-                pokemonImg.onload = function () {
-                    // 在上半部分繪製寶可夢圖片
-                    const imgWidth = canvas.width - 100;
-                    const imgHeight = (canvas.height - 100) * 0.6;
-                    ctx.drawImage(pokemonImg, 50, 50, imgWidth, imgHeight);
-
-                    // 添加文字描述
-                    ctx.fillStyle = '#000';
-                    ctx.font = '20px Arial';
-                    let y = imgHeight + 100;
-                    ctx.fillText(`名稱: ${name}`, 60, y);
-                    ctx.fillText(`稀有度: ${rarity}`, 60, y + 30);
-                    ctx.fillText(`屬性: ${type1}${type2 ? ' / ' + type2 : ''}`, 60, y + 60);
-
-                    // 顯示保存選項
-                    document.querySelector('.save-options').style.display = 'flex';
-                };
-                pokemonImg.src = imageUrl;
+            bgImg.crossOrigin = "Anonymous";
+            bgImg.onerror = function () {
+                console.error('Background image failed to load:', backgroundName);
             };
-            bgImg.src = '../images/card_background/' + selectedBackground;
+            bgImg.onload = function () {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            $_SESSION['has_generated'] = true;
+                // 背景
+                ctx.save();
+                roundRect(ctx, 0, 0, canvas.width, canvas.height, 25);
+                ctx.clip();
+                ctx.drawImage(bgImg, 0, 0, canvas.width, canvas.height);
+                ctx.restore();
+
+                // 白色底圖
+                ctx.save();
+                roundRect(ctx, 30, 30, canvas.width - 60, canvas.height - 60, 15);
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.98)';
+                ctx.fill();
+                ctx.restore();
+
+                // 檢查圖片是否存在和稀有度是否存在
+                fetch(pokemonImagePath)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Image not found');
+                        }
+                        if (!pokemonData.rarity) {
+                            throw new Error('No rarity defined');
+                        }
+                        return true;
+                    })
+                    .then(() => {
+                        // 圖片存在且有稀有度，繪製完整卡片
+                        const pokemonImg = new Image();
+                        pokemonImg.crossOrigin = "Anonymous";
+                        pokemonImg.onload = function () {
+                            const imgWidth = canvas.width - 160;
+                            const imgHeight = (canvas.height - 140) * 0.5;
+                            ctx.drawImage(pokemonImg, 80, 90, imgWidth, imgHeight);
+                            drawCardText(imgHeight, displayName);
+                        };
+                        pokemonImg.src = pokemonImagePath;
+                    })
+                    .catch((error) => {
+                        // 圖片不存在或無稀有度，不繪製任何內容
+                        console.log('Skipping card generation:', error.message);
+                    });
+            };
+            bgImg.src = backgroundName;
+
+            function drawCardText(imgHeight, displayName) {
+                // 文字排版
+                ctx.textAlign = 'left';
+                let y = imgHeight + 120;
+
+                // 標題（使用原始名稱，保持大寫開頭）
+                ctx.fillStyle = '#333';
+                ctx.font = 'bold 28px "Cinzel", "Noto Sans TC", serif';
+                ctx.fillText(displayName, 90, y);
+
+                // 分隔線
+                y += 20;
+                ctx.beginPath();
+                ctx.strokeStyle = '#ddd';
+                ctx.lineWidth = 1;
+                ctx.moveTo(90, y);
+                ctx.lineTo(canvas.width - 90, y);
+                ctx.stroke();
+
+                // 稀有度
+                y += 35;
+                ctx.font = '22px "Cinzel", "Noto Sans TC", serif';
+                ctx.fillStyle = '#333';
+                ctx.fillText('稀有度', 90, y);
+                ctx.font = 'bold 22px "Cinzel", "Noto Sans TC", serif';
+                ctx.fillText(pokemonData.rarity, 180, y);
+
+                // 屬性（如果有）
+                if (pokemonData.type1) {
+                    y += 35;
+                    ctx.font = '22px "Cinzel", "Noto Sans TC", serif';
+                    ctx.fillText('屬性', 90, y);
+                    ctx.font = 'bold 22px "Cinzel", "Noto Sans TC", serif';
+                    const types = pokemonData.type2
+                        ? `${pokemonData.type1} / ${pokemonData.type2}`
+                        : pokemonData.type1;
+                    ctx.fillText(types, 180, y);
+                }
+
+                // 特性和描述（如果有）
+                if (pokemonData.ability && pokemonData.ability.name) {
+                    y += 35;
+                    ctx.font = '22px "Cinzel", "Noto Sans TC", serif';
+                    ctx.fillText('特性', 90, y);
+                    ctx.font = 'bold 22px "Cinzel", "Noto Sans TC", serif';
+                    ctx.fillText(pokemonData.ability.name, 180, y);
+
+                    if (pokemonData.ability.description) {
+                        y += 35;
+                        ctx.font = '18px "Cinzel", "Noto Sans TC", serif';
+                        const maxWidth = canvas.width - 180;
+                        wrapText(ctx, pokemonData.ability.description, 90, y, maxWidth, 25);
+                    }
+                }
+            }
         }
 
         function roundRect(ctx, x, y, width, height, radius) {
             ctx.beginPath();
             ctx.moveTo(x + radius, y);
-            ctx.arcTo(x + width, y, x + width, y + height, radius);
-            ctx.arcTo(x + width, y + height, x, y + height, radius);
-            ctx.arcTo(x, y + height, x, y, radius);
-            ctx.arcTo(x, y, x + width, y, radius);
+            ctx.lineTo(x + width - radius, y);
+            ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+            ctx.lineTo(x + width, y + height - radius);
+            ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+            ctx.lineTo(x + radius, y + height);
+            ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+            ctx.lineTo(x, y + radius);
+            ctx.quadraticCurveTo(x, y, x + radius, y);
             ctx.closePath();
-            ctx.fill();
         }
 
-        function saveToBooklet() {
-            const canvas = document.getElementById('cardCanvas');
-            const imageData = canvas.toDataURL('image/png');
+        function downloadCard() {
+            try {
+                const canvas = document.getElementById('cardCanvas');
+                const selectedBg = document.querySelector('.background-option.selected');
+                const bgPath = selectedBg.getAttribute('onclick').match(/'([^']+)'/)[1];
+                const bgName = bgPath.split('/').pop().split('.')[0];
 
-            fetch('save_to_booklet.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    imageData: imageData,
-                    background: selectedBackground,
-                    pokemonName: currentPokemonName
-                })
-            })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        alert('成功保存到卡冊！');
-                    } else {
-                        alert('保存失敗：' + data.message);
-                    }
-                });
+                // 將寶可夢名稱中的空格替換為底線
+                const safePokemonName = currentPokemonData.name.replace(/\s+/g, '_');
+                const fileName = `${safePokemonName}_${bgName}.png`;
+
+                const dataURL = canvas.toDataURL('image/png', 1.0);
+
+                const link = document.createElement('a');
+                link.download = fileName;
+                link.href = dataURL;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            } catch (error) {
+                console.error('下載過程發生錯誤:', error);
+                alert('下載失敗: ' + error.message);
+            }
         }
 
-        function toggleSidebar() {
-            const sidebar = document.querySelector('.sidebar');
-            const content = document.querySelector('.content');
-            const toggleBtn = document.querySelector('.toggle-btn');
-            const leftPanel = document.querySelector('.left-panel');
-            const rightPanel = document.querySelector('.right-panel');
-            const toggleIcon = document.getElementById('toggle-icon');
+        // 頁面加載時自動選擇第一個背景
+        window.onload = function () {
+            const firstBg = document.querySelector('.background-option');
+            if (firstBg) {
+                const bgPath = firstBg.getAttribute('onclick').match(/'([^']+)'/)[1];
+                selectBackground(bgPath);
+            }
+        };
 
-            sidebar.classList.toggle('collapsed');
-            content.classList.toggle('full-width');
-            toggleBtn.classList.toggle('collapsed');
-            leftPanel.classList.toggle('sidebar-collapsed');
-            rightPanel.classList.toggle('sidebar-collapsed');
+        // 在 script 標籤內添加文字換行函數
+        function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
+            const words = text.split('');
+            let line = '';
 
-            // 更改箭頭方向
-            toggleIcon.textContent = sidebar.classList.contains('collapsed') ? '▶' : '◀';
+            for (let n = 0; n < words.length; n++) {
+                const testLine = line + words[n];
+                const metrics = ctx.measureText(testLine);
+                const testWidth = metrics.width;
+
+                if (testWidth > maxWidth && n > 0) {
+                    ctx.fillText(line, x, y);
+                    line = words[n];
+                    y += lineHeight;
+                } else {
+                    line = testLine;
+                }
+            }
+            ctx.fillText(line, x, y);
         }
     </script>
 </body>

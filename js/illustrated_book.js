@@ -31,35 +31,61 @@ function filterPokemons() {
     });
 }
 
-function redirectToCardGenerator(pokemonName) {
-    // 儲存選中的寶可夢
-    fetch(`set_selected_pokemon.php?name=${encodeURIComponent(pokemonName)}`)
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                window.location.href = 'generate.php';
-            }
-        });
+function redirectToCardGenerator(name, rarity, type1, imageUrl, type2) {
+    // 將寶可夢資訊存儲到 session
+    fetch('set_pokemon_data.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            name: name,
+            rarity: rarity,
+            type1: type1,
+            type2: type2,
+            imageUrl: imageUrl
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            window.location.href = 'generate.php';
+        }
+    });
 }
 
 function showDetails(name, rarity, type1, imageUrl, type2, total) {
+    const modal = document.getElementById('pokemonModal');
+    
+    // 設置模態框內容
     document.getElementById('modalName').textContent = name;
     document.getElementById('modalRarity').textContent = rarity;
     document.getElementById('modalType1').textContent = type1;
     document.getElementById('modalType2').textContent = type2 || '無';
     document.getElementById('modalTotal').textContent = total;
     document.getElementById('modalImage').src = imageUrl;
-    document.getElementById('pokemonModal').style.display = 'block';
+    
+    // 顯示模態框
+    requestAnimationFrame(() => {
+        modal.style.display = 'flex';
+        requestAnimationFrame(() => {
+            modal.classList.add('show');
+        });
+    });
 }
 
 function closeModal() {
-    document.getElementById('pokemonModal').style.display = 'none';
+    const modal = document.getElementById('pokemonModal');
+    modal.classList.remove('show');
+    setTimeout(() => {
+        modal.style.display = 'none';
+    }, 300);
 }
 
 // 點擊模態框外部關閉
 window.onclick = function(event) {
     const modal = document.getElementById('pokemonModal');
     if (event.target == modal) {
-        modal.style.display = 'none';
+        closeModal();
     }
 }
