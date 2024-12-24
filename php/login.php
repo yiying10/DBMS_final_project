@@ -31,6 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $row = $result->fetch_assoc();
         if (password_verify($password, $row['password'])) {
             $_SESSION['user_name'] = $row['user_name'];
+            $_SESSION['user_id'] = $row['user_id'];
             header("Location: ../php/home.php");
             exit();
         }

@@ -1,5 +1,5 @@
 <?php
-// 確保有接收到 booklet_id
+session_start();
 if (!isset($_POST['booklet_id']) || empty($_POST['booklet_id'])) {
     echo json_encode(['status' => 'error', 'message' => '缺少必要參數']);
     exit;

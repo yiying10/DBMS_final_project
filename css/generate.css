@@ -130,9 +130,6 @@
     display: flex;
     align-items: center;
 }
-.filter-checkbox:checked + .filter-label {
-    background-color: #3949ab;
-}
 
 .card-item img {
     width: 80px;
