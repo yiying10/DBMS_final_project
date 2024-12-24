@@ -1,4 +1,4 @@
-USE pokemon;
+USE Pokemon;
 CREATE TABLE booklet (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,

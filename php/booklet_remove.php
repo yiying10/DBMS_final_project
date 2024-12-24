@@ -1,40 +1,68 @@
 <?php
 session_start();
-if (!isset($_POST['booklet_id']) || empty($_POST['booklet_id'])) {
-    echo json_encode(['status' => 'error', 'message' => '缺少必要參數']);
+header('Content-Type: application/json; charset=utf-8');
+
+// 若未登入則擋下
+if (!isset($_SESSION['user_id'])) {
+    echo json_encode([
+        'success' => false,
+        'message' => '用戶未登入'
+    ]);
     exit;
 }
 
-$booklet_id = intval($_POST['booklet_id']);
-
-try {
-    require_once('db_connect.php');
-
-    // MySQLi 開始事務
-    $conn->autocommit(FALSE);
-
-    // 開始交易
-    $conn->begin_transaction();
-
-    // 先刪除相關的子表數據（如果有的話）
-    $stmt = $conn->prepare("DELETE FROM booklet_details WHERE booklet_id = ?");
-    $stmt->execute([$booklet_id]);
-
-    // 刪除主表數據
-    $stmt = $conn->prepare("DELETE FROM booklets WHERE id = ?");
-    $result = $stmt->execute([$booklet_id]);
-
-    if ($result) {
-        $conn->commit();
-        echo json_encode(['status' => 'success', 'message' => '手冊已成功刪除']);
-    } else {
-        throw new Exception('刪除失敗');
-    }
-
-} catch (Exception $e) {
-    if (isset($conn)) {
-        $conn->rollback();
-    }
-    echo json_encode(['status' => 'error', 'message' => '刪除過程中發生錯誤：' . $e->getMessage()]);
+// 讀取前端送來的 JSON
+$postData = json_decode(file_get_contents('php://input'), true);
+if (!$postData || !isset($postData['card_id'])) {
+    echo json_encode([
+        'success' => false,
+        'message' => '缺少 card_id'
+    ]);
+    exit;
 }
-?>
+
+$cardId = (int) $postData['card_id'];
+$user_id = $_SESSION['user_id'];
+
+// 連線資料庫
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "Pokemon";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+if ($conn->connect_error) {
+    echo json_encode([
+        'success' => false,
+        'message' => '資料庫連接失敗: ' . $conn->connect_error
+    ]);
+    exit;
+}
+
+// 執行刪除
+$stmt = $conn->prepare("DELETE FROM booklet WHERE id = ? AND user_id = ?");
+$stmt->bind_param("ii", $cardId, $user_id);
+
+if ($stmt->execute()) {
+    if ($stmt->affected_rows > 0) {
+        // 成功刪除
+        echo json_encode([
+            'success' => true,
+            'message' => '卡片已刪除'
+        ]);
+    } else {
+        // 沒刪到任何資料，可能該卡不屬於此用戶
+        echo json_encode([
+            'success' => false,
+            'message' => '沒有權限或卡片不存在'
+        ]);
+    }
+} else {
+    echo json_encode([
+        'success' => false,
+        'message' => '刪除失敗: ' . $conn->error
+    ]);
+}
+
+$stmt->close();
+$conn->close();
