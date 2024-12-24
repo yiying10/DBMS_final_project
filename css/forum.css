@@ -1,0 +1,153 @@
+/* 整體貼文容器樣式 */
+.posts-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 0 15px;
+}
+
+/* 單個貼文區塊樣式 */
+.post {
+    background-color: white;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e0e0e0;
+}
+
+/* 貼文標題區域樣式 */
+.post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+/* 用戶名稱樣式 */
+.username {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #333;
+}
+
+/* 發文時間樣式 */
+.post-time {
+    color: #666;
+    font-size: 0.9em;
+}
+
+/* 貼文內容樣式 */
+.post-content {
+    margin: 15px 0;
+    line-height: 1.6;
+    color: #444;
+}
+
+/* 評論區域樣式 */
+.comments-section {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+}
+
+/* 評論表單樣式 */
+.comment-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    resize: vertical;
+    margin-bottom: 10px;
+    font-family: inherit;
+}
+
+/* 按鈕通用樣式 */
+.submit-button, .comment-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.3s;
+}
+
+.submit-button:hover, .comment-btn:hover {
+    background-color: #45a049;
+}
+
+/* 發文表單樣式 */
+.post-form {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.post-form textarea {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    resize: vertical;
+    margin-bottom: 10px;
+    font-family: inherit;
+}
+
+/* 編輯和刪除按鈕樣式 */
+.post-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.edit-btn, .delete-btn {
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.9em;
+    cursor: pointer;
+}
+
+.edit-btn {
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+}
+
+.delete-btn {
+    background-color: #f44336;
+    color: white;
+    border: none;
+}
+
+.edit-btn:hover {
+    background-color: #45a049;
+}
+
+.delete-btn:hover {
+    background-color: #da190b;
+}
+
+/* 評論樣式 */
+.comment {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 12px;
+    margin: 10px 0;
+}
+
+.comment-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.comment-content {
+    color: #444;
+    line-height: 1.4;
+} 

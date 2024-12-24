@@ -1,2176 +1,2176 @@
 Ability,Hidden,Pokemon
-Adaptability,False,Eevee
-Anticipation,True,Eevee
-Run Away,False,Eevee
-Adaptability,True,Corphish
-Hyper Cutter,False,Corphish
-Shell Armor,False,Corphish
-Adaptability,True,Crawdaunt
-Hyper Cutter,False,Crawdaunt
-Shell Armor,False,Crawdaunt
-Adaptability,True,Feebas
-Oblivious,False,Feebas
-Swift Swim,False,Feebas
-Adaptability,True,Skrelp
-Poison Point,False,Skrelp
-Poison Touch,False,Skrelp
-Adaptability,True,Dragalge
-Poison Point,False,Dragalge
-Poison Touch,False,Dragalge
-Adaptability,True,Yungoos
-Stakeout,False,Yungoos
-Strong Jaw,False,Yungoos
-Adaptability,True,Gumshoos
-Stakeout,False,Gumshoos
-Strong Jaw,False,Gumshoos
-Adaptability,False,Mega Lucario
-Adaptability,False,Mega Beedrill
-Aerilate,False,Mega Pinsir
-Aerilate,False,Mega Salamence
-Aftermath,True,Voltorb
-Soundproof,False,Voltorb
-Static,False,Voltorb
-Aftermath,True,Electrode
-Soundproof,False,Electrode
-Static,False,Electrode
-Aftermath,False,Drifloon
-Flare Boost,True,Drifloon
-Unburden,False,Drifloon
-Aftermath,False,Drifblim
-Flare Boost,True,Drifblim
-Unburden,False,Drifblim
-Aftermath,False,Stunky
-Keen Eye,True,Stunky
-Stench,False,Stunky
-Aftermath,False,Skuntank
-Keen Eye,True,Skuntank
-Stench,False,Skuntank
-Aftermath,True,Trubbish
-Stench,False,Trubbish
-Sticky Hold,False,Trubbish
-Aftermath,True,Garbodor
-Stench,False,Garbodor
-Weak Armor,False,Garbodor
-Air Lock,False,Rayquaza
-Analytic,True,Magnemite
-Magnet Pull,False,Magnemite
-Sturdy,False,Magnemite
-Analytic,True,Magneton
-Magnet Pull,False,Magneton
-Sturdy,False,Magneton
-Analytic,True,Staryu
-Illuminate,False,Staryu
-Natural Cure,False,Staryu
-Analytic,True,Starmie
-Illuminate,False,Starmie
-Natural Cure,False,Starmie
-Analytic,True,Porygon
-Download,False,Porygon
-Trace,False,Porygon
-Analytic,True,Porygon2
-Download,False,Porygon2
-Trace,False,Porygon2
-Analytic,True,Magnezone
-Magnet Pull,False,Magnezone
-Sturdy,False,Magnezone
-Analytic,True,Patrat
-Keen Eye,False,Patrat
-Run Away,False,Patrat
-Analytic,True,Watchog
-Illuminate,False,Watchog
-Keen Eye,False,Watchog
-Analytic,True,Elgyem
-Synchronize,False,Elgyem
-Telepathy,False,Elgyem
-Analytic,True,Beheeyem
-Synchronize,False,Beheeyem
-Telepathy,False,Beheeyem
-Anger Point,False,Mankey
-Defiant,True,Mankey
-Vital Spirit,False,Mankey
-Anger Point,False,Primeape
-Defiant,True,Primeape
-Vital Spirit,False,Primeape
-Anger Point,False,Tauros
-Intimidate,False,Tauros
-Sheer Force,True,Tauros
-Anger Point,True,Camerupt
-Magma Armor,False,Camerupt
-Solid Rock,False,Camerupt
-Anger Point,True,Sandile
-Intimidate,False,Sandile
-Moxie,False,Sandile
-Anger Point,True,Krokorok
-Intimidate,False,Krokorok
-Moxie,False,Krokorok
-Anger Point,True,Krookodile
-Intimidate,False,Krookodile
-Moxie,False,Krookodile
-Anger Point,True,Crabrawler
-Hyper Cutter,False,Crabrawler
-Iron Fist,False,Crabrawler
-Anger Point,True,Crabominable
-Hyper Cutter,False,Crabominable
-Iron Fist,False,Crabominable
-Anticipation,False,Barboach
-Hydration,True,Barboach
-Oblivious,False,Barboach
-Anticipation,False,Whiscash
-Hydration,True,Whiscash
-Oblivious,False,Whiscash
-Anticipation,False,Croagunk
-Dry Skin,False,Croagunk
-Poison Touch,True,Croagunk
-Anticipation,False,Toxicroak
-Dry Skin,False,Toxicroak
-Poison Touch,True,Toxicroak
-Anticipation,True,Ferrothorn
-Iron Barbs,False,Ferrothorn
-Anticipation,False,Hatenna
-Healer,False,Hatenna
-Magic Bounce,True,Hatenna
-Anticipation,False,Hattrem
-Healer,False,Hattrem
-Magic Bounce,True,Hattrem
-Anticipation,False,Hatterene
-Healer,False,Hatterene
-Magic Bounce,True,Hatterene
-Arena Trap,False,Diglett
-Sand Force,True,Diglett
-Sand Veil,False,Diglett
-Arena Trap,False,Dugtrio
-Sand Force,True,Dugtrio
-Sand Veil,False,Dugtrio
-Arena Trap,False,Trapinch
-Hyper Cutter,False,Trapinch
-Sheer Force,True,Trapinch
-Aroma Veil,True,Spritzee
-Healer,False,Spritzee
-Aroma Veil,True,Aromatisse
-Healer,False,Aromatisse
-Aroma Veil,True,Milcery
-Sweet Veil,False,Milcery
-Aroma Veil,True,Alcremie
-Sweet Veil,False,Alcremie
-Bad Dreams,False,Darkrai
-Ball Fetch,False,Yamper
-Rattled,True,Yamper
-Battery,False,Charjabug
-Battle Armor,True,Cubone
-Lightning Rod,False,Cubone
-Rock Head,False,Cubone
-Battle Armor,True,Marowak
-Lightning Rod,False,Marowak
-Rock Head,False,Marowak
-Battle Armor,False,Kabuto
-Swift Swim,False,Kabuto
-Weak Armor,True,Kabuto
-Battle Armor,False,Kabutops
-Swift Swim,False,Kabutops
-Weak Armor,True,Kabutops
-Battle Armor,False,Anorith
-Swift Swim,True,Anorith
-Battle Armor,False,Armaldo
-Swift Swim,True,Armaldo
-Battle Armor,False,Skorupi
-Keen Eye,True,Skorupi
-Sniper,False,Skorupi
-Battle Armor,False,Drapion
-Keen Eye,True,Drapion
-Sniper,False,Drapion
-Battle Armor,False,Perrserker
-Steely Spirit,True,Perrserker
-Tough Claws,False,Perrserker
-Battle Armor,False,Falinks
-Defiant,True,Falinks
-Beast Boost,False,Nihilego
-Beast Boost,False,Buzzwole
-Beast Boost,False,Pheromosa
-Beast Boost,False,Xurkitree
-Beast Boost,False,Celesteela
-Beast Boost,False,Kartana
-Beast Boost,False,Guzzlord
-Beast Boost,False,Poipole
-Beast Boost,False,Naganadel
-Beast Boost,False,Stakataka
-Beast Boost,False,Blacephalon
-Berserk,False,Drampa
-Cloud Nine,True,Drampa
-Sap Sipper,False,Drampa
-Big Pecks,True,Pidgey
-Keen Eye,False,Pidgey
-Tangled Feet,False,Pidgey
-Big Pecks,True,Pidgeotto
-Keen Eye,False,Pidgeotto
-Tangled Feet,False,Pidgeotto
-Big Pecks,True,Pidgeot
-Keen Eye,False,Pidgeot
-Tangled Feet,False,Pidgeot
-Big Pecks,True,Chatot
-Keen Eye,False,Chatot
-Tangled Feet,False,Chatot
-Big Pecks,False,Pidove
-Rivalry,True,Pidove
-Super Luck,False,Pidove
-Big Pecks,False,Tranquill
-Rivalry,True,Tranquill
-Super Luck,False,Tranquill
-Big Pecks,False,Unfezant
-Rivalry,True,Unfezant
-Super Luck,False,Unfezant
-Big Pecks,False,Ducklett
-Hydration,True,Ducklett
-Keen Eye,False,Ducklett
-Big Pecks,False,Swanna
-Hydration,True,Swanna
-Keen Eye,False,Swanna
-Big Pecks,False,Vullaby
-Overcoat,False,Vullaby
-Weak Armor,True,Vullaby
-Big Pecks,False,Mandibuzz
-Overcoat,False,Mandibuzz
-Weak Armor,True,Mandibuzz
-Big Pecks,False,Fletchling
-Gale Wings,True,Fletchling
-Big Pecks,True,Rookidee
-Keen Eye,False,Rookidee
-Unnerve,False,Rookidee
-Big Pecks,True,Corvisquire
-Keen Eye,False,Corvisquire
-Unnerve,False,Corvisquire
-Blaze,False,Charmander
-Solar Power,True,Charmander
-Blaze,False,Charmeleon
-Solar Power,True,Charmeleon
-Blaze,False,Charizard
-Solar Power,True,Charizard
-Blaze,False,Cyndaquil
-Flash Fire,True,Cyndaquil
-Blaze,False,Quilava
-Flash Fire,True,Quilava
-Blaze,False,Typhlosion
-Flash Fire,True,Typhlosion
-Blaze,False,Torchic
-Speed Boost,True,Torchic
-Blaze,False,Combusken
-Speed Boost,True,Combusken
-Blaze,False,Blaziken
-Speed Boost,True,Blaziken
-Blaze,False,Chimchar
-Iron Fist,True,Chimchar
-Blaze,False,Monferno
-Iron Fist,True,Monferno
-Blaze,False,Infernape
-Iron Fist,True,Infernape
-Blaze,False,Tepig
-Thick Fat,True,Tepig
-Blaze,False,Pignite
-Thick Fat,True,Pignite
-Blaze,False,Emboar
-Reckless,True,Emboar
-Blaze,True,Pansear
-Gluttony,False,Pansear
-Blaze,True,Simisear
-Gluttony,False,Simisear
-Blaze,False,Fennekin
-Magician,True,Fennekin
-Blaze,False,Braixen
-Magician,True,Braixen
-Blaze,False,Delphox
-Magician,True,Delphox
-Blaze,False,Litten
-Intimidate,True,Litten
-Blaze,False,Torracat
-Intimidate,True,Torracat
-Blaze,False,Incineroar
-Intimidate,True,Incineroar
-Blaze,False,Scorbunny
-Libero,True,Scorbunny
-Blaze,False,Raboot
-Libero,True,Raboot
-Blaze,False,Cinderace
-Libero,True,Cinderace
-Bulletproof,True,Chespin
-Overgrow,False,Chespin
-Bulletproof,True,Quilladin
-Overgrow,False,Quilladin
-Bulletproof,True,Chesnaught
-Overgrow,False,Chesnaught
-Bulletproof,True,Wooloo
-Fluffy,False,Wooloo
-Run Away,False,Wooloo
-Bulletproof,True,Dubwool
-Fluffy,False,Dubwool
-Steadfast,False,Dubwool
-Bulletproof,True,Applin
-Gluttony,False,Applin
-Ripen,False,Applin
-Cheek Pouch,False,Bunnelby
-Huge Power,True,Bunnelby
-Pickup,False,Bunnelby
-Cheek Pouch,False,Diggersby
-Huge Power,True,Diggersby
-Pickup,False,Diggersby
-Cheek Pouch,False,Dedenne
-Pickup,False,Dedenne
-Plus,True,Dedenne
-Cheek Pouch,False,Skwovet
-Gluttony,True,Skwovet
-Cheek Pouch,False,Greedent
-Gluttony,True,Greedent
-Chilling Neigh,False,Glastrier
-Chlorophyll,True,Bulbasaur
-Overgrow,False,Bulbasaur
-Chlorophyll,True,Ivysaur
-Overgrow,False,Ivysaur
-Chlorophyll,True,Venusaur
-Overgrow,False,Venusaur
-Chlorophyll,False,Oddish
-Run Away,True,Oddish
-Chlorophyll,False,Gloom
-Stench,True,Gloom
-Chlorophyll,False,Vileplume
-Effect Spore,True,Vileplume
-Chlorophyll,False,Bellsprout
-Gluttony,True,Bellsprout
-Chlorophyll,False,Weepinbell
-Gluttony,True,Weepinbell
-Chlorophyll,False,Victreebel
-Gluttony,True,Victreebel
-Chlorophyll,False,Exeggcute
-Harvest,True,Exeggcute
-Chlorophyll,False,Exeggutor
-Harvest,True,Exeggutor
-Chlorophyll,False,Tangela
-Leaf Guard,False,Tangela
-Regenerator,True,Tangela
-Chlorophyll,False,Bellossom
-Healer,True,Bellossom
-Chlorophyll,False,Hoppip
-Infiltrator,True,Hoppip
-Leaf Guard,False,Hoppip
-Chlorophyll,False,Skiploom
-Infiltrator,True,Skiploom
-Leaf Guard,False,Skiploom
-Chlorophyll,False,Jumpluff
-Infiltrator,True,Jumpluff
-Leaf Guard,False,Jumpluff
-Chlorophyll,False,Sunkern
-Early Bird,True,Sunkern
-Solar Power,False,Sunkern
-Chlorophyll,False,Sunflora
-Early Bird,True,Sunflora
-Solar Power,False,Sunflora
-Chlorophyll,False,Seedot
-Early Bird,False,Seedot
-Pickpocket,True,Seedot
-Chlorophyll,False,Nuzleaf
-Early Bird,False,Nuzleaf
-Pickpocket,True,Nuzleaf
-Chlorophyll,False,Shiftry
-Early Bird,False,Shiftry
-Pickpocket,True,Shiftry
-Chlorophyll,False,Tropius
-Harvest,True,Tropius
-Solar Power,False,Tropius
-Chlorophyll,False,Cherubi
-Chlorophyll,False,Tangrowth
-Leaf Guard,False,Tangrowth
-Regenerator,True,Tangrowth
-Chlorophyll,True,Leafeon
-Leaf Guard,False,Leafeon
-Chlorophyll,False,Sewaddle
-Overcoat,True,Sewaddle
-Swarm,False,Sewaddle
-Chlorophyll,False,Swadloon
-Leaf Guard,False,Swadloon
-Overcoat,True,Swadloon
-Chlorophyll,False,Leavanny
-Overcoat,True,Leavanny
-Swarm,False,Leavanny
-Chlorophyll,True,Cottonee
-Infiltrator,False,Cottonee
-Prankster,False,Cottonee
-Chlorophyll,True,Whimsicott
-Infiltrator,False,Whimsicott
-Prankster,False,Whimsicott
-Chlorophyll,False,Petilil
-Leaf Guard,True,Petilil
-Own Tempo,False,Petilil
-Chlorophyll,False,Lilligant
-Leaf Guard,True,Lilligant
-Own Tempo,False,Lilligant
-Chlorophyll,False,Maractus
-Storm Drain,True,Maractus
-Water Absorb,False,Maractus
-Chlorophyll,False,Deerling
-Sap Sipper,False,Deerling
-Serene Grace,True,Deerling
-Chlorophyll,False,Sawsbuck
-Sap Sipper,False,Sawsbuck
-Serene Grace,True,Sawsbuck
-Clear Body,False,Tentacool
-Liquid Ooze,False,Tentacool
-Rain Dish,True,Tentacool
-Clear Body,False,Tentacruel
-Liquid Ooze,False,Tentacruel
-Rain Dish,True,Tentacruel
-Clear Body,False,Beldum
-Light Metal,True,Beldum
-Clear Body,False,Metang
-Light Metal,True,Metang
-Clear Body,False,Metagross
-Light Metal,True,Metagross
-Clear Body,False,Regirock
-Sturdy,True,Regirock
-Clear Body,False,Regice
-Ice Body,True,Regice
-Clear Body,False,Registeel
-Light Metal,True,Registeel
-Clear Body,True,Klink
-Minus,False,Klink
-Plus,False,Klink
-Clear Body,True,Klang
-Minus,False,Klang
-Plus,False,Klang
-Clear Body,True,Klinklang
-Minus,False,Klinklang
-Plus,False,Klinklang
-Clear Body,False,Carbink
-Sturdy,True,Carbink
-Clear Body,False,Diancie
-Clear Body,False,Dreepy
-Cursed Body,True,Dreepy
-Infiltrator,False,Dreepy
-Clear Body,False,Drakloak
-Cursed Body,True,Drakloak
-Infiltrator,False,Drakloak
-Clear Body,False,Dragapult
-Cursed Body,True,Dragapult
-Infiltrator,False,Dragapult
-Cloud Nine,False,Psyduck
-Damp,False,Psyduck
-Swift Swim,True,Psyduck
-Cloud Nine,False,Golduck
-Damp,False,Golduck
-Swift Swim,True,Golduck
-Cloud Nine,True,Lickitung
-Oblivious,False,Lickitung
-Own Tempo,False,Lickitung
-Cloud Nine,True,Swablu
-Natural Cure,False,Swablu
-Cloud Nine,True,Altaria
-Natural Cure,False,Altaria
-Cloud Nine,True,Lickilicky
-Oblivious,False,Lickilicky
-Own Tempo,False,Lickilicky
-Color Change,False,Kecleon
-Protean,True,Kecleon
-Comatose,False,Komala
-Competitive,False,Jigglypuff
-Cute Charm,False,Jigglypuff
-Friend Guard,True,Jigglypuff
-Competitive,False,Wigglytuff
-Cute Charm,False,Wigglytuff
-Frisk,True,Wigglytuff
-Competitive,False,Igglybuff
-Cute Charm,False,Igglybuff
-Friend Guard,True,Igglybuff
-Competitive,False,Milotic
-Cute Charm,True,Milotic
-Marvel Scale,False,Milotic
-Competitive,False,Gothita
-Frisk,False,Gothita
-Shadow Tag,True,Gothita
-Competitive,False,Gothorita
-Frisk,False,Gothorita
-Shadow Tag,True,Gothorita
-Competitive,False,Gothitelle
-Frisk,False,Gothitelle
-Shadow Tag,True,Gothitelle
-Competitive,True,Boltund
-Strong Jaw,False,Boltund
-Competitive,True,Meowstic Female
-Infiltrator,False,Meowstic Female
-Keen Eye,False,Meowstic Female
-Compound Eyes,False,Butterfree
-Tinted Lens,True,Butterfree
-Compound Eyes,False,Venonat
-Run Away,True,Venonat
-Tinted Lens,False,Venonat
-Compound Eyes,False,Yanma
-Frisk,True,Yanma
-Speed Boost,False,Yanma
-Compound Eyes,True,Dustox
-Shield Dust,False,Dustox
-Compound Eyes,False,Nincada
-Run Away,True,Nincada
-Compound Eyes,False,Joltik
-Swarm,True,Joltik
-Unnerve,False,Joltik
-Compound Eyes,False,Galvantula
-Swarm,True,Galvantula
-Unnerve,False,Galvantula
-Compound Eyes,False,Scatterbug
-Friend Guard,True,Scatterbug
-Shield Dust,False,Scatterbug
-Compound Eyes,False,Vivillon
-Friend Guard,True,Vivillon
-Shield Dust,False,Vivillon
-Compound Eyes,False,Blipbug
-Swarm,False,Blipbug
-Telepathy,True,Blipbug
-Compound Eyes,False,Dottler
-Swarm,False,Dottler
-Telepathy,True,Dottler
-Contrary,True,Shuckle
-Gluttony,False,Shuckle
-Sturdy,False,Shuckle
-Contrary,True,Spinda
-Own Tempo,False,Spinda
-Tangled Feet,False,Spinda
-Contrary,True,Snivy
-Overgrow,False,Snivy
-Contrary,True,Servine
-Overgrow,False,Servine
-Contrary,True,Serperior
-Overgrow,False,Serperior
-Contrary,False,Inkay
-Infiltrator,True,Inkay
-Suction Cups,False,Inkay
-Contrary,False,Malamar
-Infiltrator,True,Malamar
-Suction Cups,False,Malamar
-Contrary,True,Fomantis
-Leaf Guard,False,Fomantis
-Contrary,True,Lurantis
-Leaf Guard,False,Lurantis
-Corrosion,False,Salandit
-Oblivious,True,Salandit
-Corrosion,False,Salazzle
-Oblivious,True,Salazzle
-Cotton Down,False,Gossifleur
-Effect Spore,True,Gossifleur
-Regenerator,False,Gossifleur
-Cotton Down,False,Eldegoss
-Effect Spore,True,Eldegoss
-Regenerator,False,Eldegoss
-Cursed Body,False,Gengar
-Cursed Body,True,Shuppet
-Frisk,False,Shuppet
-Insomnia,False,Shuppet
-Cursed Body,True,Banette
-Frisk,False,Banette
-Insomnia,False,Banette
-Cursed Body,True,Froslass
-Snow Cloak,False,Froslass
-Cursed Body,False,Frillish
-Damp,True,Frillish
-Water Absorb,False,Frillish
-Cursed Body,False,Jellicent
-Damp,True,Jellicent
-Water Absorb,False,Jellicent
-Cursed Body,True,Sinistea
-Weak Armor,False,Sinistea
-Cursed Body,True,Polteageist
-Weak Armor,False,Polteageist
-Cursed Body,False,Alolan Marowak
-Lightning Rod,False,Alolan Marowak
-Rock Head,True,Alolan Marowak
-Cute Charm,False,Clefairy
-Friend Guard,True,Clefairy
-Magic Guard,False,Clefairy
-Cute Charm,False,Clefable
-Magic Guard,False,Clefable
-Unaware,True,Clefable
-Cute Charm,False,Cleffa
-Friend Guard,True,Cleffa
-Magic Guard,False,Cleffa
-Cute Charm,False,Skitty
-Normalize,False,Skitty
-Wonder Skin,True,Skitty
-Cute Charm,False,Delcatty
-Normalize,False,Delcatty
-Wonder Skin,True,Delcatty
-Cute Charm,False,Lopunny
-Klutz,False,Lopunny
-Limber,True,Lopunny
-Cute Charm,False,Minccino
-Skill Link,True,Minccino
-Technician,False,Minccino
-Cute Charm,False,Cinccino
-Skill Link,True,Cinccino
-Technician,False,Cinccino
-Cute Charm,False,Sylveon
-Pixilate,True,Sylveon
-Cute Charm,True,Stufful
-Fluffy,False,Stufful
-Klutz,False,Stufful
-Damp,True,Paras
-Dry Skin,False,Paras
-Effect Spore,False,Paras
-Damp,True,Parasect
-Dry Skin,False,Parasect
-Effect Spore,False,Parasect
-Damp,False,Poliwag
-Swift Swim,True,Poliwag
-Water Absorb,False,Poliwag
-Damp,False,Poliwhirl
-Swift Swim,True,Poliwhirl
-Water Absorb,False,Poliwhirl
-Damp,False,Poliwrath
-Swift Swim,True,Poliwrath
-Water Absorb,False,Poliwrath
-Damp,True,Horsea
-Sniper,False,Horsea
-Swift Swim,False,Horsea
-Damp,True,Seadra
-Poison Point,False,Seadra
-Sniper,False,Seadra
-Damp,False,Politoed
-Drizzle,True,Politoed
-Water Absorb,False,Politoed
-Damp,False,Wooper
-Unaware,True,Wooper
-Water Absorb,False,Wooper
-Damp,False,Quagsire
-Unaware,True,Quagsire
-Water Absorb,False,Quagsire
-Damp,True,Kingdra
-Sniper,False,Kingdra
-Swift Swim,False,Kingdra
-Damp,True,Mudkip
-Torrent,False,Mudkip
-Damp,True,Marshtomp
-Torrent,False,Marshtomp
-Damp,True,Swampert
-Torrent,False,Swampert
-Dark Aura,False,Yveltal
-Dazzling,False,Bruxish
-Strong Jaw,False,Bruxish
-Wonder Skin,True,Bruxish
-Defeatist,False,Archen
-Defeatist,False,Archeops
-Defiant,True,Piplup
-Torrent,False,Piplup
-Defiant,True,Prinplup
-Torrent,False,Prinplup
-Defiant,True,Empoleon
-Torrent,False,Empoleon
-Defiant,True,Purugly
-Own Tempo,False,Purugly
-Thick Fat,False,Purugly
-Defiant,False,Pawniard
-Inner Focus,False,Pawniard
-Pressure,True,Pawniard
-Defiant,False,Bisharp
-Inner Focus,False,Bisharp
-Pressure,True,Bisharp
-Defiant,True,Braviary
-Keen Eye,False,Braviary
-Sheer Force,False,Braviary
-Defiant,True,Passimian
-Receiver,False,Passimian
-Defiant,True,Obstagoon
-Guts,False,Obstagoon
-Reckless,False,Obstagoon
-Delta Stream,False,Mega Rayquaza
-Desolate Land,False,Primal Groudon
-Download,False,Genesect
-Dragons Maw,False,Regidrago
-Drizzle,False,Pelipper
-Keen Eye,False,Pelipper
-Rain Dish,True,Pelipper
-Drizzle,False,Kyogre
-Drought,True,Vulpix
-Flash Fire,False,Vulpix
-Drought,True,Ninetales
-Flash Fire,False,Ninetales
-Drought,False,Torkoal
-Shell Armor,True,Torkoal
-White Smoke,False,Torkoal
-Drought,False,Groudon
-Drought,False,Mega Charizard Y
-Drought,False,Mega Charizard X
-Dry Skin,True,Jynx
-Forewarn,False,Jynx
-Oblivious,False,Jynx
-Dry Skin,False,Helioptile
-Sand Veil,False,Helioptile
-Solar Power,True,Helioptile
-Dry Skin,False,Heliolisk
-Sand Veil,False,Heliolisk
-Solar Power,True,Heliolisk
-Early Bird,False,Doduo
-Run Away,False,Doduo
-Tangled Feet,True,Doduo
-Early Bird,False,Dodrio
-Run Away,False,Dodrio
-Tangled Feet,True,Dodrio
-Early Bird,False,Kangaskhan
-Inner Focus,True,Kangaskhan
-Scrappy,False,Kangaskhan
-Early Bird,False,Ledyba
-Rattled,True,Ledyba
-Swarm,False,Ledyba
-Early Bird,False,Ledian
-Iron Fist,True,Ledian
-Swarm,False,Ledian
-Early Bird,False,Natu
-Magic Bounce,True,Natu
-Synchronize,False,Natu
-Early Bird,False,Xatu
-Magic Bounce,True,Xatu
-Synchronize,False,Xatu
-Early Bird,False,Girafarig
-Inner Focus,False,Girafarig
-Sap Sipper,True,Girafarig
-Early Bird,False,Houndour
-Flash Fire,False,Houndour
-Unnerve,True,Houndour
-Early Bird,False,Houndoom
-Flash Fire,False,Houndoom
-Unnerve,True,Houndoom
-Effect Spore,False,Shroomish
-Poison Heal,False,Shroomish
-Quick Feet,True,Shroomish
-Effect Spore,False,Breloom
-Poison Heal,False,Breloom
-Technician,True,Breloom
-Effect Spore,False,Foongus
-Regenerator,True,Foongus
-Effect Spore,False,Amoonguss
-Regenerator,True,Amoonguss
-Effect Spore,False,Morelull
-Illuminate,False,Morelull
-Rain Dish,True,Morelull
-Effect Spore,False,Shiinotic
-Illuminate,False,Shiinotic
-Rain Dish,True,Shiinotic
-Electric Surge,False,Tapu Koko
-Telepathy,True,Tapu Koko
-Electric Surge,True,Pincurchin
-Lightning Rod,False,Pincurchin
-Emergency Exit,False,Golisopod
-Fairy Aura,False,Xerneas
-Filter,False,Mega Aggron
-Flame Body,True,Ponyta
-Flash Fire,False,Ponyta
-Run Away,False,Ponyta
-Flame Body,True,Rapidash
-Flash Fire,False,Rapidash
-Run Away,False,Rapidash
-Flame Body,False,Magmar
-Vital Spirit,True,Magmar
-Flame Body,True,Moltres
-Pressure,False,Moltres
-Flame Body,False,Slugma
-Magma Armor,False,Slugma
-Weak Armor,True,Slugma
-Flame Body,False,Magcargo
-Magma Armor,False,Magcargo
-Weak Armor,True,Magcargo
-Flame Body,False,Magby
-Vital Spirit,True,Magby
-Flame Body,False,Magmortar
-Vital Spirit,True,Magmortar
-Flame Body,True,Heatran
-Flash Fire,False,Heatran
-Flame Body,False,Litwick
-Flash Fire,False,Litwick
-Infiltrator,True,Litwick
-Flame Body,False,Lampent
-Flash Fire,False,Lampent
-Infiltrator,True,Lampent
-Flame Body,False,Chandelure
-Flash Fire,False,Chandelure
-Infiltrator,True,Chandelure
-Flame Body,False,Larvesta
-Swarm,True,Larvesta
-Flame Body,False,Volcarona
-Swarm,True,Volcarona
-Flame Body,False,Fletchinder
-Gale Wings,True,Fletchinder
-Flame Body,False,Talonflame
-Gale Wings,True,Talonflame
-Flame Body,False,Carkol
-Flash Fire,True,Carkol
-Steam Engine,False,Carkol
-Flame Body,False,Coalossal
-Flash Fire,True,Coalossal
-Steam Engine,False,Coalossal
-Flame Body,True,Sizzlipede
-Flash Fire,False,Sizzlipede
-White Smoke,False,Sizzlipede
-Flame Body,True,Centiskorch
-Flash Fire,False,Centiskorch
-White Smoke,False,Centiskorch
-Flash Fire,False,Growlithe
-Intimidate,False,Growlithe
-Justified,True,Growlithe
-Flash Fire,False,Arcanine
-Intimidate,False,Arcanine
-Justified,True,Arcanine
-Flash Fire,False,Flareon
-Guts,True,Flareon
-Flash Fire,False,Heatmor
-Gluttony,False,Heatmor
-White Smoke,True,Heatmor
-Flash Fire,True,Rolycoly
-Heatproof,False,Rolycoly
-Steam Engine,False,Rolycoly
-Flower Gift,False,Cherrim
-Flower Veil,False,Flabébé
-Symbiosis,True,Flabébé
-Flower Veil,False,Floette
-Symbiosis,True,Floette
-Flower Veil,False,Florges
-Symbiosis,True,Florges
-Flower Veil,False,Comfey
-Natural Cure,True,Comfey
-Triage,False,Comfey
-Fluffy,False,Bewear
-Klutz,False,Bewear
-Unnerve,True,Bewear
-Forecast,False,Castform
-Forewarn,False,Drowzee
-Inner Focus,True,Drowzee
-Insomnia,False,Drowzee
-Forewarn,False,Hypno
-Inner Focus,True,Hypno
-Insomnia,False,Hypno
-Forewarn,False,Smoochum
-Hydration,True,Smoochum
-Oblivious,False,Smoochum
-Forewarn,False,Munna
-Synchronize,False,Munna
-Telepathy,True,Munna
-Forewarn,False,Musharna
-Synchronize,False,Musharna
-Telepathy,True,Musharna
-Friend Guard,True,Happiny
-Natural Cure,False,Happiny
-Serene Grace,False,Happiny
-Friend Guard,True,Spewpa
-Shed Skin,False,Spewpa
-Frisk,True,Sentret
-Keen Eye,False,Sentret
-Run Away,False,Sentret
-Frisk,True,Furret
-Keen Eye,False,Furret
-Run Away,False,Furret
-Frisk,False,Stantler
-Intimidate,False,Stantler
-Sap Sipper,True,Stantler
-Frisk,True,Duskull
-Levitate,False,Duskull
-Frisk,True,Dusclops
-Pressure,False,Dusclops
-Frisk,True,Yanmega
-Speed Boost,False,Yanmega
-Tinted Lens,False,Yanmega
-Frisk,True,Dusknoir
-Pressure,False,Dusknoir
-Frisk,False,Phantump
-Harvest,True,Phantump
-Natural Cure,False,Phantump
-Frisk,False,Trevenant
-Harvest,True,Trevenant
-Natural Cure,False,Trevenant
-Frisk,False,Noibat
-Infiltrator,False,Noibat
-Telepathy,True,Noibat
-Frisk,False,Noivern
-Infiltrator,False,Noivern
-Telepathy,True,Noivern
-Frisk,False,Orbeetle
-Swarm,False,Orbeetle
-Telepathy,True,Orbeetle
-Frisk,False,Impidimp
-Pickpocket,True,Impidimp
-Prankster,False,Impidimp
-Frisk,False,Morgrem
-Pickpocket,True,Morgrem
-Prankster,False,Morgrem
-Frisk,False,Grimmsnarl
-Pickpocket,True,Grimmsnarl
-Prankster,False,Grimmsnarl
-Frisk,False,Alolan Exeggutor
-Harvest,True,Alolan Exeggutor
-Full Metal Body,False,Solgaleo
-Fur Coat,False,Furfrou
-Fur Coat,False,Alolan Persian
-Rattled,True,Alolan Persian
-Technician,False,Alolan Persian
-Galvanize,True,Alolan Geodude
-Magnet Pull,False,Alolan Geodude
-Sturdy,False,Alolan Geodude
-Galvanize,True,Alolan Graveler
-Magnet Pull,False,Alolan Graveler
-Sturdy,False,Alolan Graveler
-Gluttony,True,Snorlax
-Immunity,False,Snorlax
-Thick Fat,False,Snorlax
-Gluttony,False,Zigzagoon
-Pickup,False,Zigzagoon
-Quick Feet,True,Zigzagoon
-Gluttony,False,Linoone
-Pickup,False,Linoone
-Quick Feet,True,Linoone
-Gluttony,True,Gulpin
-Liquid Ooze,False,Gulpin
-Sticky Hold,False,Gulpin
-Gluttony,True,Swalot
-Liquid Ooze,False,Swalot
-Sticky Hold,False,Swalot
-Gluttony,True,Spoink
-Own Tempo,False,Spoink
-Thick Fat,False,Spoink
-Gluttony,True,Grumpig
-Own Tempo,False,Grumpig
-Thick Fat,False,Grumpig
-Gluttony,True,Munchlax
-Pickup,False,Munchlax
-Thick Fat,False,Munchlax
-Gluttony,False,Pansage
-Overgrow,True,Pansage
-Gluttony,False,Simisage
-Overgrow,True,Simisage
-Gluttony,False,Panpour
-Torrent,True,Panpour
-Gluttony,False,Simipour
-Torrent,True,Simipour
-Gluttony,False,Flapple
-Hustle,True,Flapple
-Ripen,False,Flapple
-Gluttony,False,Appletun
-Ripen,False,Appletun
-Thick Fat,True,Appletun
-Gluttony,False,Alolan Rattata
-Hustle,False,Alolan Rattata
-Thick Fat,True,Alolan Rattata
-Gluttony,False,Alolan Raticate
-Hustle,False,Alolan Raticate
-Thick Fat,True,Alolan Raticate
-Gluttony,False,Alolan Grimer
-Poison Touch,False,Alolan Grimer
-Power Of Alchemy,True,Alolan Grimer
-Gooey,True,Goomy
-Hydration,False,Goomy
-Sap Sipper,False,Goomy
-Gooey,True,Sliggoo
-Hydration,False,Sliggoo
-Sap Sipper,False,Sliggoo
-Gooey,True,Goodra
-Hydration,False,Goodra
-Sap Sipper,False,Goodra
-Grass Pelt,True,Skiddo
-Sap Sipper,False,Skiddo
-Grass Pelt,True,Gogoat
-Sap Sipper,False,Gogoat
-Grassy Surge,False,Tapu Bulu
-Telepathy,True,Tapu Bulu
-Grassy Surge,True,Grookey
-Overgrow,False,Grookey
-Grassy Surge,True,Thwackey
-Overgrow,False,Thwackey
-Grassy Surge,True,Rillaboom
-Overgrow,False,Rillaboom
-Grim Neigh,False,Spectrier
-Gulp Missile,False,Cramorant
-Guts,False,Rattata
-Hustle,True,Rattata
-Run Away,False,Rattata
-Guts,False,Raticate
-Hustle,True,Raticate
-Run Away,False,Raticate
-Guts,False,Machop
-No Guard,False,Machop
-Steadfast,True,Machop
-Guts,False,Machoke
-No Guard,False,Machoke
-Steadfast,True,Machoke
-Guts,False,Machamp
-No Guard,False,Machamp
-Steadfast,True,Machamp
-Guts,False,Heracross
-Moxie,True,Heracross
-Swarm,False,Heracross
-Guts,False,Ursaring
-Quick Feet,False,Ursaring
-Unnerve,True,Ursaring
-Guts,False,Tyrogue
-Steadfast,False,Tyrogue
-Vital Spirit,True,Tyrogue
-Guts,False,Larvitar
-Sand Veil,True,Larvitar
-Guts,False,Taillow
-Scrappy,True,Taillow
-Guts,False,Swellow
-Scrappy,True,Swellow
-Guts,False,Makuhita
-Sheer Force,True,Makuhita
-Thick Fat,False,Makuhita
-Guts,False,Hariyama
-Sheer Force,True,Hariyama
-Thick Fat,False,Hariyama
-Guts,True,Shinx
-Intimidate,False,Shinx
-Rivalry,False,Shinx
-Guts,True,Luxio
-Intimidate,False,Luxio
-Rivalry,False,Luxio
-Guts,True,Luxray
-Intimidate,False,Luxray
-Rivalry,False,Luxray
-Guts,False,Timburr
-Iron Fist,True,Timburr
-Sheer Force,False,Timburr
-Guts,False,Gurdurr
-Iron Fist,True,Gurdurr
-Sheer Force,False,Gurdurr
-Guts,False,Conkeldurr
-Iron Fist,True,Conkeldurr
-Sheer Force,False,Conkeldurr
-Guts,False,Throh
-Inner Focus,False,Throh
-Mold Breaker,True,Throh
-Healer,True,Chansey
-Natural Cure,False,Chansey
-Serene Grace,False,Chansey
-Healer,True,Blissey
-Natural Cure,False,Blissey
-Serene Grace,False,Blissey
-Healer,False,Audino
-Klutz,True,Audino
-Regenerator,False,Audino
-Healer,False,Alomomola
-Hydration,False,Alomomola
-Regenerator,True,Alomomola
-Healer,False,Mega Audino
-Heatproof,False,Bronzor
-Heavy Metal,True,Bronzor
-Levitate,False,Bronzor
-Heatproof,False,Bronzong
-Heavy Metal,True,Bronzong
-Levitate,False,Bronzong
-Heavy Metal,True,Aron
-Rock Head,False,Aron
-Sturdy,False,Aron
-Heavy Metal,True,Lairon
-Rock Head,False,Lairon
-Sturdy,False,Lairon
-Heavy Metal,True,Aggron
-Rock Head,False,Aggron
-Sturdy,False,Aggron
-Heavy Metal,True,Cufant
-Sheer Force,False,Cufant
-Heavy Metal,True,Copperajah
-Sheer Force,False,Copperajah
-Heavy Metal,False,Duraludon
-Light Metal,False,Duraludon
-Stalwart,True,Duraludon
-Honey Gather,True,Teddiursa
-Pickup,False,Teddiursa
-Quick Feet,False,Teddiursa
-Honey Gather,False,Combee
-Hustle,True,Combee
-Honey Gather,False,Cutiefly
-Shield Dust,False,Cutiefly
-Sweet Veil,True,Cutiefly
-Honey Gather,False,Ribombee
-Shield Dust,False,Ribombee
-Sweet Veil,True,Ribombee
-Huge Power,False,Marill
-Sap Sipper,True,Marill
-Thick Fat,False,Marill
-Huge Power,False,Azumarill
-Sap Sipper,True,Azumarill
-Thick Fat,False,Azumarill
-Huge Power,False,Azurill
-Sap Sipper,True,Azurill
-Thick Fat,False,Azurill
-Huge Power,False,Mega Mawile
-Hustle,True,Nidorina
-Poison Point,False,Nidorina
-Rivalry,False,Nidorina
-Hustle,True,Nidorino
-Poison Point,False,Nidorino
-Rivalry,False,Nidorino
-Hustle,False,Togepi
-Serene Grace,False,Togepi
-Super Luck,True,Togepi
-Hustle,False,Togetic
-Serene Grace,False,Togetic
-Super Luck,True,Togetic
-Hustle,False,Corsola
-Natural Cure,False,Corsola
-Regenerator,True,Corsola
-Hustle,False,Remoraid
-Moody,True,Remoraid
-Sniper,False,Remoraid
-Hustle,False,Delibird
-Insomnia,True,Delibird
-Vital Spirit,False,Delibird
-Hustle,False,Togekiss
-Serene Grace,False,Togekiss
-Super Luck,True,Togekiss
-Hustle,False,Darumaka
-Inner Focus,True,Darumaka
-Hustle,True,Rufflet
-Keen Eye,False,Rufflet
-Sheer Force,False,Rufflet
-Hustle,False,Durant
-Swarm,False,Durant
-Truant,True,Durant
-Hustle,False,Deino
-Hustle,False,Zweilous
-Hustle,False,Dracozolt
-Sand Rush,True,Dracozolt
-Volt Absorb,False,Dracozolt
-Hydration,False,Seel
-Ice Body,True,Seel
-Thick Fat,False,Seel
-Hydration,False,Dewgong
-Ice Body,True,Dewgong
-Thick Fat,False,Dewgong
-Hydration,True,Lapras
-Shell Armor,False,Lapras
-Water Absorb,False,Lapras
-Hydration,True,Vaporeon
-Water Absorb,False,Vaporeon
-Hydration,False,Wingull
-Keen Eye,False,Wingull
-Rain Dish,True,Wingull
-Hydration,True,Gorebyss
-Swift Swim,False,Gorebyss
-Hydration,True,Luvdisc
-Swift Swim,False,Luvdisc
-Hydration,False,Phione
-Hydration,False,Manaphy
-Hydration,False,Tympole
-Swift Swim,False,Tympole
-Water Absorb,True,Tympole
-Hydration,False,Palpitoad
-Swift Swim,False,Palpitoad
-Water Absorb,True,Palpitoad
-Hydration,False,Shelmet
-Overcoat,True,Shelmet
-Shell Armor,False,Shelmet
-Hydration,False,Accelgor
-Sticky Hold,False,Accelgor
-Unburden,True,Accelgor
-Hyper Cutter,False,Krabby
-Sheer Force,True,Krabby
-Shell Armor,False,Krabby
-Hyper Cutter,False,Kingler
-Sheer Force,True,Kingler
-Shell Armor,False,Kingler
-Hyper Cutter,False,Pinsir
-Mold Breaker,False,Pinsir
-Moxie,True,Pinsir
-Hyper Cutter,False,Gligar
-Immunity,True,Gligar
-Sand Veil,False,Gligar
-Hyper Cutter,False,Mawile
-Intimidate,False,Mawile
-Sheer Force,True,Mawile
-Hyper Cutter,False,Gliscor
-Poison Heal,True,Gliscor
-Sand Veil,False,Gliscor
-Ice Body,False,Snorunt
-Inner Focus,False,Snorunt
-Moody,True,Snorunt
-Ice Body,False,Glalie
-Inner Focus,False,Glalie
-Moody,True,Glalie
-Ice Body,False,Spheal
-Oblivious,True,Spheal
-Thick Fat,False,Spheal
-Ice Body,False,Sealeo
-Oblivious,True,Sealeo
-Thick Fat,False,Sealeo
-Ice Body,False,Walrein
-Oblivious,True,Walrein
-Thick Fat,False,Walrein
-Ice Body,True,Glaceon
-Snow Cloak,False,Glaceon
-Ice Body,False,Vanillite
-Snow Cloak,False,Vanillite
-Weak Armor,True,Vanillite
-Ice Body,False,Vanillish
-Snow Cloak,False,Vanillish
-Weak Armor,True,Vanillish
-Ice Body,False,Vanilluxe
-Snow Warning,False,Vanilluxe
-Weak Armor,True,Vanilluxe
-Ice Body,False,Bergmite
-Own Tempo,False,Bergmite
-Sturdy,True,Bergmite
-Ice Body,False,Avalugg
-Own Tempo,False,Avalugg
-Sturdy,True,Avalugg
-Ice Body,False,Arctovish
-Slush Rush,True,Arctovish
-Water Absorb,False,Arctovish
-Ice Scales,True,Snom
-Shield Dust,False,Snom
-Ice Scales,True,Frosmoth
-Shield Dust,False,Frosmoth
-Illuminate,False,Chinchou
-Volt Absorb,False,Chinchou
-Water Absorb,True,Chinchou
-Illuminate,False,Lanturn
-Volt Absorb,False,Lanturn
-Water Absorb,True,Lanturn
-Illuminate,False,Volbeat
-Prankster,True,Volbeat
-Swarm,False,Volbeat
-Illusion,False,Zorua
-Illusion,False,Zoroark
-Immunity,False,Zangoose
-Toxic Boost,True,Zangoose
-Imposter,True,Ditto
-Limber,False,Ditto
-Infiltrator,True,Zubat
-Inner Focus,False,Zubat
-Infiltrator,True,Golbat
-Inner Focus,False,Golbat
-Infiltrator,True,Crobat
-Inner Focus,False,Crobat
-Infiltrator,True,Ninjask
-Speed Boost,False,Ninjask
-Infiltrator,True,Seviper
-Shed Skin,False,Seviper
-Infiltrator,True,Spiritomb
-Pressure,False,Spiritomb
-Infiltrator,False,Espurr
-Keen Eye,False,Espurr
-Own Tempo,True,Espurr
-Infiltrator,False,Meowstic Male
-Keen Eye,False,Meowstic Male
-Prankster,True,Meowstic Male
-Innards Out,False,Pyukumuku
-Unaware,True,Pyukumuku
-Inner Focus,False,Abra
-Magic Guard,True,Abra
-Synchronize,False,Abra
-Inner Focus,False,Kadabra
-Magic Guard,True,Kadabra
-Synchronize,False,Kadabra
-Inner Focus,False,Alakazam
-Magic Guard,True,Alakazam
-Synchronize,False,Alakazam
-Inner Focus,True,Hitmonchan
-Iron Fist,False,Hitmonchan
-Keen Eye,False,Hitmonchan
-Inner Focus,False,Dragonite
-Multiscale,True,Dragonite
-Inner Focus,True,Umbreon
-Synchronize,False,Umbreon
-Inner Focus,False,Sneasel
-Keen Eye,False,Sneasel
-Pickpocket,True,Sneasel
-Inner Focus,True,Raikou
-Pressure,False,Raikou
-Inner Focus,True,Entei
-Pressure,False,Entei
-Inner Focus,True,Suicune
-Pressure,False,Suicune
-Inner Focus,False,Riolu
-Prankster,True,Riolu
-Steadfast,False,Riolu
-Inner Focus,False,Lucario
-Justified,True,Lucario
-Steadfast,False,Lucario
-Inner Focus,False,Sawk
-Mold Breaker,True,Sawk
-Sturdy,False,Sawk
-Inner Focus,False,Mienfoo
-Reckless,True,Mienfoo
-Regenerator,False,Mienfoo
-Inner Focus,False,Mienshao
-Reckless,True,Mienshao
-Regenerator,False,Mienshao
-Inner Focus,True,Mudbray
-Own Tempo,False,Mudbray
-Stamina,False,Mudbray
-Inner Focus,True,Mudsdale
-Own Tempo,False,Mudsdale
-Stamina,False,Mudsdale
-Inner Focus,False,Oranguru
-Symbiosis,True,Oranguru
-Telepathy,False,Oranguru
-Inner Focus,False,Indeedee Male
-Psychic Surge,True,Indeedee Male
-Synchronize,False,Indeedee Male
-Inner Focus,False,Kubfu
-Inner Focus,False,Mega Gallade
-Insomnia,False,Hoothoot
-Keen Eye,False,Hoothoot
-Tinted Lens,True,Hoothoot
-Insomnia,False,Noctowl
-Keen Eye,False,Noctowl
-Tinted Lens,True,Noctowl
-Insomnia,False,Spinarak
-Sniper,True,Spinarak
-Swarm,False,Spinarak
-Insomnia,False,Ariados
-Sniper,True,Ariados
-Swarm,False,Ariados
-Insomnia,False,Murkrow
-Prankster,True,Murkrow
-Super Luck,False,Murkrow
-Insomnia,False,Honchkrow
-Moxie,True,Honchkrow
-Super Luck,False,Honchkrow
-Insomnia,False,Mega Mewtwo Y
-Insomnia,False,Mega Mewtwo X
-Intimidate,False,Ekans
-Shed Skin,False,Ekans
-Unnerve,True,Ekans
-Intimidate,False,Arbok
-Shed Skin,False,Arbok
-Unnerve,True,Arbok
-Intimidate,False,Gyarados
-Moxie,True,Gyarados
-Intimidate,False,Snubbull
-Rattled,True,Snubbull
-Run Away,False,Snubbull
-Intimidate,False,Granbull
-Quick Feet,False,Granbull
-Rattled,True,Granbull
-Intimidate,True,Qwilfish
-Poison Point,False,Qwilfish
-Swift Swim,False,Qwilfish
-Intimidate,False,Hitmontop
-Steadfast,True,Hitmontop
-Technician,False,Hitmontop
-Intimidate,False,Mightyena
-Moxie,True,Mightyena
-Quick Feet,False,Mightyena
-Intimidate,False,Masquerain
-Unnerve,True,Masquerain
-Intimidate,False,Salamence
-Moxie,True,Salamence
-Intimidate,False,Staravia
-Reckless,True,Staravia
-Intimidate,False,Staraptor
-Reckless,True,Staraptor
-Intimidate,False,Herdier
-Sand Rush,False,Herdier
-Scrappy,True,Herdier
-Intimidate,False,Stoutland
-Sand Rush,False,Stoutland
-Scrappy,True,Stoutland
-Intimidate,True,Scraggy
-Moxie,False,Scraggy
-Shed Skin,False,Scraggy
-Intimidate,True,Scrafty
-Moxie,False,Scrafty
-Shed Skin,False,Scrafty
-Intimidate,False,Mega Manectric
-Iron Barbs,False,Ferroseed
-Iron Barbs,False,Togedemaru
-Lightning Rod,False,Togedemaru
-Sturdy,True,Togedemaru
-Iron Fist,False,Golett
-Klutz,False,Golett
-No Guard,True,Golett
-Iron Fist,False,Golurk
-Klutz,False,Golurk
-No Guard,True,Golurk
-Iron Fist,False,Pancham
-Mold Breaker,False,Pancham
-Scrappy,True,Pancham
-Iron Fist,False,Pangoro
-Mold Breaker,False,Pangoro
-Scrappy,True,Pangoro
-Iron Fist,False,Melmetal
-Justified,True,Absol
-Pressure,False,Absol
-Super Luck,False,Absol
-Justified,True,Gallade
-Steadfast,False,Gallade
-Justified,False,Cobalion
-Justified,False,Terrakion
-Justified,False,Virizion
-Keen Eye,False,Spearow
-Sniper,True,Spearow
-Keen Eye,False,Fearow
-Sniper,True,Fearow
-Keen Eye,False,Skarmory
-Sturdy,False,Skarmory
-Weak Armor,True,Skarmory
-Keen Eye,False,Sableye
-Prankster,True,Sableye
-Stall,False,Sableye
-Keen Eye,False,Starly
-Reckless,True,Starly
-Keen Eye,True,Glameow
-Limber,False,Glameow
-Own Tempo,False,Glameow
-Keen Eye,False,Pikipek
-Pickup,True,Pikipek
-Skill Link,False,Pikipek
-Keen Eye,False,Trumbeak
-Pickup,True,Trumbeak
-Skill Link,False,Trumbeak
-Keen Eye,False,Toucannon
-Sheer Force,True,Toucannon
-Skill Link,False,Toucannon
-Keen Eye,False,Rockruff
-Steadfast,True,Rockruff
-Vital Spirit,False,Rockruff
-Klutz,False,Buneary
-Limber,True,Buneary
-Run Away,False,Buneary
-Klutz,False,Woobat
-Simple,True,Woobat
-Unaware,False,Woobat
-Klutz,False,Swoobat
-Simple,True,Swoobat
-Unaware,False,Swoobat
-Klutz,True,Toxel
-Rattled,False,Toxel
-Static,False,Toxel
-Leaf Guard,True,Chikorita
-Overgrow,False,Chikorita
-Leaf Guard,True,Bayleef
-Overgrow,False,Bayleef
-Leaf Guard,True,Meganium
-Overgrow,False,Meganium
-Leaf Guard,True,Roselia
-Natural Cure,False,Roselia
-Poison Point,False,Roselia
-Leaf Guard,True,Budew
-Natural Cure,False,Budew
-Poison Point,False,Budew
-Leaf Guard,False,Bounsweet
-Oblivious,False,Bounsweet
-Sweet Veil,True,Bounsweet
-Leaf Guard,False,Steenee
-Oblivious,False,Steenee
-Sweet Veil,True,Steenee
-Leaf Guard,False,Tsareena
-Queenly Majesty,False,Tsareena
-Sweet Veil,True,Tsareena
-Leaf Guard,False,Zarude
-Levitate,False,Gastly
-Levitate,False,Haunter
-Levitate,False,Koffing
-Neutralizing Gas,False,Koffing
-Stench,True,Koffing
-Levitate,False,Weezing
-Neutralizing Gas,False,Weezing
-Stench,True,Weezing
-Levitate,False,Misdreavus
-Levitate,False,Unown
-Levitate,False,Vibrava
-Levitate,False,Flygon
-Levitate,False,Lunatone
-Levitate,False,Solrock
-Levitate,False,Baltoy
-Levitate,False,Claydol
-Levitate,False,Chimecho
-Levitate,False,Latias
-Levitate,False,Latios
-Levitate,False,Mismagius
-Levitate,False,Chingling
-Levitate,False,Carnivine
-Levitate,False,Rotom
-Levitate,False,Uxie
-Levitate,False,Mesprit
-Levitate,False,Azelf
-Levitate,False,Cresselia
-Levitate,False,Tynamo
-Levitate,False,Eelektrik
-Levitate,False,Eelektross
-Levitate,False,Cryogonal
-Levitate,False,Hydreigon
-Levitate,False,Vikavolt
-Levitate,False,Heat Rotom
-Levitate,False,Wash Rotom
-Levitate,False,Frost Rotom
-Levitate,False,Fan Rotom
-Levitate,False,Mow Rotom
-Levitate,False,Mega Latias
-Levitate,False,Mega Latios
-Light Metal,True,Scizor
-Swarm,False,Scizor
-Technician,False,Scizor
-Lightning Rod,True,Pikachu
-Static,False,Pikachu
-Lightning Rod,True,Raichu
-Static,False,Raichu
-Lightning Rod,False,Rhyhorn
-Reckless,True,Rhyhorn
-Rock Head,False,Rhyhorn
-Lightning Rod,False,Rhydon
-Reckless,True,Rhydon
-Rock Head,False,Rhydon
-Lightning Rod,True,Goldeen
-Swift Swim,False,Goldeen
-Water Veil,False,Goldeen
-Lightning Rod,True,Seaking
-Swift Swim,False,Seaking
-Water Veil,False,Seaking
-Lightning Rod,True,Pichu
-Static,False,Pichu
-Lightning Rod,False,Electrike
-Minus,True,Electrike
-Static,False,Electrike
-Lightning Rod,False,Manectric
-Minus,True,Manectric
-Static,False,Manectric
-Lightning Rod,True,Plusle
-Plus,False,Plusle
-Lightning Rod,False,Rhyperior
-Reckless,True,Rhyperior
-Solid Rock,False,Rhyperior
-Lightning Rod,False,Blitzle
-Motor Drive,False,Blitzle
-Sap Sipper,True,Blitzle
-Lightning Rod,False,Zebstrika
-Motor Drive,False,Zebstrika
-Sap Sipper,True,Zebstrika
-Lightning Rod,False,Mega Sceptile
-Limber,False,Persian
-Technician,False,Persian
-Unnerve,True,Persian
-Limber,False,Hitmonlee
-Reckless,False,Hitmonlee
-Unburden,True,Hitmonlee
-Limber,False,Purrloin
-Prankster,True,Purrloin
-Unburden,False,Purrloin
-Limber,False,Liepard
-Prankster,True,Liepard
-Unburden,False,Liepard
-Limber,False,Stunfisk
-Sand Veil,True,Stunfisk
-Static,False,Stunfisk
-Limber,False,Hawlucha
-Mold Breaker,True,Hawlucha
-Unburden,False,Hawlucha
-Limber,False,Mareanie
-Merciless,False,Mareanie
-Regenerator,True,Mareanie
-Limber,False,Toxapex
-Merciless,False,Toxapex
-Regenerator,True,Toxapex
-Limber,False,Clobbopus
-Technician,True,Clobbopus
-Limber,False,Grapploct
-Technician,True,Grapploct
-Liquid Voice,True,Popplio
-Torrent,False,Popplio
-Liquid Voice,True,Brionne
-Torrent,False,Brionne
-Liquid Voice,True,Primarina
-Torrent,False,Primarina
-Long Reach,True,Rowlet
-Overgrow,False,Rowlet
-Long Reach,True,Dartrix
-Overgrow,False,Dartrix
-Long Reach,True,Decidueye
-Overgrow,False,Decidueye
-Magic Bounce,True,Espeon
-Synchronize,False,Espeon
-Magic Bounce,False,Mega Absol
-Magic Bounce,False,Mega Sableye
-Magic Bounce,False,Mega Diancie
-Magic Guard,False,Sigilyph
-Tinted Lens,True,Sigilyph
-Wonder Skin,False,Sigilyph
-Magic Guard,False,Solosis
-Overcoat,False,Solosis
-Regenerator,True,Solosis
-Magic Guard,False,Duosion
-Overcoat,False,Duosion
-Regenerator,True,Duosion
-Magic Guard,False,Reuniclus
-Overcoat,False,Reuniclus
-Regenerator,True,Reuniclus
-Magician,True,Klefki
-Prankster,False,Klefki
-Magician,False,Hoopa Unbound
-Magnet Pull,False,Nosepass
-Sand Force,True,Nosepass
-Sturdy,False,Nosepass
-Magnet Pull,False,Probopass
-Sand Force,True,Probopass
-Sturdy,False,Probopass
-Magnet Pull,False,Meltan
-Marvel Scale,True,Dratini
-Shed Skin,False,Dratini
-Marvel Scale,True,Dragonair
-Shed Skin,False,Dragonair
-Mega Launcher,False,Clauncher
-Mega Launcher,False,Clawitzer
-Mega Launcher,False,Mega Blastoise
-Minus,False,Minun
-Volt Absorb,True,Minun
-Mirror Armor,True,Corviknight
-Pressure,False,Corviknight
-Unnerve,False,Corviknight
-Misty Surge,False,Tapu Fini
-Telepathy,True,Tapu Fini
-Mold Breaker,False,Cranidos
-Sheer Force,True,Cranidos
-Mold Breaker,False,Rampardos
-Sheer Force,True,Rampardos
-Mold Breaker,True,Drilbur
-Sand Force,False,Drilbur
-Sand Rush,False,Drilbur
-Mold Breaker,True,Excadrill
-Sand Force,False,Excadrill
-Sand Rush,False,Excadrill
-Mold Breaker,False,Axew
-Rivalry,False,Axew
-Unnerve,True,Axew
-Mold Breaker,False,Fraxure
-Rivalry,False,Fraxure
-Unnerve,True,Fraxure
-Mold Breaker,False,Haxorus
-Rivalry,False,Haxorus
-Unnerve,True,Haxorus
-Mold Breaker,True,Druddigon
-Rough Skin,False,Druddigon
-Sheer Force,False,Druddigon
-Mold Breaker,False,Mega Gyarados
-Mold Breaker,False,Mega Ampharos
-Moody,True,Octillery
-Sniper,False,Octillery
-Suction Cups,False,Octillery
-Moody,True,Smeargle
-Own Tempo,False,Smeargle
-Technician,False,Smeargle
-Moody,True,Bidoof
-Simple,False,Bidoof
-Unaware,False,Bidoof
-Moody,True,Bibarel
-Simple,False,Bibarel
-Unaware,False,Bibarel
-Motor Drive,False,Electivire
-Vital Spirit,True,Electivire
-Motor Drive,True,Emolga
-Static,False,Emolga
-Moxie,True,Litleo
-Rivalry,False,Litleo
-Unnerve,False,Litleo
-Moxie,True,Pyroar
-Rivalry,False,Pyroar
-Unnerve,False,Pyroar
-Multiscale,True,Lugia
-Pressure,False,Lugia
-Multitype,False,Arceus
-Mummy,False,Yamask
-Mummy,False,Cofagrigus
-Natural Cure,False,Celebi
-Natural Cure,False,Roserade
-Poison Point,False,Roserade
-Technician,True,Roserade
-Neuroforce,False,Ultra Necrozma
-No Guard,True,Karrablast
-Shed Skin,False,Karrablast
-Swarm,False,Karrablast
-No Guard,False,Honedge
-No Guard,False,Doublade
-No Guard,False,Mega Pidgeot
-Oblivious,False,Slowpoke
-Own Tempo,False,Slowpoke
-Regenerator,True,Slowpoke
-Oblivious,False,Slowbro
-Own Tempo,False,Slowbro
-Regenerator,True,Slowbro
-Oblivious,False,Slowking
-Own Tempo,False,Slowking
-Regenerator,True,Slowking
-Oblivious,False,Swinub
-Snow Cloak,False,Swinub
-Thick Fat,True,Swinub
-Oblivious,False,Piloswine
-Snow Cloak,False,Piloswine
-Thick Fat,True,Piloswine
-Oblivious,False,Illumise
-Prankster,True,Illumise
-Tinted Lens,False,Illumise
-Oblivious,False,Wailmer
-Pressure,True,Wailmer
-Water Veil,False,Wailmer
-Oblivious,False,Wailord
-Pressure,True,Wailord
-Water Veil,False,Wailord
-Oblivious,False,Numel
-Own Tempo,True,Numel
-Simple,False,Numel
-Oblivious,False,Mamoswine
-Snow Cloak,False,Mamoswine
-Thick Fat,True,Mamoswine
-Overcoat,True,Shellder
-Shell Armor,False,Shellder
-Skill Link,False,Shellder
-Overcoat,True,Cloyster
-Shell Armor,False,Cloyster
-Skill Link,False,Cloyster
-Overcoat,True,Pineco
-Sturdy,False,Pineco
-Overcoat,True,Forretress
-Sturdy,False,Forretress
-Overcoat,True,Shelgon
-Rock Head,False,Shelgon
-Overcoat,True,Escavalier
-Shell Armor,False,Escavalier
-Swarm,False,Escavalier
-Overgrow,False,Treecko
-Unburden,True,Treecko
-Overgrow,False,Grovyle
-Unburden,True,Grovyle
-Overgrow,False,Sceptile
-Unburden,True,Sceptile
-Overgrow,False,Turtwig
-Shell Armor,True,Turtwig
-Overgrow,False,Grotle
-Shell Armor,True,Grotle
-Overgrow,False,Torterra
-Shell Armor,True,Torterra
-Own Tempo,True,Lotad
-Rain Dish,False,Lotad
-Swift Swim,False,Lotad
-Own Tempo,True,Lombre
-Rain Dish,False,Lombre
-Swift Swim,False,Lombre
-Own Tempo,True,Ludicolo
-Rain Dish,False,Ludicolo
-Swift Swim,False,Ludicolo
-Own Tempo,False,Own Tempo Rockruff
-Own Tempo,False,Indeedee Female
-Psychic Surge,True,Indeedee Female
-Synchronize,False,Indeedee Female
-Parental Bond,False,Mega Kangaskhan
-Perish Body,True,Cursola
-Weak Armor,False,Cursola
-Pickpocket,True,Weavile
-Pressure,False,Weavile
-Pickpocket,True,Binacle
-Sniper,False,Binacle
-Tough Claws,False,Binacle
-Pickpocket,True,Barbaracle
-Sniper,False,Barbaracle
-Tough Claws,False,Barbaracle
-Pickup,False,Meowth
-Technician,False,Meowth
-Unnerve,True,Meowth
-Pickup,False,Aipom
-Run Away,False,Aipom
-Skill Link,True,Aipom
-Pickup,False,Phanpy
-Sand Veil,True,Phanpy
-Pickup,False,Pachirisu
-Run Away,False,Pachirisu
-Volt Absorb,True,Pachirisu
-Pickup,False,Ambipom
-Skill Link,True,Ambipom
-Technician,False,Ambipom
-Pickup,False,Lillipup
-Run Away,True,Lillipup
-Vital Spirit,False,Lillipup
-Pickup,False,Alolan Meowth
-Rattled,True,Alolan Meowth
-Technician,False,Alolan Meowth
-Pixilate,False,Mega Gardevoir
-Pixilate,False,Mega Altaria
-Plus,True,Mareep
-Static,False,Mareep
-Plus,True,Flaaffy
-Static,False,Flaaffy
-Plus,True,Ampharos
-Static,False,Ampharos
-Poison Point,False,Nidoqueen
-Rivalry,False,Nidoqueen
-Sheer Force,True,Nidoqueen
-Poison Point,False,Nidoking
-Rivalry,False,Nidoking
-Sheer Force,True,Nidoking
-Poison Point,False,Venipede
-Speed Boost,True,Venipede
-Swarm,False,Venipede
-Poison Point,False,Whirlipede
-Speed Boost,True,Whirlipede
-Swarm,False,Whirlipede
-Poison Point,False,Scolipede
-Speed Boost,True,Scolipede
-Swarm,False,Scolipede
-Poison Touch,True,Grimer
-Stench,False,Grimer
-Sticky Hold,False,Grimer
-Poison Touch,True,Muk
-Stench,False,Muk
-Sticky Hold,False,Muk
-Poison Touch,False,Seismitoad
-Swift Swim,False,Seismitoad
-Water Absorb,True,Seismitoad
-Power Spot,False,Stonjourner
-Prankster,False,Mega Banette
-Pressure,False,Aerodactyl
-Rock Head,False,Aerodactyl
-Unnerve,True,Aerodactyl
-Pressure,False,Articuno
-Snow Cloak,True,Articuno
-Pressure,False,Zapdos
-Static,True,Zapdos
-Pressure,False,Mewtwo
-Unnerve,True,Mewtwo
-Pressure,False,Vespiquen
-Unnerve,True,Vespiquen
-Pressure,False,Dialga
-Telepathy,True,Dialga
-Pressure,False,Palkia
-Telepathy,True,Palkia
-Pressure,False,Kyurem
-Pressure,False,Eternatus
-Pressure,False,Eternatus Eternamax
-Primordial Sea,False,Primal Kyogre
-Prism Armor,False,Necrozma
-Propeller Tail,True,Arrokuda
-Swift Swim,False,Arrokuda
-Propeller Tail,True,Barraskewda
-Swift Swim,False,Barraskewda
-Protean,True,Froakie
-Torrent,False,Froakie
-Protean,True,Frogadier
-Torrent,False,Frogadier
-Protean,True,Greninja
-Torrent,False,Greninja
-Psychic Surge,False,Tapu Lele
-Telepathy,True,Tapu Lele
-Pure Power,False,Meditite
-Telepathy,True,Meditite
-Pure Power,False,Medicham
-Telepathy,True,Medicham
-Pure Power,False,Mega Medicham
-Quick Feet,True,Jolteon
-Volt Absorb,False,Jolteon
-Quick Feet,False,Poochyena
-Rattled,True,Poochyena
-Run Away,False,Poochyena
-Rain Dish,True,Squirtle
-Torrent,False,Squirtle
-Rain Dish,True,Wartortle
-Torrent,False,Wartortle
-Rain Dish,True,Blastoise
-Torrent,False,Blastoise
-Rain Dish,True,Surskit
-Swift Swim,False,Surskit
-Rattled,True,Magikarp
-Swift Swim,False,Magikarp
-Rattled,True,Sudowoodo
-Rock Head,False,Sudowoodo
-Sturdy,False,Sudowoodo
-Rattled,True,Dunsparce
-Run Away,False,Dunsparce
-Serene Grace,False,Dunsparce
-Rattled,True,Whismur
-Soundproof,False,Whismur
-Rattled,True,Clamperl
-Shell Armor,False,Clamperl
-Rattled,True,Bonsly
-Rock Head,False,Bonsly
-Sturdy,False,Bonsly
-Rattled,True,Cubchoo
-Slush Rush,False,Cubchoo
-Snow Cloak,False,Cubchoo
-Reckless,False,Bouffalant
-Sap Sipper,False,Bouffalant
-Soundproof,True,Bouffalant
-Refrigerate,False,Amaura
-Snow Warning,True,Amaura
-Refrigerate,False,Aurorus
-Snow Warning,True,Aurorus
-Refrigerate,False,Mega Glalie
-Rivalry,True,Beautifly
-Swarm,False,Beautifly
-Rks System,False,Silvally
-Rock Head,False,Geodude
-Sand Veil,True,Geodude
-Sturdy,False,Geodude
-Rock Head,False,Graveler
-Sand Veil,True,Graveler
-Sturdy,False,Graveler
-Rock Head,False,Golem
-Sand Veil,True,Golem
-Sturdy,False,Golem
-Rock Head,False,Onix
-Sturdy,False,Onix
-Weak Armor,True,Onix
-Rock Head,False,Steelix
-Sheer Force,True,Steelix
-Sturdy,False,Steelix
-Rock Head,False,Relicanth
-Sturdy,True,Relicanth
-Swift Swim,False,Relicanth
-Rock Head,False,Bagon
-Sheer Force,True,Bagon
-Rock Head,True,Tyrantrum
-Strong Jaw,False,Tyrantrum
-Rough Skin,False,Carvanha
-Speed Boost,True,Carvanha
-Rough Skin,False,Sharpedo
-Speed Boost,True,Sharpedo
-Rough Skin,True,Gible
-Sand Veil,False,Gible
-Rough Skin,True,Gabite
-Sand Veil,False,Gabite
-Rough Skin,True,Garchomp
-Sand Veil,False,Garchomp
-Run Away,True,Caterpie
-Shield Dust,False,Caterpie
-Run Away,True,Weedle
-Shield Dust,False,Weedle
-Run Away,True,Wurmple
-Shield Dust,False,Wurmple
-Run Away,True,Kricketot
-Shed Skin,False,Kricketot
-Run Away,False,Nickit
-Stakeout,True,Nickit
-Unburden,False,Nickit
-Run Away,False,Thievul
-Stakeout,True,Thievul
-Unburden,False,Thievul
-Sand Force,True,Shellos
-Sticky Hold,False,Shellos
-Storm Drain,False,Shellos
-Sand Force,True,Gastrodon
-Sticky Hold,False,Gastrodon
-Storm Drain,False,Gastrodon
-Sand Force,True,Hippopotas
-Sand Stream,False,Hippopotas
-Sand Force,True,Hippowdon
-Sand Stream,False,Hippowdon
-Sand Force,True,Roggenrola
-Sturdy,False,Roggenrola
-Weak Armor,False,Roggenrola
-Sand Force,True,Boldore
-Sturdy,False,Boldore
-Weak Armor,False,Boldore
-Sand Force,True,Gigalith
-Sand Stream,False,Gigalith
-Sturdy,False,Gigalith
-Sand Force,False,Mega Garchomp
-Sand Force,False,Mega Steelix
-Sand Force,True,Alolan Diglett
-Sand Veil,False,Alolan Diglett
-Tangling Hair,False,Alolan Diglett
-Sand Force,True,Alolan Dugtrio
-Sand Veil,False,Alolan Dugtrio
-Tangling Hair,False,Alolan Dugtrio
-Sand Rush,True,Sandshrew
-Sand Veil,False,Sandshrew
-Sand Rush,True,Sandslash
-Sand Veil,False,Sandslash
-Sand Rush,True,Dracovish
-Strong Jaw,False,Dracovish
-Water Absorb,False,Dracovish
-Sand Spit,False,Silicobra
-Sand Veil,True,Silicobra
-Shed Skin,False,Silicobra
-Sand Spit,False,Sandaconda
-Sand Veil,True,Sandaconda
-Shed Skin,False,Sandaconda
-Sand Stream,False,Tyranitar
-Unnerve,True,Tyranitar
-Sand Stream,False,Mega Tyranitar
-Sand Veil,True,Donphan
-Sturdy,False,Donphan
-Sand Veil,False,Cacnea
-Water Absorb,True,Cacnea
-Sand Veil,False,Cacturne
-Water Absorb,True,Cacturne
-Sand Veil,True,Sandygast
-Water Compaction,False,Sandygast
-Sand Veil,True,Palossand
-Water Compaction,False,Palossand
-Sap Sipper,True,Miltank
-Scrappy,False,Miltank
-Thick Fat,False,Miltank
-Scrappy,True,Loudred
-Soundproof,False,Loudred
-Scrappy,True,Exploud
-Soundproof,False,Exploud
-Scrappy,False,Mega Lopunny
-Serene Grace,False,Jirachi
-Shadow Shield,False,Lunala
-Shadow Tag,False,Wobbuffet
-Telepathy,True,Wobbuffet
-Shadow Tag,False,Wynaut
-Telepathy,True,Wynaut
-Shadow Tag,False,Mega Gengar
-Shed Skin,False,Metapod
-Shed Skin,False,Kakuna
-Shed Skin,False,Pupitar
-Shed Skin,False,Silcoon
-Shed Skin,False,Cascoon
-Sheer Force,True,Totodile
-Torrent,False,Totodile
-Sheer Force,True,Croconaw
-Torrent,False,Croconaw
-Sheer Force,True,Feraligatr
-Torrent,False,Feraligatr
-Sheer Force,False,Mega Camerupt
-Shell Armor,False,Omanyte
-Swift Swim,False,Omanyte
-Weak Armor,True,Omanyte
-Shell Armor,False,Omastar
-Swift Swim,False,Omastar
-Weak Armor,True,Omastar
-Shell Armor,True,Oshawott
-Torrent,False,Oshawott
-Shell Armor,True,Dewott
-Torrent,False,Dewott
-Shell Armor,True,Samurott
-Torrent,False,Samurott
-Shell Armor,False,Dwebble
-Sturdy,False,Dwebble
-Weak Armor,True,Dwebble
-Shell Armor,False,Crustle
-Sturdy,False,Crustle
-Weak Armor,True,Crustle
-Shell Armor,False,Turtonator
-Shell Armor,False,Chewtle
-Strong Jaw,False,Chewtle
-Swift Swim,True,Chewtle
-Shell Armor,False,Drednaw
-Strong Jaw,False,Drednaw
-Swift Swim,True,Drednaw
-Shell Armor,False,Mega Slowbro
-Shield Dust,False,Venomoth
-Tinted Lens,False,Venomoth
-Wonder Skin,True,Venomoth
-Skill Link,False,Mega Heracross
-Slow Start,False,Regigigas
-Slush Rush,False,Beartic
-Snow Cloak,False,Beartic
-Swift Swim,True,Beartic
-Slush Rush,True,Arctozolt
-Static,False,Arctozolt
-Volt Absorb,False,Arctozolt
-Slush Rush,True,Alolan Sandshrew
-Snow Cloak,False,Alolan Sandshrew
-Slush Rush,True,Alolan Sandslash
-Snow Cloak,False,Alolan Sandslash
-Sniper,True,Beedrill
-Swarm,False,Beedrill
-Sniper,True,Sobble
-Torrent,False,Sobble
-Sniper,True,Drizzile
-Torrent,False,Drizzile
-Sniper,True,Inteleon
-Torrent,False,Inteleon
-Snow Cloak,False,Alolan Vulpix
-Snow Warning,True,Alolan Vulpix
-Snow Cloak,False,Alolan Ninetales
-Snow Warning,True,Alolan Ninetales
-Snow Warning,False,Snover
-Soundproof,True,Snover
-Snow Warning,False,Abomasnow
-Soundproof,True,Abomasnow
-Snow Warning,False,Mega Abomasnow
-Solar Power,False,Mega Houndoom
-Solid Rock,False,Tirtouga
-Sturdy,False,Tirtouga
-Swift Swim,True,Tirtouga
-Solid Rock,False,Carracosta
-Sturdy,False,Carracosta
-Swift Swim,True,Carracosta
-Soul Heart,False,Magearna
-Soundproof,True,Shieldon
-Sturdy,False,Shieldon
-Soundproof,True,Bastiodon
-Sturdy,False,Bastiodon
-Speed Boost,False,Mega Blaziken
-Static,False,Electabuzz
-Vital Spirit,True,Electabuzz
-Static,False,Elekid
-Vital Spirit,True,Elekid
-Steadfast,True,Scyther
-Swarm,False,Scyther
-Technician,False,Scyther
-Steadfast,False,Mega Mewtwo Y
-Steadfast,False,Mega Mewtwo X
-Steelworker,False,Dhelmise
-Storm Drain,True,Lileep
-Suction Cups,False,Lileep
-Storm Drain,True,Cradily
-Suction Cups,False,Cradily
-Storm Drain,False,Finneon
-Swift Swim,False,Finneon
-Water Veil,True,Finneon
-Storm Drain,False,Lumineon
-Swift Swim,False,Lumineon
-Water Veil,True,Lumineon
-Strong Jaw,False,Tyrunt
-Sturdy,True,Tyrunt
-Strong Jaw,False,Mega Sharpedo
-Sturdy,False,Cosmoem
-Surge Surfer,False,Alolan Raichu
-Swarm,False,Kricketune
-Technician,True,Kricketune
-Swarm,False,Mothim
-Tinted Lens,True,Mothim
-Swarm,False,Grubbin
-Sweet Veil,False,Swirlix
-Unburden,True,Swirlix
-Sweet Veil,False,Slurpuff
-Unburden,True,Slurpuff
-Swift Swim,False,Mantine
-Water Absorb,False,Mantine
-Water Veil,True,Mantine
-Swift Swim,False,Huntail
-Water Veil,True,Huntail
-Swift Swim,False,Buizel
-Water Veil,True,Buizel
-Swift Swim,False,Floatzel
-Water Veil,True,Floatzel
-Swift Swim,False,Mantyke
-Water Absorb,False,Mantyke
-Water Veil,True,Mantyke
-Swift Swim,False,Mega Swampert
-Synchronize,False,Mew
-Synchronize,False,Ralts
-Telepathy,True,Ralts
-Trace,False,Ralts
-Synchronize,False,Kirlia
-Telepathy,True,Kirlia
-Trace,False,Kirlia
-Synchronize,False,Gardevoir
-Telepathy,True,Gardevoir
-Trace,False,Gardevoir
-Technician,False,Marshadow
-Technician,False,Mega Scizor
-Teravolt,False,Zekrom
-Teravolt,False,Black Kyurem
-Thick Fat,False,Mega Venusaur
-Tough Claws,False,Mega Charizard Y
-Tough Claws,False,Mega Charizard X
-Tough Claws,False,Mega Aerodactyl
-Tough Claws,False,Mega Metagross
-Trace,False,Mega Alakazam
-Transistor,False,Regieleki
-Truant,False,Slakoth
-Truant,False,Slaking
-Turboblaze,False,Reshiram
-Turboblaze,False,White Kyurem
-Unaware,False,Cosmog
-Unnerve,False,Calyrex
-Victory Star,False,Victini
-Vital Spirit,False,Vigoroth
-Volt Absorb,False,Zeraora
-Wandering Spirit,False,Runerigus
-Water Absorb,False,Volcanion
-Water Absorb,True,Dewpider
-Water Bubble,False,Dewpider
-Water Absorb,True,Araquanid
-Water Bubble,False,Araquanid
-Wimp Out,False,Wimpod
-Wonder Guard,False,Shedinja
+Adaptability,0,Eevee
+Anticipation,1,Eevee
+Run Away,0,Eevee
+Adaptability,1,Corphish
+Hyper Cutter,0,Corphish
+Shell Armor,0,Corphish
+Adaptability,1,Crawdaunt
+Hyper Cutter,0,Crawdaunt
+Shell Armor,0,Crawdaunt
+Adaptability,1,Feebas
+Oblivious,0,Feebas
+Swift Swim,0,Feebas
+Adaptability,1,Skrelp
+Poison Point,0,Skrelp
+Poison Touch,0,Skrelp
+Adaptability,1,Dragalge
+Poison Point,0,Dragalge
+Poison Touch,0,Dragalge
+Adaptability,1,Yungoos
+Stakeout,0,Yungoos
+Strong Jaw,0,Yungoos
+Adaptability,1,Gumshoos
+Stakeout,0,Gumshoos
+Strong Jaw,0,Gumshoos
+Adaptability,0,Mega Lucario
+Adaptability,0,Mega Beedrill
+Aerilate,0,Mega Pinsir
+Aerilate,0,Mega Salamence
+Aftermath,1,Voltorb
+Soundproof,0,Voltorb
+Static,0,Voltorb
+Aftermath,1,Electrode
+Soundproof,0,Electrode
+Static,0,Electrode
+Aftermath,0,Drifloon
+Flare Boost,1,Drifloon
+Unburden,0,Drifloon
+Aftermath,0,Drifblim
+Flare Boost,1,Drifblim
+Unburden,0,Drifblim
+Aftermath,0,Stunky
+Keen Eye,1,Stunky
+Stench,0,Stunky
+Aftermath,0,Skuntank
+Keen Eye,1,Skuntank
+Stench,0,Skuntank
+Aftermath,1,Trubbish
+Stench,0,Trubbish
+Sticky Hold,0,Trubbish
+Aftermath,1,Garbodor
+Stench,0,Garbodor
+Weak Armor,0,Garbodor
+Air Lock,0,Rayquaza
+Analytic,1,Magnemite
+Magnet Pull,0,Magnemite
+Sturdy,0,Magnemite
+Analytic,1,Magneton
+Magnet Pull,0,Magneton
+Sturdy,0,Magneton
+Analytic,1,Staryu
+Illuminate,0,Staryu
+Natural Cure,0,Staryu
+Analytic,1,Starmie
+Illuminate,0,Starmie
+Natural Cure,0,Starmie
+Analytic,1,Porygon
+Download,0,Porygon
+Trace,0,Porygon
+Analytic,1,Porygon2
+Download,0,Porygon2
+Trace,0,Porygon2
+Analytic,1,Magnezone
+Magnet Pull,0,Magnezone
+Sturdy,0,Magnezone
+Analytic,1,Patrat
+Keen Eye,0,Patrat
+Run Away,0,Patrat
+Analytic,1,Watchog
+Illuminate,0,Watchog
+Keen Eye,0,Watchog
+Analytic,1,Elgyem
+Synchronize,0,Elgyem
+Telepathy,0,Elgyem
+Analytic,1,Beheeyem
+Synchronize,0,Beheeyem
+Telepathy,0,Beheeyem
+Anger Point,0,Mankey
+Defiant,1,Mankey
+Vital Spirit,0,Mankey
+Anger Point,0,Primeape
+Defiant,1,Primeape
+Vital Spirit,0,Primeape
+Anger Point,0,Tauros
+Intimidate,0,Tauros
+Sheer Force,1,Tauros
+Anger Point,1,Camerupt
+Magma Armor,0,Camerupt
+Solid Rock,0,Camerupt
+Anger Point,1,Sandile
+Intimidate,0,Sandile
+Moxie,0,Sandile
+Anger Point,1,Krokorok
+Intimidate,0,Krokorok
+Moxie,0,Krokorok
+Anger Point,1,Krookodile
+Intimidate,0,Krookodile
+Moxie,0,Krookodile
+Anger Point,1,Crabrawler
+Hyper Cutter,0,Crabrawler
+Iron Fist,0,Crabrawler
+Anger Point,1,Crabominable
+Hyper Cutter,0,Crabominable
+Iron Fist,0,Crabominable
+Anticipation,0,Barboach
+Hydration,1,Barboach
+Oblivious,0,Barboach
+Anticipation,0,Whiscash
+Hydration,1,Whiscash
+Oblivious,0,Whiscash
+Anticipation,0,Croagunk
+Dry Skin,0,Croagunk
+Poison Touch,1,Croagunk
+Anticipation,0,Toxicroak
+Dry Skin,0,Toxicroak
+Poison Touch,1,Toxicroak
+Anticipation,1,Ferrothorn
+Iron Barbs,0,Ferrothorn
+Anticipation,0,Hatenna
+Healer,0,Hatenna
+Magic Bounce,1,Hatenna
+Anticipation,0,Hattrem
+Healer,0,Hattrem
+Magic Bounce,1,Hattrem
+Anticipation,0,Hatterene
+Healer,0,Hatterene
+Magic Bounce,1,Hatterene
+Arena Trap,0,Diglett
+Sand Force,1,Diglett
+Sand Veil,0,Diglett
+Arena Trap,0,Dugtrio
+Sand Force,1,Dugtrio
+Sand Veil,0,Dugtrio
+Arena Trap,0,Trapinch
+Hyper Cutter,0,Trapinch
+Sheer Force,1,Trapinch
+Aroma Veil,1,Spritzee
+Healer,0,Spritzee
+Aroma Veil,1,Aromatisse
+Healer,0,Aromatisse
+Aroma Veil,1,Milcery
+Sweet Veil,0,Milcery
+Aroma Veil,1,Alcremie
+Sweet Veil,0,Alcremie
+Bad Dreams,0,Darkrai
+Ball Fetch,0,Yamper
+Rattled,1,Yamper
+Battery,0,Charjabug
+Battle Armor,1,Cubone
+Lightning Rod,0,Cubone
+Rock Head,0,Cubone
+Battle Armor,1,Marowak
+Lightning Rod,0,Marowak
+Rock Head,0,Marowak
+Battle Armor,0,Kabuto
+Swift Swim,0,Kabuto
+Weak Armor,1,Kabuto
+Battle Armor,0,Kabutops
+Swift Swim,0,Kabutops
+Weak Armor,1,Kabutops
+Battle Armor,0,Anorith
+Swift Swim,1,Anorith
+Battle Armor,0,Armaldo
+Swift Swim,1,Armaldo
+Battle Armor,0,Skorupi
+Keen Eye,1,Skorupi
+Sniper,0,Skorupi
+Battle Armor,0,Drapion
+Keen Eye,1,Drapion
+Sniper,0,Drapion
+Battle Armor,0,Perrserker
+Steely Spirit,1,Perrserker
+Tough Claws,0,Perrserker
+Battle Armor,0,Falinks
+Defiant,1,Falinks
+Beast Boost,0,Nihilego
+Beast Boost,0,Buzzwole
+Beast Boost,0,Pheromosa
+Beast Boost,0,Xurkitree
+Beast Boost,0,Celesteela
+Beast Boost,0,Kartana
+Beast Boost,0,Guzzlord
+Beast Boost,0,Poipole
+Beast Boost,0,Naganadel
+Beast Boost,0,Stakataka
+Beast Boost,0,Blacephalon
+Berserk,0,Drampa
+Cloud Nine,1,Drampa
+Sap Sipper,0,Drampa
+Big Pecks,1,Pidgey
+Keen Eye,0,Pidgey
+Tangled Feet,0,Pidgey
+Big Pecks,1,Pidgeotto
+Keen Eye,0,Pidgeotto
+Tangled Feet,0,Pidgeotto
+Big Pecks,1,Pidgeot
+Keen Eye,0,Pidgeot
+Tangled Feet,0,Pidgeot
+Big Pecks,1,Chatot
+Keen Eye,0,Chatot
+Tangled Feet,0,Chatot
+Big Pecks,0,Pidove
+Rivalry,1,Pidove
+Super Luck,0,Pidove
+Big Pecks,0,Tranquill
+Rivalry,1,Tranquill
+Super Luck,0,Tranquill
+Big Pecks,0,Unfezant
+Rivalry,1,Unfezant
+Super Luck,0,Unfezant
+Big Pecks,0,Ducklett
+Hydration,1,Ducklett
+Keen Eye,0,Ducklett
+Big Pecks,0,Swanna
+Hydration,1,Swanna
+Keen Eye,0,Swanna
+Big Pecks,0,Vullaby
+Overcoat,0,Vullaby
+Weak Armor,1,Vullaby
+Big Pecks,0,Mandibuzz
+Overcoat,0,Mandibuzz
+Weak Armor,1,Mandibuzz
+Big Pecks,0,Fletchling
+Gale Wings,1,Fletchling
+Big Pecks,1,Rookidee
+Keen Eye,0,Rookidee
+Unnerve,0,Rookidee
+Big Pecks,1,Corvisquire
+Keen Eye,0,Corvisquire
+Unnerve,0,Corvisquire
+Blaze,0,Charmander
+Solar Power,1,Charmander
+Blaze,0,Charmeleon
+Solar Power,1,Charmeleon
+Blaze,0,Charizard
+Solar Power,1,Charizard
+Blaze,0,Cyndaquil
+Flash Fire,1,Cyndaquil
+Blaze,0,Quilava
+Flash Fire,1,Quilava
+Blaze,0,Typhlosion
+Flash Fire,1,Typhlosion
+Blaze,0,Torchic
+Speed Boost,1,Torchic
+Blaze,0,Combusken
+Speed Boost,1,Combusken
+Blaze,0,Blaziken
+Speed Boost,1,Blaziken
+Blaze,0,Chimchar
+Iron Fist,1,Chimchar
+Blaze,0,Monferno
+Iron Fist,1,Monferno
+Blaze,0,Infernape
+Iron Fist,1,Infernape
+Blaze,0,Tepig
+Thick Fat,1,Tepig
+Blaze,0,Pignite
+Thick Fat,1,Pignite
+Blaze,0,Emboar
+Reckless,1,Emboar
+Blaze,1,Pansear
+Gluttony,0,Pansear
+Blaze,1,Simisear
+Gluttony,0,Simisear
+Blaze,0,Fennekin
+Magician,1,Fennekin
+Blaze,0,Braixen
+Magician,1,Braixen
+Blaze,0,Delphox
+Magician,1,Delphox
+Blaze,0,Litten
+Intimidate,1,Litten
+Blaze,0,Torracat
+Intimidate,1,Torracat
+Blaze,0,Incineroar
+Intimidate,1,Incineroar
+Blaze,0,Scorbunny
+Libero,1,Scorbunny
+Blaze,0,Raboot
+Libero,1,Raboot
+Blaze,0,Cinderace
+Libero,1,Cinderace
+Bulletproof,1,Chespin
+Overgrow,0,Chespin
+Bulletproof,1,Quilladin
+Overgrow,0,Quilladin
+Bulletproof,1,Chesnaught
+Overgrow,0,Chesnaught
+Bulletproof,1,Wooloo
+Fluffy,0,Wooloo
+Run Away,0,Wooloo
+Bulletproof,1,Dubwool
+Fluffy,0,Dubwool
+Steadfast,0,Dubwool
+Bulletproof,1,Applin
+Gluttony,0,Applin
+Ripen,0,Applin
+Cheek Pouch,0,Bunnelby
+Huge Power,1,Bunnelby
+Pickup,0,Bunnelby
+Cheek Pouch,0,Diggersby
+Huge Power,1,Diggersby
+Pickup,0,Diggersby
+Cheek Pouch,0,Dedenne
+Pickup,0,Dedenne
+Plus,1,Dedenne
+Cheek Pouch,0,Skwovet
+Gluttony,1,Skwovet
+Cheek Pouch,0,Greedent
+Gluttony,1,Greedent
+Chilling Neigh,0,Glastrier
+Chlorophyll,1,Bulbasaur
+Overgrow,0,Bulbasaur
+Chlorophyll,1,Ivysaur
+Overgrow,0,Ivysaur
+Chlorophyll,1,Venusaur
+Overgrow,0,Venusaur
+Chlorophyll,0,Oddish
+Run Away,1,Oddish
+Chlorophyll,0,Gloom
+Stench,1,Gloom
+Chlorophyll,0,Vileplume
+Effect Spore,1,Vileplume
+Chlorophyll,0,Bellsprout
+Gluttony,1,Bellsprout
+Chlorophyll,0,Weepinbell
+Gluttony,1,Weepinbell
+Chlorophyll,0,Victreebel
+Gluttony,1,Victreebel
+Chlorophyll,0,Exeggcute
+Harvest,1,Exeggcute
+Chlorophyll,0,Exeggutor
+Harvest,1,Exeggutor
+Chlorophyll,0,Tangela
+Leaf Guard,0,Tangela
+Regenerator,1,Tangela
+Chlorophyll,0,Bellossom
+Healer,1,Bellossom
+Chlorophyll,0,Hoppip
+Infiltrator,1,Hoppip
+Leaf Guard,0,Hoppip
+Chlorophyll,0,Skiploom
+Infiltrator,1,Skiploom
+Leaf Guard,0,Skiploom
+Chlorophyll,0,Jumpluff
+Infiltrator,1,Jumpluff
+Leaf Guard,0,Jumpluff
+Chlorophyll,0,Sunkern
+Early Bird,1,Sunkern
+Solar Power,0,Sunkern
+Chlorophyll,0,Sunflora
+Early Bird,1,Sunflora
+Solar Power,0,Sunflora
+Chlorophyll,0,Seedot
+Early Bird,0,Seedot
+Pickpocket,1,Seedot
+Chlorophyll,0,Nuzleaf
+Early Bird,0,Nuzleaf
+Pickpocket,1,Nuzleaf
+Chlorophyll,0,Shiftry
+Early Bird,0,Shiftry
+Pickpocket,1,Shiftry
+Chlorophyll,0,Tropius
+Harvest,1,Tropius
+Solar Power,0,Tropius
+Chlorophyll,0,Cherubi
+Chlorophyll,0,Tangrowth
+Leaf Guard,0,Tangrowth
+Regenerator,1,Tangrowth
+Chlorophyll,1,Leafeon
+Leaf Guard,0,Leafeon
+Chlorophyll,0,Sewaddle
+Overcoat,1,Sewaddle
+Swarm,0,Sewaddle
+Chlorophyll,0,Swadloon
+Leaf Guard,0,Swadloon
+Overcoat,1,Swadloon
+Chlorophyll,0,Leavanny
+Overcoat,1,Leavanny
+Swarm,0,Leavanny
+Chlorophyll,1,Cottonee
+Infiltrator,0,Cottonee
+Prankster,0,Cottonee
+Chlorophyll,1,Whimsicott
+Infiltrator,0,Whimsicott
+Prankster,0,Whimsicott
+Chlorophyll,0,Petilil
+Leaf Guard,1,Petilil
+Own Tempo,0,Petilil
+Chlorophyll,0,Lilligant
+Leaf Guard,1,Lilligant
+Own Tempo,0,Lilligant
+Chlorophyll,0,Maractus
+Storm Drain,1,Maractus
+Water Absorb,0,Maractus
+Chlorophyll,0,Deerling
+Sap Sipper,0,Deerling
+Serene Grace,1,Deerling
+Chlorophyll,0,Sawsbuck
+Sap Sipper,0,Sawsbuck
+Serene Grace,1,Sawsbuck
+Clear Body,0,Tentacool
+Liquid Ooze,0,Tentacool
+Rain Dish,1,Tentacool
+Clear Body,0,Tentacruel
+Liquid Ooze,0,Tentacruel
+Rain Dish,1,Tentacruel
+Clear Body,0,Beldum
+Light Metal,1,Beldum
+Clear Body,0,Metang
+Light Metal,1,Metang
+Clear Body,0,Metagross
+Light Metal,1,Metagross
+Clear Body,0,Regirock
+Sturdy,1,Regirock
+Clear Body,0,Regice
+Ice Body,1,Regice
+Clear Body,0,Registeel
+Light Metal,1,Registeel
+Clear Body,1,Klink
+Minus,0,Klink
+Plus,0,Klink
+Clear Body,1,Klang
+Minus,0,Klang
+Plus,0,Klang
+Clear Body,1,Klinklang
+Minus,0,Klinklang
+Plus,0,Klinklang
+Clear Body,0,Carbink
+Sturdy,1,Carbink
+Clear Body,0,Diancie
+Clear Body,0,Dreepy
+Cursed Body,1,Dreepy
+Infiltrator,0,Dreepy
+Clear Body,0,Drakloak
+Cursed Body,1,Drakloak
+Infiltrator,0,Drakloak
+Clear Body,0,Dragapult
+Cursed Body,1,Dragapult
+Infiltrator,0,Dragapult
+Cloud Nine,0,Psyduck
+Damp,0,Psyduck
+Swift Swim,1,Psyduck
+Cloud Nine,0,Golduck
+Damp,0,Golduck
+Swift Swim,1,Golduck
+Cloud Nine,1,Lickitung
+Oblivious,0,Lickitung
+Own Tempo,0,Lickitung
+Cloud Nine,1,Swablu
+Natural Cure,0,Swablu
+Cloud Nine,1,Altaria
+Natural Cure,0,Altaria
+Cloud Nine,1,Lickilicky
+Oblivious,0,Lickilicky
+Own Tempo,0,Lickilicky
+Color Change,0,Kecleon
+Protean,1,Kecleon
+Comatose,0,Komala
+Competitive,0,Jigglypuff
+Cute Charm,0,Jigglypuff
+Friend Guard,1,Jigglypuff
+Competitive,0,Wigglytuff
+Cute Charm,0,Wigglytuff
+Frisk,1,Wigglytuff
+Competitive,0,Igglybuff
+Cute Charm,0,Igglybuff
+Friend Guard,1,Igglybuff
+Competitive,0,Milotic
+Cute Charm,1,Milotic
+Marvel Scale,0,Milotic
+Competitive,0,Gothita
+Frisk,0,Gothita
+Shadow Tag,1,Gothita
+Competitive,0,Gothorita
+Frisk,0,Gothorita
+Shadow Tag,1,Gothorita
+Competitive,0,Gothitelle
+Frisk,0,Gothitelle
+Shadow Tag,1,Gothitelle
+Competitive,1,Boltund
+Strong Jaw,0,Boltund
+Competitive,1,Meowstic Female
+Infiltrator,0,Meowstic Female
+Keen Eye,0,Meowstic Female
+Compound Eyes,0,Butterfree
+Tinted Lens,1,Butterfree
+Compound Eyes,0,Venonat
+Run Away,1,Venonat
+Tinted Lens,0,Venonat
+Compound Eyes,0,Yanma
+Frisk,1,Yanma
+Speed Boost,0,Yanma
+Compound Eyes,1,Dustox
+Shield Dust,0,Dustox
+Compound Eyes,0,Nincada
+Run Away,1,Nincada
+Compound Eyes,0,Joltik
+Swarm,1,Joltik
+Unnerve,0,Joltik
+Compound Eyes,0,Galvantula
+Swarm,1,Galvantula
+Unnerve,0,Galvantula
+Compound Eyes,0,Scatterbug
+Friend Guard,1,Scatterbug
+Shield Dust,0,Scatterbug
+Compound Eyes,0,Vivillon
+Friend Guard,1,Vivillon
+Shield Dust,0,Vivillon
+Compound Eyes,0,Blipbug
+Swarm,0,Blipbug
+Telepathy,1,Blipbug
+Compound Eyes,0,Dottler
+Swarm,0,Dottler
+Telepathy,1,Dottler
+Contrary,1,Shuckle
+Gluttony,0,Shuckle
+Sturdy,0,Shuckle
+Contrary,1,Spinda
+Own Tempo,0,Spinda
+Tangled Feet,0,Spinda
+Contrary,1,Snivy
+Overgrow,0,Snivy
+Contrary,1,Servine
+Overgrow,0,Servine
+Contrary,1,Serperior
+Overgrow,0,Serperior
+Contrary,0,Inkay
+Infiltrator,1,Inkay
+Suction Cups,0,Inkay
+Contrary,0,Malamar
+Infiltrator,1,Malamar
+Suction Cups,0,Malamar
+Contrary,1,Fomantis
+Leaf Guard,0,Fomantis
+Contrary,1,Lurantis
+Leaf Guard,0,Lurantis
+Corrosion,0,Salandit
+Oblivious,1,Salandit
+Corrosion,0,Salazzle
+Oblivious,1,Salazzle
+Cotton Down,0,Gossifleur
+Effect Spore,1,Gossifleur
+Regenerator,0,Gossifleur
+Cotton Down,0,Eldegoss
+Effect Spore,1,Eldegoss
+Regenerator,0,Eldegoss
+Cursed Body,0,Gengar
+Cursed Body,1,Shuppet
+Frisk,0,Shuppet
+Insomnia,0,Shuppet
+Cursed Body,1,Banette
+Frisk,0,Banette
+Insomnia,0,Banette
+Cursed Body,1,Froslass
+Snow Cloak,0,Froslass
+Cursed Body,0,Frillish
+Damp,1,Frillish
+Water Absorb,0,Frillish
+Cursed Body,0,Jellicent
+Damp,1,Jellicent
+Water Absorb,0,Jellicent
+Cursed Body,1,Sinistea
+Weak Armor,0,Sinistea
+Cursed Body,1,Polteageist
+Weak Armor,0,Polteageist
+Cursed Body,0,Alolan Marowak
+Lightning Rod,0,Alolan Marowak
+Rock Head,1,Alolan Marowak
+Cute Charm,0,Clefairy
+Friend Guard,1,Clefairy
+Magic Guard,0,Clefairy
+Cute Charm,0,Clefable
+Magic Guard,0,Clefable
+Unaware,1,Clefable
+Cute Charm,0,Cleffa
+Friend Guard,1,Cleffa
+Magic Guard,0,Cleffa
+Cute Charm,0,Skitty
+Normalize,0,Skitty
+Wonder Skin,1,Skitty
+Cute Charm,0,Delcatty
+Normalize,0,Delcatty
+Wonder Skin,1,Delcatty
+Cute Charm,0,Lopunny
+Klutz,0,Lopunny
+Limber,1,Lopunny
+Cute Charm,0,Minccino
+Skill Link,1,Minccino
+Technician,0,Minccino
+Cute Charm,0,Cinccino
+Skill Link,1,Cinccino
+Technician,0,Cinccino
+Cute Charm,0,Sylveon
+Pixilate,1,Sylveon
+Cute Charm,1,Stufful
+Fluffy,0,Stufful
+Klutz,0,Stufful
+Damp,1,Paras
+Dry Skin,0,Paras
+Effect Spore,0,Paras
+Damp,1,Parasect
+Dry Skin,0,Parasect
+Effect Spore,0,Parasect
+Damp,0,Poliwag
+Swift Swim,1,Poliwag
+Water Absorb,0,Poliwag
+Damp,0,Poliwhirl
+Swift Swim,1,Poliwhirl
+Water Absorb,0,Poliwhirl
+Damp,0,Poliwrath
+Swift Swim,1,Poliwrath
+Water Absorb,0,Poliwrath
+Damp,1,Horsea
+Sniper,0,Horsea
+Swift Swim,0,Horsea
+Damp,1,Seadra
+Poison Point,0,Seadra
+Sniper,0,Seadra
+Damp,0,Politoed
+Drizzle,1,Politoed
+Water Absorb,0,Politoed
+Damp,0,Wooper
+Unaware,1,Wooper
+Water Absorb,0,Wooper
+Damp,0,Quagsire
+Unaware,1,Quagsire
+Water Absorb,0,Quagsire
+Damp,1,Kingdra
+Sniper,0,Kingdra
+Swift Swim,0,Kingdra
+Damp,1,Mudkip
+Torrent,0,Mudkip
+Damp,1,Marshtomp
+Torrent,0,Marshtomp
+Damp,1,Swampert
+Torrent,0,Swampert
+Dark Aura,0,Yveltal
+Dazzling,0,Bruxish
+Strong Jaw,0,Bruxish
+Wonder Skin,1,Bruxish
+Defeatist,0,Archen
+Defeatist,0,Archeops
+Defiant,1,Piplup
+Torrent,0,Piplup
+Defiant,1,Prinplup
+Torrent,0,Prinplup
+Defiant,1,Empoleon
+Torrent,0,Empoleon
+Defiant,1,Purugly
+Own Tempo,0,Purugly
+Thick Fat,0,Purugly
+Defiant,0,Pawniard
+Inner Focus,0,Pawniard
+Pressure,1,Pawniard
+Defiant,0,Bisharp
+Inner Focus,0,Bisharp
+Pressure,1,Bisharp
+Defiant,1,Braviary
+Keen Eye,0,Braviary
+Sheer Force,0,Braviary
+Defiant,1,Passimian
+Receiver,0,Passimian
+Defiant,1,Obstagoon
+Guts,0,Obstagoon
+Reckless,0,Obstagoon
+Delta Stream,0,Mega Rayquaza
+Desolate Land,0,Primal Groudon
+Download,0,Genesect
+Dragons Maw,0,Regidrago
+Drizzle,0,Pelipper
+Keen Eye,0,Pelipper
+Rain Dish,1,Pelipper
+Drizzle,0,Kyogre
+Drought,1,Vulpix
+Flash Fire,0,Vulpix
+Drought,1,Ninetales
+Flash Fire,0,Ninetales
+Drought,0,Torkoal
+Shell Armor,1,Torkoal
+White Smoke,0,Torkoal
+Drought,0,Groudon
+Drought,0,Mega Charizard Y
+Drought,0,Mega Charizard X
+Dry Skin,1,Jynx
+Forewarn,0,Jynx
+Oblivious,0,Jynx
+Dry Skin,0,Helioptile
+Sand Veil,0,Helioptile
+Solar Power,1,Helioptile
+Dry Skin,0,Heliolisk
+Sand Veil,0,Heliolisk
+Solar Power,1,Heliolisk
+Early Bird,0,Doduo
+Run Away,0,Doduo
+Tangled Feet,1,Doduo
+Early Bird,0,Dodrio
+Run Away,0,Dodrio
+Tangled Feet,1,Dodrio
+Early Bird,0,Kangaskhan
+Inner Focus,1,Kangaskhan
+Scrappy,0,Kangaskhan
+Early Bird,0,Ledyba
+Rattled,1,Ledyba
+Swarm,0,Ledyba
+Early Bird,0,Ledian
+Iron Fist,1,Ledian
+Swarm,0,Ledian
+Early Bird,0,Natu
+Magic Bounce,1,Natu
+Synchronize,0,Natu
+Early Bird,0,Xatu
+Magic Bounce,1,Xatu
+Synchronize,0,Xatu
+Early Bird,0,Girafarig
+Inner Focus,0,Girafarig
+Sap Sipper,1,Girafarig
+Early Bird,0,Houndour
+Flash Fire,0,Houndour
+Unnerve,1,Houndour
+Early Bird,0,Houndoom
+Flash Fire,0,Houndoom
+Unnerve,1,Houndoom
+Effect Spore,0,Shroomish
+Poison Heal,0,Shroomish
+Quick Feet,1,Shroomish
+Effect Spore,0,Breloom
+Poison Heal,0,Breloom
+Technician,1,Breloom
+Effect Spore,0,Foongus
+Regenerator,1,Foongus
+Effect Spore,0,Amoonguss
+Regenerator,1,Amoonguss
+Effect Spore,0,Morelull
+Illuminate,0,Morelull
+Rain Dish,1,Morelull
+Effect Spore,0,Shiinotic
+Illuminate,0,Shiinotic
+Rain Dish,1,Shiinotic
+Electric Surge,0,Tapu Koko
+Telepathy,1,Tapu Koko
+Electric Surge,1,Pincurchin
+Lightning Rod,0,Pincurchin
+Emergency Exit,0,Golisopod
+Fairy Aura,0,Xerneas
+Filter,0,Mega Aggron
+Flame Body,1,Ponyta
+Flash Fire,0,Ponyta
+Run Away,0,Ponyta
+Flame Body,1,Rapidash
+Flash Fire,0,Rapidash
+Run Away,0,Rapidash
+Flame Body,0,Magmar
+Vital Spirit,1,Magmar
+Flame Body,1,Moltres
+Pressure,0,Moltres
+Flame Body,0,Slugma
+Magma Armor,0,Slugma
+Weak Armor,1,Slugma
+Flame Body,0,Magcargo
+Magma Armor,0,Magcargo
+Weak Armor,1,Magcargo
+Flame Body,0,Magby
+Vital Spirit,1,Magby
+Flame Body,0,Magmortar
+Vital Spirit,1,Magmortar
+Flame Body,1,Heatran
+Flash Fire,0,Heatran
+Flame Body,0,Litwick
+Flash Fire,0,Litwick
+Infiltrator,1,Litwick
+Flame Body,0,Lampent
+Flash Fire,0,Lampent
+Infiltrator,1,Lampent
+Flame Body,0,Chandelure
+Flash Fire,0,Chandelure
+Infiltrator,1,Chandelure
+Flame Body,0,Larvesta
+Swarm,1,Larvesta
+Flame Body,0,Volcarona
+Swarm,1,Volcarona
+Flame Body,0,Fletchinder
+Gale Wings,1,Fletchinder
+Flame Body,0,Talonflame
+Gale Wings,1,Talonflame
+Flame Body,0,Carkol
+Flash Fire,1,Carkol
+Steam Engine,0,Carkol
+Flame Body,0,Coalossal
+Flash Fire,1,Coalossal
+Steam Engine,0,Coalossal
+Flame Body,1,Sizzlipede
+Flash Fire,0,Sizzlipede
+White Smoke,0,Sizzlipede
+Flame Body,1,Centiskorch
+Flash Fire,0,Centiskorch
+White Smoke,0,Centiskorch
+Flash Fire,0,Growlithe
+Intimidate,0,Growlithe
+Justified,1,Growlithe
+Flash Fire,0,Arcanine
+Intimidate,0,Arcanine
+Justified,1,Arcanine
+Flash Fire,0,Flareon
+Guts,1,Flareon
+Flash Fire,0,Heatmor
+Gluttony,0,Heatmor
+White Smoke,1,Heatmor
+Flash Fire,1,Rolycoly
+Heatproof,0,Rolycoly
+Steam Engine,0,Rolycoly
+Flower Gift,0,Cherrim
+Flower Veil,0,Flabébé
+Symbiosis,1,Flabébé
+Flower Veil,0,Floette
+Symbiosis,1,Floette
+Flower Veil,0,Florges
+Symbiosis,1,Florges
+Flower Veil,0,Comfey
+Natural Cure,1,Comfey
+Triage,0,Comfey
+Fluffy,0,Bewear
+Klutz,0,Bewear
+Unnerve,1,Bewear
+Forecast,0,Castform
+Forewarn,0,Drowzee
+Inner Focus,1,Drowzee
+Insomnia,0,Drowzee
+Forewarn,0,Hypno
+Inner Focus,1,Hypno
+Insomnia,0,Hypno
+Forewarn,0,Smoochum
+Hydration,1,Smoochum
+Oblivious,0,Smoochum
+Forewarn,0,Munna
+Synchronize,0,Munna
+Telepathy,1,Munna
+Forewarn,0,Musharna
+Synchronize,0,Musharna
+Telepathy,1,Musharna
+Friend Guard,1,Happiny
+Natural Cure,0,Happiny
+Serene Grace,0,Happiny
+Friend Guard,1,Spewpa
+Shed Skin,0,Spewpa
+Frisk,1,Sentret
+Keen Eye,0,Sentret
+Run Away,0,Sentret
+Frisk,1,Furret
+Keen Eye,0,Furret
+Run Away,0,Furret
+Frisk,0,Stantler
+Intimidate,0,Stantler
+Sap Sipper,1,Stantler
+Frisk,1,Duskull
+Levitate,0,Duskull
+Frisk,1,Dusclops
+Pressure,0,Dusclops
+Frisk,1,Yanmega
+Speed Boost,0,Yanmega
+Tinted Lens,0,Yanmega
+Frisk,1,Dusknoir
+Pressure,0,Dusknoir
+Frisk,0,Phantump
+Harvest,1,Phantump
+Natural Cure,0,Phantump
+Frisk,0,Trevenant
+Harvest,1,Trevenant
+Natural Cure,0,Trevenant
+Frisk,0,Noibat
+Infiltrator,0,Noibat
+Telepathy,1,Noibat
+Frisk,0,Noivern
+Infiltrator,0,Noivern
+Telepathy,1,Noivern
+Frisk,0,Orbeetle
+Swarm,0,Orbeetle
+Telepathy,1,Orbeetle
+Frisk,0,Impidimp
+Pickpocket,1,Impidimp
+Prankster,0,Impidimp
+Frisk,0,Morgrem
+Pickpocket,1,Morgrem
+Prankster,0,Morgrem
+Frisk,0,Grimmsnarl
+Pickpocket,1,Grimmsnarl
+Prankster,0,Grimmsnarl
+Frisk,0,Alolan Exeggutor
+Harvest,1,Alolan Exeggutor
+Full Metal Body,0,Solgaleo
+Fur Coat,0,Furfrou
+Fur Coat,0,Alolan Persian
+Rattled,1,Alolan Persian
+Technician,0,Alolan Persian
+Galvanize,1,Alolan Geodude
+Magnet Pull,0,Alolan Geodude
+Sturdy,0,Alolan Geodude
+Galvanize,1,Alolan Graveler
+Magnet Pull,0,Alolan Graveler
+Sturdy,0,Alolan Graveler
+Gluttony,1,Snorlax
+Immunity,0,Snorlax
+Thick Fat,0,Snorlax
+Gluttony,0,Zigzagoon
+Pickup,0,Zigzagoon
+Quick Feet,1,Zigzagoon
+Gluttony,0,Linoone
+Pickup,0,Linoone
+Quick Feet,1,Linoone
+Gluttony,1,Gulpin
+Liquid Ooze,0,Gulpin
+Sticky Hold,0,Gulpin
+Gluttony,1,Swalot
+Liquid Ooze,0,Swalot
+Sticky Hold,0,Swalot
+Gluttony,1,Spoink
+Own Tempo,0,Spoink
+Thick Fat,0,Spoink
+Gluttony,1,Grumpig
+Own Tempo,0,Grumpig
+Thick Fat,0,Grumpig
+Gluttony,1,Munchlax
+Pickup,0,Munchlax
+Thick Fat,0,Munchlax
+Gluttony,0,Pansage
+Overgrow,1,Pansage
+Gluttony,0,Simisage
+Overgrow,1,Simisage
+Gluttony,0,Panpour
+Torrent,1,Panpour
+Gluttony,0,Simipour
+Torrent,1,Simipour
+Gluttony,0,Flapple
+Hustle,1,Flapple
+Ripen,0,Flapple
+Gluttony,0,Appletun
+Ripen,0,Appletun
+Thick Fat,1,Appletun
+Gluttony,0,Alolan Rattata
+Hustle,0,Alolan Rattata
+Thick Fat,1,Alolan Rattata
+Gluttony,0,Alolan Raticate
+Hustle,0,Alolan Raticate
+Thick Fat,1,Alolan Raticate
+Gluttony,0,Alolan Grimer
+Poison Touch,0,Alolan Grimer
+Power Of Alchemy,1,Alolan Grimer
+Gooey,1,Goomy
+Hydration,0,Goomy
+Sap Sipper,0,Goomy
+Gooey,1,Sliggoo
+Hydration,0,Sliggoo
+Sap Sipper,0,Sliggoo
+Gooey,1,Goodra
+Hydration,0,Goodra
+Sap Sipper,0,Goodra
+Grass Pelt,1,Skiddo
+Sap Sipper,0,Skiddo
+Grass Pelt,1,Gogoat
+Sap Sipper,0,Gogoat
+Grassy Surge,0,Tapu Bulu
+Telepathy,1,Tapu Bulu
+Grassy Surge,1,Grookey
+Overgrow,0,Grookey
+Grassy Surge,1,Thwackey
+Overgrow,0,Thwackey
+Grassy Surge,1,Rillaboom
+Overgrow,0,Rillaboom
+Grim Neigh,0,Spectrier
+Gulp Missile,0,Cramorant
+Guts,0,Rattata
+Hustle,1,Rattata
+Run Away,0,Rattata
+Guts,0,Raticate
+Hustle,1,Raticate
+Run Away,0,Raticate
+Guts,0,Machop
+No Guard,0,Machop
+Steadfast,1,Machop
+Guts,0,Machoke
+No Guard,0,Machoke
+Steadfast,1,Machoke
+Guts,0,Machamp
+No Guard,0,Machamp
+Steadfast,1,Machamp
+Guts,0,Heracross
+Moxie,1,Heracross
+Swarm,0,Heracross
+Guts,0,Ursaring
+Quick Feet,0,Ursaring
+Unnerve,1,Ursaring
+Guts,0,Tyrogue
+Steadfast,0,Tyrogue
+Vital Spirit,1,Tyrogue
+Guts,0,Larvitar
+Sand Veil,1,Larvitar
+Guts,0,Taillow
+Scrappy,1,Taillow
+Guts,0,Swellow
+Scrappy,1,Swellow
+Guts,0,Makuhita
+Sheer Force,1,Makuhita
+Thick Fat,0,Makuhita
+Guts,0,Hariyama
+Sheer Force,1,Hariyama
+Thick Fat,0,Hariyama
+Guts,1,Shinx
+Intimidate,0,Shinx
+Rivalry,0,Shinx
+Guts,1,Luxio
+Intimidate,0,Luxio
+Rivalry,0,Luxio
+Guts,1,Luxray
+Intimidate,0,Luxray
+Rivalry,0,Luxray
+Guts,0,Timburr
+Iron Fist,1,Timburr
+Sheer Force,0,Timburr
+Guts,0,Gurdurr
+Iron Fist,1,Gurdurr
+Sheer Force,0,Gurdurr
+Guts,0,Conkeldurr
+Iron Fist,1,Conkeldurr
+Sheer Force,0,Conkeldurr
+Guts,0,Throh
+Inner Focus,0,Throh
+Mold Breaker,1,Throh
+Healer,1,Chansey
+Natural Cure,0,Chansey
+Serene Grace,0,Chansey
+Healer,1,Blissey
+Natural Cure,0,Blissey
+Serene Grace,0,Blissey
+Healer,0,Audino
+Klutz,1,Audino
+Regenerator,0,Audino
+Healer,0,Alomomola
+Hydration,0,Alomomola
+Regenerator,1,Alomomola
+Healer,0,Mega Audino
+Heatproof,0,Bronzor
+Heavy Metal,1,Bronzor
+Levitate,0,Bronzor
+Heatproof,0,Bronzong
+Heavy Metal,1,Bronzong
+Levitate,0,Bronzong
+Heavy Metal,1,Aron
+Rock Head,0,Aron
+Sturdy,0,Aron
+Heavy Metal,1,Lairon
+Rock Head,0,Lairon
+Sturdy,0,Lairon
+Heavy Metal,1,Aggron
+Rock Head,0,Aggron
+Sturdy,0,Aggron
+Heavy Metal,1,Cufant
+Sheer Force,0,Cufant
+Heavy Metal,1,Copperajah
+Sheer Force,0,Copperajah
+Heavy Metal,0,Duraludon
+Light Metal,0,Duraludon
+Stalwart,1,Duraludon
+Honey Gather,1,Teddiursa
+Pickup,0,Teddiursa
+Quick Feet,0,Teddiursa
+Honey Gather,0,Combee
+Hustle,1,Combee
+Honey Gather,0,Cutiefly
+Shield Dust,0,Cutiefly
+Sweet Veil,1,Cutiefly
+Honey Gather,0,Ribombee
+Shield Dust,0,Ribombee
+Sweet Veil,1,Ribombee
+Huge Power,0,Marill
+Sap Sipper,1,Marill
+Thick Fat,0,Marill
+Huge Power,0,Azumarill
+Sap Sipper,1,Azumarill
+Thick Fat,0,Azumarill
+Huge Power,0,Azurill
+Sap Sipper,1,Azurill
+Thick Fat,0,Azurill
+Huge Power,0,Mega Mawile
+Hustle,1,Nidorina
+Poison Point,0,Nidorina
+Rivalry,0,Nidorina
+Hustle,1,Nidorino
+Poison Point,0,Nidorino
+Rivalry,0,Nidorino
+Hustle,0,Togepi
+Serene Grace,0,Togepi
+Super Luck,1,Togepi
+Hustle,0,Togetic
+Serene Grace,0,Togetic
+Super Luck,1,Togetic
+Hustle,0,Corsola
+Natural Cure,0,Corsola
+Regenerator,1,Corsola
+Hustle,0,Remoraid
+Moody,1,Remoraid
+Sniper,0,Remoraid
+Hustle,0,Delibird
+Insomnia,1,Delibird
+Vital Spirit,0,Delibird
+Hustle,0,Togekiss
+Serene Grace,0,Togekiss
+Super Luck,1,Togekiss
+Hustle,0,Darumaka
+Inner Focus,1,Darumaka
+Hustle,1,Rufflet
+Keen Eye,0,Rufflet
+Sheer Force,0,Rufflet
+Hustle,0,Durant
+Swarm,0,Durant
+Truant,1,Durant
+Hustle,0,Deino
+Hustle,0,Zweilous
+Hustle,0,Dracozolt
+Sand Rush,1,Dracozolt
+Volt Absorb,0,Dracozolt
+Hydration,0,Seel
+Ice Body,1,Seel
+Thick Fat,0,Seel
+Hydration,0,Dewgong
+Ice Body,1,Dewgong
+Thick Fat,0,Dewgong
+Hydration,1,Lapras
+Shell Armor,0,Lapras
+Water Absorb,0,Lapras
+Hydration,1,Vaporeon
+Water Absorb,0,Vaporeon
+Hydration,0,Wingull
+Keen Eye,0,Wingull
+Rain Dish,1,Wingull
+Hydration,1,Gorebyss
+Swift Swim,0,Gorebyss
+Hydration,1,Luvdisc
+Swift Swim,0,Luvdisc
+Hydration,0,Phione
+Hydration,0,Manaphy
+Hydration,0,Tympole
+Swift Swim,0,Tympole
+Water Absorb,1,Tympole
+Hydration,0,Palpitoad
+Swift Swim,0,Palpitoad
+Water Absorb,1,Palpitoad
+Hydration,0,Shelmet
+Overcoat,1,Shelmet
+Shell Armor,0,Shelmet
+Hydration,0,Accelgor
+Sticky Hold,0,Accelgor
+Unburden,1,Accelgor
+Hyper Cutter,0,Krabby
+Sheer Force,1,Krabby
+Shell Armor,0,Krabby
+Hyper Cutter,0,Kingler
+Sheer Force,1,Kingler
+Shell Armor,0,Kingler
+Hyper Cutter,0,Pinsir
+Mold Breaker,0,Pinsir
+Moxie,1,Pinsir
+Hyper Cutter,0,Gligar
+Immunity,1,Gligar
+Sand Veil,0,Gligar
+Hyper Cutter,0,Mawile
+Intimidate,0,Mawile
+Sheer Force,1,Mawile
+Hyper Cutter,0,Gliscor
+Poison Heal,1,Gliscor
+Sand Veil,0,Gliscor
+Ice Body,0,Snorunt
+Inner Focus,0,Snorunt
+Moody,1,Snorunt
+Ice Body,0,Glalie
+Inner Focus,0,Glalie
+Moody,1,Glalie
+Ice Body,0,Spheal
+Oblivious,1,Spheal
+Thick Fat,0,Spheal
+Ice Body,0,Sealeo
+Oblivious,1,Sealeo
+Thick Fat,0,Sealeo
+Ice Body,0,Walrein
+Oblivious,1,Walrein
+Thick Fat,0,Walrein
+Ice Body,1,Glaceon
+Snow Cloak,0,Glaceon
+Ice Body,0,Vanillite
+Snow Cloak,0,Vanillite
+Weak Armor,1,Vanillite
+Ice Body,0,Vanillish
+Snow Cloak,0,Vanillish
+Weak Armor,1,Vanillish
+Ice Body,0,Vanilluxe
+Snow Warning,0,Vanilluxe
+Weak Armor,1,Vanilluxe
+Ice Body,0,Bergmite
+Own Tempo,0,Bergmite
+Sturdy,1,Bergmite
+Ice Body,0,Avalugg
+Own Tempo,0,Avalugg
+Sturdy,1,Avalugg
+Ice Body,0,Arctovish
+Slush Rush,1,Arctovish
+Water Absorb,0,Arctovish
+Ice Scales,1,Snom
+Shield Dust,0,Snom
+Ice Scales,1,Frosmoth
+Shield Dust,0,Frosmoth
+Illuminate,0,Chinchou
+Volt Absorb,0,Chinchou
+Water Absorb,1,Chinchou
+Illuminate,0,Lanturn
+Volt Absorb,0,Lanturn
+Water Absorb,1,Lanturn
+Illuminate,0,Volbeat
+Prankster,1,Volbeat
+Swarm,0,Volbeat
+Illusion,0,Zorua
+Illusion,0,Zoroark
+Immunity,0,Zangoose
+Toxic Boost,1,Zangoose
+Imposter,1,Ditto
+Limber,0,Ditto
+Infiltrator,1,Zubat
+Inner Focus,0,Zubat
+Infiltrator,1,Golbat
+Inner Focus,0,Golbat
+Infiltrator,1,Crobat
+Inner Focus,0,Crobat
+Infiltrator,1,Ninjask
+Speed Boost,0,Ninjask
+Infiltrator,1,Seviper
+Shed Skin,0,Seviper
+Infiltrator,1,Spiritomb
+Pressure,0,Spiritomb
+Infiltrator,0,Espurr
+Keen Eye,0,Espurr
+Own Tempo,1,Espurr
+Infiltrator,0,Meowstic Male
+Keen Eye,0,Meowstic Male
+Prankster,1,Meowstic Male
+Innards Out,0,Pyukumuku
+Unaware,1,Pyukumuku
+Inner Focus,0,Abra
+Magic Guard,1,Abra
+Synchronize,0,Abra
+Inner Focus,0,Kadabra
+Magic Guard,1,Kadabra
+Synchronize,0,Kadabra
+Inner Focus,0,Alakazam
+Magic Guard,1,Alakazam
+Synchronize,0,Alakazam
+Inner Focus,1,Hitmonchan
+Iron Fist,0,Hitmonchan
+Keen Eye,0,Hitmonchan
+Inner Focus,0,Dragonite
+Multiscale,1,Dragonite
+Inner Focus,1,Umbreon
+Synchronize,0,Umbreon
+Inner Focus,0,Sneasel
+Keen Eye,0,Sneasel
+Pickpocket,1,Sneasel
+Inner Focus,1,Raikou
+Pressure,0,Raikou
+Inner Focus,1,Entei
+Pressure,0,Entei
+Inner Focus,1,Suicune
+Pressure,0,Suicune
+Inner Focus,0,Riolu
+Prankster,1,Riolu
+Steadfast,0,Riolu
+Inner Focus,0,Lucario
+Justified,1,Lucario
+Steadfast,0,Lucario
+Inner Focus,0,Sawk
+Mold Breaker,1,Sawk
+Sturdy,0,Sawk
+Inner Focus,0,Mienfoo
+Reckless,1,Mienfoo
+Regenerator,0,Mienfoo
+Inner Focus,0,Mienshao
+Reckless,1,Mienshao
+Regenerator,0,Mienshao
+Inner Focus,1,Mudbray
+Own Tempo,0,Mudbray
+Stamina,0,Mudbray
+Inner Focus,1,Mudsdale
+Own Tempo,0,Mudsdale
+Stamina,0,Mudsdale
+Inner Focus,0,Oranguru
+Symbiosis,1,Oranguru
+Telepathy,0,Oranguru
+Inner Focus,0,Indeedee Male
+Psychic Surge,1,Indeedee Male
+Synchronize,0,Indeedee Male
+Inner Focus,0,Kubfu
+Inner Focus,0,Mega Gallade
+Insomnia,0,Hoothoot
+Keen Eye,0,Hoothoot
+Tinted Lens,1,Hoothoot
+Insomnia,0,Noctowl
+Keen Eye,0,Noctowl
+Tinted Lens,1,Noctowl
+Insomnia,0,Spinarak
+Sniper,1,Spinarak
+Swarm,0,Spinarak
+Insomnia,0,Ariados
+Sniper,1,Ariados
+Swarm,0,Ariados
+Insomnia,0,Murkrow
+Prankster,1,Murkrow
+Super Luck,0,Murkrow
+Insomnia,0,Honchkrow
+Moxie,1,Honchkrow
+Super Luck,0,Honchkrow
+Insomnia,0,Mega Mewtwo Y
+Insomnia,0,Mega Mewtwo X
+Intimidate,0,Ekans
+Shed Skin,0,Ekans
+Unnerve,1,Ekans
+Intimidate,0,Arbok
+Shed Skin,0,Arbok
+Unnerve,1,Arbok
+Intimidate,0,Gyarados
+Moxie,1,Gyarados
+Intimidate,0,Snubbull
+Rattled,1,Snubbull
+Run Away,0,Snubbull
+Intimidate,0,Granbull
+Quick Feet,0,Granbull
+Rattled,1,Granbull
+Intimidate,1,Qwilfish
+Poison Point,0,Qwilfish
+Swift Swim,0,Qwilfish
+Intimidate,0,Hitmontop
+Steadfast,1,Hitmontop
+Technician,0,Hitmontop
+Intimidate,0,Mightyena
+Moxie,1,Mightyena
+Quick Feet,0,Mightyena
+Intimidate,0,Masquerain
+Unnerve,1,Masquerain
+Intimidate,0,Salamence
+Moxie,1,Salamence
+Intimidate,0,Staravia
+Reckless,1,Staravia
+Intimidate,0,Staraptor
+Reckless,1,Staraptor
+Intimidate,0,Herdier
+Sand Rush,0,Herdier
+Scrappy,1,Herdier
+Intimidate,0,Stoutland
+Sand Rush,0,Stoutland
+Scrappy,1,Stoutland
+Intimidate,1,Scraggy
+Moxie,0,Scraggy
+Shed Skin,0,Scraggy
+Intimidate,1,Scrafty
+Moxie,0,Scrafty
+Shed Skin,0,Scrafty
+Intimidate,0,Mega Manectric
+Iron Barbs,0,Ferroseed
+Iron Barbs,0,Togedemaru
+Lightning Rod,0,Togedemaru
+Sturdy,1,Togedemaru
+Iron Fist,0,Golett
+Klutz,0,Golett
+No Guard,1,Golett
+Iron Fist,0,Golurk
+Klutz,0,Golurk
+No Guard,1,Golurk
+Iron Fist,0,Pancham
+Mold Breaker,0,Pancham
+Scrappy,1,Pancham
+Iron Fist,0,Pangoro
+Mold Breaker,0,Pangoro
+Scrappy,1,Pangoro
+Iron Fist,0,Melmetal
+Justified,1,Absol
+Pressure,0,Absol
+Super Luck,0,Absol
+Justified,1,Gallade
+Steadfast,0,Gallade
+Justified,0,Cobalion
+Justified,0,Terrakion
+Justified,0,Virizion
+Keen Eye,0,Spearow
+Sniper,1,Spearow
+Keen Eye,0,Fearow
+Sniper,1,Fearow
+Keen Eye,0,Skarmory
+Sturdy,0,Skarmory
+Weak Armor,1,Skarmory
+Keen Eye,0,Sableye
+Prankster,1,Sableye
+Stall,0,Sableye
+Keen Eye,0,Starly
+Reckless,1,Starly
+Keen Eye,1,Glameow
+Limber,0,Glameow
+Own Tempo,0,Glameow
+Keen Eye,0,Pikipek
+Pickup,1,Pikipek
+Skill Link,0,Pikipek
+Keen Eye,0,Trumbeak
+Pickup,1,Trumbeak
+Skill Link,0,Trumbeak
+Keen Eye,0,Toucannon
+Sheer Force,1,Toucannon
+Skill Link,0,Toucannon
+Keen Eye,0,Rockruff
+Steadfast,1,Rockruff
+Vital Spirit,0,Rockruff
+Klutz,0,Buneary
+Limber,1,Buneary
+Run Away,0,Buneary
+Klutz,0,Woobat
+Simple,1,Woobat
+Unaware,0,Woobat
+Klutz,0,Swoobat
+Simple,1,Swoobat
+Unaware,0,Swoobat
+Klutz,1,Toxel
+Rattled,0,Toxel
+Static,0,Toxel
+Leaf Guard,1,Chikorita
+Overgrow,0,Chikorita
+Leaf Guard,1,Bayleef
+Overgrow,0,Bayleef
+Leaf Guard,1,Meganium
+Overgrow,0,Meganium
+Leaf Guard,1,Roselia
+Natural Cure,0,Roselia
+Poison Point,0,Roselia
+Leaf Guard,1,Budew
+Natural Cure,0,Budew
+Poison Point,0,Budew
+Leaf Guard,0,Bounsweet
+Oblivious,0,Bounsweet
+Sweet Veil,1,Bounsweet
+Leaf Guard,0,Steenee
+Oblivious,0,Steenee
+Sweet Veil,1,Steenee
+Leaf Guard,0,Tsareena
+Queenly Majesty,0,Tsareena
+Sweet Veil,1,Tsareena
+Leaf Guard,0,Zarude
+Levitate,0,Gastly
+Levitate,0,Haunter
+Levitate,0,Koffing
+Neutralizing Gas,0,Koffing
+Stench,1,Koffing
+Levitate,0,Weezing
+Neutralizing Gas,0,Weezing
+Stench,1,Weezing
+Levitate,0,Misdreavus
+Levitate,0,Unown
+Levitate,0,Vibrava
+Levitate,0,Flygon
+Levitate,0,Lunatone
+Levitate,0,Solrock
+Levitate,0,Baltoy
+Levitate,0,Claydol
+Levitate,0,Chimecho
+Levitate,0,Latias
+Levitate,0,Latios
+Levitate,0,Mismagius
+Levitate,0,Chingling
+Levitate,0,Carnivine
+Levitate,0,Rotom
+Levitate,0,Uxie
+Levitate,0,Mesprit
+Levitate,0,Azelf
+Levitate,0,Cresselia
+Levitate,0,Tynamo
+Levitate,0,Eelektrik
+Levitate,0,Eelektross
+Levitate,0,Cryogonal
+Levitate,0,Hydreigon
+Levitate,0,Vikavolt
+Levitate,0,Heat Rotom
+Levitate,0,Wash Rotom
+Levitate,0,Frost Rotom
+Levitate,0,Fan Rotom
+Levitate,0,Mow Rotom
+Levitate,0,Mega Latias
+Levitate,0,Mega Latios
+Light Metal,1,Scizor
+Swarm,0,Scizor
+Technician,0,Scizor
+Lightning Rod,1,Pikachu
+Static,0,Pikachu
+Lightning Rod,1,Raichu
+Static,0,Raichu
+Lightning Rod,0,Rhyhorn
+Reckless,1,Rhyhorn
+Rock Head,0,Rhyhorn
+Lightning Rod,0,Rhydon
+Reckless,1,Rhydon
+Rock Head,0,Rhydon
+Lightning Rod,1,Goldeen
+Swift Swim,0,Goldeen
+Water Veil,0,Goldeen
+Lightning Rod,1,Seaking
+Swift Swim,0,Seaking
+Water Veil,0,Seaking
+Lightning Rod,1,Pichu
+Static,0,Pichu
+Lightning Rod,0,Electrike
+Minus,1,Electrike
+Static,0,Electrike
+Lightning Rod,0,Manectric
+Minus,1,Manectric
+Static,0,Manectric
+Lightning Rod,1,Plusle
+Plus,0,Plusle
+Lightning Rod,0,Rhyperior
+Reckless,1,Rhyperior
+Solid Rock,0,Rhyperior
+Lightning Rod,0,Blitzle
+Motor Drive,0,Blitzle
+Sap Sipper,1,Blitzle
+Lightning Rod,0,Zebstrika
+Motor Drive,0,Zebstrika
+Sap Sipper,1,Zebstrika
+Lightning Rod,0,Mega Sceptile
+Limber,0,Persian
+Technician,0,Persian
+Unnerve,1,Persian
+Limber,0,Hitmonlee
+Reckless,0,Hitmonlee
+Unburden,1,Hitmonlee
+Limber,0,Purrloin
+Prankster,1,Purrloin
+Unburden,0,Purrloin
+Limber,0,Liepard
+Prankster,1,Liepard
+Unburden,0,Liepard
+Limber,0,Stunfisk
+Sand Veil,1,Stunfisk
+Static,0,Stunfisk
+Limber,0,Hawlucha
+Mold Breaker,1,Hawlucha
+Unburden,0,Hawlucha
+Limber,0,Mareanie
+Merciless,0,Mareanie
+Regenerator,1,Mareanie
+Limber,0,Toxapex
+Merciless,0,Toxapex
+Regenerator,1,Toxapex
+Limber,0,Clobbopus
+Technician,1,Clobbopus
+Limber,0,Grapploct
+Technician,1,Grapploct
+Liquid Voice,1,Popplio
+Torrent,0,Popplio
+Liquid Voice,1,Brionne
+Torrent,0,Brionne
+Liquid Voice,1,Primarina
+Torrent,0,Primarina
+Long Reach,1,Rowlet
+Overgrow,0,Rowlet
+Long Reach,1,Dartrix
+Overgrow,0,Dartrix
+Long Reach,1,Decidueye
+Overgrow,0,Decidueye
+Magic Bounce,1,Espeon
+Synchronize,0,Espeon
+Magic Bounce,0,Mega Absol
+Magic Bounce,0,Mega Sableye
+Magic Bounce,0,Mega Diancie
+Magic Guard,0,Sigilyph
+Tinted Lens,1,Sigilyph
+Wonder Skin,0,Sigilyph
+Magic Guard,0,Solosis
+Overcoat,0,Solosis
+Regenerator,1,Solosis
+Magic Guard,0,Duosion
+Overcoat,0,Duosion
+Regenerator,1,Duosion
+Magic Guard,0,Reuniclus
+Overcoat,0,Reuniclus
+Regenerator,1,Reuniclus
+Magician,1,Klefki
+Prankster,0,Klefki
+Magician,0,Hoopa Unbound
+Magnet Pull,0,Nosepass
+Sand Force,1,Nosepass
+Sturdy,0,Nosepass
+Magnet Pull,0,Probopass
+Sand Force,1,Probopass
+Sturdy,0,Probopass
+Magnet Pull,0,Meltan
+Marvel Scale,1,Dratini
+Shed Skin,0,Dratini
+Marvel Scale,1,Dragonair
+Shed Skin,0,Dragonair
+Mega Launcher,0,Clauncher
+Mega Launcher,0,Clawitzer
+Mega Launcher,0,Mega Blastoise
+Minus,0,Minun
+Volt Absorb,1,Minun
+Mirror Armor,1,Corviknight
+Pressure,0,Corviknight
+Unnerve,0,Corviknight
+Misty Surge,0,Tapu Fini
+Telepathy,1,Tapu Fini
+Mold Breaker,0,Cranidos
+Sheer Force,1,Cranidos
+Mold Breaker,0,Rampardos
+Sheer Force,1,Rampardos
+Mold Breaker,1,Drilbur
+Sand Force,0,Drilbur
+Sand Rush,0,Drilbur
+Mold Breaker,1,Excadrill
+Sand Force,0,Excadrill
+Sand Rush,0,Excadrill
+Mold Breaker,0,Axew
+Rivalry,0,Axew
+Unnerve,1,Axew
+Mold Breaker,0,Fraxure
+Rivalry,0,Fraxure
+Unnerve,1,Fraxure
+Mold Breaker,0,Haxorus
+Rivalry,0,Haxorus
+Unnerve,1,Haxorus
+Mold Breaker,1,Druddigon
+Rough Skin,0,Druddigon
+Sheer Force,0,Druddigon
+Mold Breaker,0,Mega Gyarados
+Mold Breaker,0,Mega Ampharos
+Moody,1,Octillery
+Sniper,0,Octillery
+Suction Cups,0,Octillery
+Moody,1,Smeargle
+Own Tempo,0,Smeargle
+Technician,0,Smeargle
+Moody,1,Bidoof
+Simple,0,Bidoof
+Unaware,0,Bidoof
+Moody,1,Bibarel
+Simple,0,Bibarel
+Unaware,0,Bibarel
+Motor Drive,0,Electivire
+Vital Spirit,1,Electivire
+Motor Drive,1,Emolga
+Static,0,Emolga
+Moxie,1,Litleo
+Rivalry,0,Litleo
+Unnerve,0,Litleo
+Moxie,1,Pyroar
+Rivalry,0,Pyroar
+Unnerve,0,Pyroar
+Multiscale,1,Lugia
+Pressure,0,Lugia
+Multitype,0,Arceus
+Mummy,0,Yamask
+Mummy,0,Cofagrigus
+Natural Cure,0,Celebi
+Natural Cure,0,Roserade
+Poison Point,0,Roserade
+Technician,1,Roserade
+Neuroforce,0,Ultra Necrozma
+No Guard,1,Karrablast
+Shed Skin,0,Karrablast
+Swarm,0,Karrablast
+No Guard,0,Honedge
+No Guard,0,Doublade
+No Guard,0,Mega Pidgeot
+Oblivious,0,Slowpoke
+Own Tempo,0,Slowpoke
+Regenerator,1,Slowpoke
+Oblivious,0,Slowbro
+Own Tempo,0,Slowbro
+Regenerator,1,Slowbro
+Oblivious,0,Slowking
+Own Tempo,0,Slowking
+Regenerator,1,Slowking
+Oblivious,0,Swinub
+Snow Cloak,0,Swinub
+Thick Fat,1,Swinub
+Oblivious,0,Piloswine
+Snow Cloak,0,Piloswine
+Thick Fat,1,Piloswine
+Oblivious,0,Illumise
+Prankster,1,Illumise
+Tinted Lens,0,Illumise
+Oblivious,0,Wailmer
+Pressure,1,Wailmer
+Water Veil,0,Wailmer
+Oblivious,0,Wailord
+Pressure,1,Wailord
+Water Veil,0,Wailord
+Oblivious,0,Numel
+Own Tempo,1,Numel
+Simple,0,Numel
+Oblivious,0,Mamoswine
+Snow Cloak,0,Mamoswine
+Thick Fat,1,Mamoswine
+Overcoat,1,Shellder
+Shell Armor,0,Shellder
+Skill Link,0,Shellder
+Overcoat,1,Cloyster
+Shell Armor,0,Cloyster
+Skill Link,0,Cloyster
+Overcoat,1,Pineco
+Sturdy,0,Pineco
+Overcoat,1,Forretress
+Sturdy,0,Forretress
+Overcoat,1,Shelgon
+Rock Head,0,Shelgon
+Overcoat,1,Escavalier
+Shell Armor,0,Escavalier
+Swarm,0,Escavalier
+Overgrow,0,Treecko
+Unburden,1,Treecko
+Overgrow,0,Grovyle
+Unburden,1,Grovyle
+Overgrow,0,Sceptile
+Unburden,1,Sceptile
+Overgrow,0,Turtwig
+Shell Armor,1,Turtwig
+Overgrow,0,Grotle
+Shell Armor,1,Grotle
+Overgrow,0,Torterra
+Shell Armor,1,Torterra
+Own Tempo,1,Lotad
+Rain Dish,0,Lotad
+Swift Swim,0,Lotad
+Own Tempo,1,Lombre
+Rain Dish,0,Lombre
+Swift Swim,0,Lombre
+Own Tempo,1,Ludicolo
+Rain Dish,0,Ludicolo
+Swift Swim,0,Ludicolo
+Own Tempo,0,Own Tempo Rockruff
+Own Tempo,0,Indeedee Female
+Psychic Surge,1,Indeedee Female
+Synchronize,0,Indeedee Female
+Parental Bond,0,Mega Kangaskhan
+Perish Body,1,Cursola
+Weak Armor,0,Cursola
+Pickpocket,1,Weavile
+Pressure,0,Weavile
+Pickpocket,1,Binacle
+Sniper,0,Binacle
+Tough Claws,0,Binacle
+Pickpocket,1,Barbaracle
+Sniper,0,Barbaracle
+Tough Claws,0,Barbaracle
+Pickup,0,Meowth
+Technician,0,Meowth
+Unnerve,1,Meowth
+Pickup,0,Aipom
+Run Away,0,Aipom
+Skill Link,1,Aipom
+Pickup,0,Phanpy
+Sand Veil,1,Phanpy
+Pickup,0,Pachirisu
+Run Away,0,Pachirisu
+Volt Absorb,1,Pachirisu
+Pickup,0,Ambipom
+Skill Link,1,Ambipom
+Technician,0,Ambipom
+Pickup,0,Lillipup
+Run Away,1,Lillipup
+Vital Spirit,0,Lillipup
+Pickup,0,Alolan Meowth
+Rattled,1,Alolan Meowth
+Technician,0,Alolan Meowth
+Pixilate,0,Mega Gardevoir
+Pixilate,0,Mega Altaria
+Plus,1,Mareep
+Static,0,Mareep
+Plus,1,Flaaffy
+Static,0,Flaaffy
+Plus,1,Ampharos
+Static,0,Ampharos
+Poison Point,0,Nidoqueen
+Rivalry,0,Nidoqueen
+Sheer Force,1,Nidoqueen
+Poison Point,0,Nidoking
+Rivalry,0,Nidoking
+Sheer Force,1,Nidoking
+Poison Point,0,Venipede
+Speed Boost,1,Venipede
+Swarm,0,Venipede
+Poison Point,0,Whirlipede
+Speed Boost,1,Whirlipede
+Swarm,0,Whirlipede
+Poison Point,0,Scolipede
+Speed Boost,1,Scolipede
+Swarm,0,Scolipede
+Poison Touch,1,Grimer
+Stench,0,Grimer
+Sticky Hold,0,Grimer
+Poison Touch,1,Muk
+Stench,0,Muk
+Sticky Hold,0,Muk
+Poison Touch,0,Seismitoad
+Swift Swim,0,Seismitoad
+Water Absorb,1,Seismitoad
+Power Spot,0,Stonjourner
+Prankster,0,Mega Banette
+Pressure,0,Aerodactyl
+Rock Head,0,Aerodactyl
+Unnerve,1,Aerodactyl
+Pressure,0,Articuno
+Snow Cloak,1,Articuno
+Pressure,0,Zapdos
+Static,1,Zapdos
+Pressure,0,Mewtwo
+Unnerve,1,Mewtwo
+Pressure,0,Vespiquen
+Unnerve,1,Vespiquen
+Pressure,0,Dialga
+Telepathy,1,Dialga
+Pressure,0,Palkia
+Telepathy,1,Palkia
+Pressure,0,Kyurem
+Pressure,0,Eternatus
+Pressure,0,Eternatus Eternamax
+Primordial Sea,0,Primal Kyogre
+Prism Armor,0,Necrozma
+Propeller Tail,1,Arrokuda
+Swift Swim,0,Arrokuda
+Propeller Tail,1,Barraskewda
+Swift Swim,0,Barraskewda
+Protean,1,Froakie
+Torrent,0,Froakie
+Protean,1,Frogadier
+Torrent,0,Frogadier
+Protean,1,Greninja
+Torrent,0,Greninja
+Psychic Surge,0,Tapu Lele
+Telepathy,1,Tapu Lele
+Pure Power,0,Meditite
+Telepathy,1,Meditite
+Pure Power,0,Medicham
+Telepathy,1,Medicham
+Pure Power,0,Mega Medicham
+Quick Feet,1,Jolteon
+Volt Absorb,0,Jolteon
+Quick Feet,0,Poochyena
+Rattled,1,Poochyena
+Run Away,0,Poochyena
+Rain Dish,1,Squirtle
+Torrent,0,Squirtle
+Rain Dish,1,Wartortle
+Torrent,0,Wartortle
+Rain Dish,1,Blastoise
+Torrent,0,Blastoise
+Rain Dish,1,Surskit
+Swift Swim,0,Surskit
+Rattled,1,Magikarp
+Swift Swim,0,Magikarp
+Rattled,1,Sudowoodo
+Rock Head,0,Sudowoodo
+Sturdy,0,Sudowoodo
+Rattled,1,Dunsparce
+Run Away,0,Dunsparce
+Serene Grace,0,Dunsparce
+Rattled,1,Whismur
+Soundproof,0,Whismur
+Rattled,1,Clamperl
+Shell Armor,0,Clamperl
+Rattled,1,Bonsly
+Rock Head,0,Bonsly
+Sturdy,0,Bonsly
+Rattled,1,Cubchoo
+Slush Rush,0,Cubchoo
+Snow Cloak,0,Cubchoo
+Reckless,0,Bouffalant
+Sap Sipper,0,Bouffalant
+Soundproof,1,Bouffalant
+Refrigerate,0,Amaura
+Snow Warning,1,Amaura
+Refrigerate,0,Aurorus
+Snow Warning,1,Aurorus
+Refrigerate,0,Mega Glalie
+Rivalry,1,Beautifly
+Swarm,0,Beautifly
+Rks System,0,Silvally
+Rock Head,0,Geodude
+Sand Veil,1,Geodude
+Sturdy,0,Geodude
+Rock Head,0,Graveler
+Sand Veil,1,Graveler
+Sturdy,0,Graveler
+Rock Head,0,Golem
+Sand Veil,1,Golem
+Sturdy,0,Golem
+Rock Head,0,Onix
+Sturdy,0,Onix
+Weak Armor,1,Onix
+Rock Head,0,Steelix
+Sheer Force,1,Steelix
+Sturdy,0,Steelix
+Rock Head,0,Relicanth
+Sturdy,1,Relicanth
+Swift Swim,0,Relicanth
+Rock Head,0,Bagon
+Sheer Force,1,Bagon
+Rock Head,1,Tyrantrum
+Strong Jaw,0,Tyrantrum
+Rough Skin,0,Carvanha
+Speed Boost,1,Carvanha
+Rough Skin,0,Sharpedo
+Speed Boost,1,Sharpedo
+Rough Skin,1,Gible
+Sand Veil,0,Gible
+Rough Skin,1,Gabite
+Sand Veil,0,Gabite
+Rough Skin,1,Garchomp
+Sand Veil,0,Garchomp
+Run Away,1,Caterpie
+Shield Dust,0,Caterpie
+Run Away,1,Weedle
+Shield Dust,0,Weedle
+Run Away,1,Wurmple
+Shield Dust,0,Wurmple
+Run Away,1,Kricketot
+Shed Skin,0,Kricketot
+Run Away,0,Nickit
+Stakeout,1,Nickit
+Unburden,0,Nickit
+Run Away,0,Thievul
+Stakeout,1,Thievul
+Unburden,0,Thievul
+Sand Force,1,Shellos
+Sticky Hold,0,Shellos
+Storm Drain,0,Shellos
+Sand Force,1,Gastrodon
+Sticky Hold,0,Gastrodon
+Storm Drain,0,Gastrodon
+Sand Force,1,Hippopotas
+Sand Stream,0,Hippopotas
+Sand Force,1,Hippowdon
+Sand Stream,0,Hippowdon
+Sand Force,1,Roggenrola
+Sturdy,0,Roggenrola
+Weak Armor,0,Roggenrola
+Sand Force,1,Boldore
+Sturdy,0,Boldore
+Weak Armor,0,Boldore
+Sand Force,1,Gigalith
+Sand Stream,0,Gigalith
+Sturdy,0,Gigalith
+Sand Force,0,Mega Garchomp
+Sand Force,0,Mega Steelix
+Sand Force,1,Alolan Diglett
+Sand Veil,0,Alolan Diglett
+Tangling Hair,0,Alolan Diglett
+Sand Force,1,Alolan Dugtrio
+Sand Veil,0,Alolan Dugtrio
+Tangling Hair,0,Alolan Dugtrio
+Sand Rush,1,Sandshrew
+Sand Veil,0,Sandshrew
+Sand Rush,1,Sandslash
+Sand Veil,0,Sandslash
+Sand Rush,1,Dracovish
+Strong Jaw,0,Dracovish
+Water Absorb,0,Dracovish
+Sand Spit,0,Silicobra
+Sand Veil,1,Silicobra
+Shed Skin,0,Silicobra
+Sand Spit,0,Sandaconda
+Sand Veil,1,Sandaconda
+Shed Skin,0,Sandaconda
+Sand Stream,0,Tyranitar
+Unnerve,1,Tyranitar
+Sand Stream,0,Mega Tyranitar
+Sand Veil,1,Donphan
+Sturdy,0,Donphan
+Sand Veil,0,Cacnea
+Water Absorb,1,Cacnea
+Sand Veil,0,Cacturne
+Water Absorb,1,Cacturne
+Sand Veil,1,Sandygast
+Water Compaction,0,Sandygast
+Sand Veil,1,Palossand
+Water Compaction,0,Palossand
+Sap Sipper,1,Miltank
+Scrappy,0,Miltank
+Thick Fat,0,Miltank
+Scrappy,1,Loudred
+Soundproof,0,Loudred
+Scrappy,1,Exploud
+Soundproof,0,Exploud
+Scrappy,0,Mega Lopunny
+Serene Grace,0,Jirachi
+Shadow Shield,0,Lunala
+Shadow Tag,0,Wobbuffet
+Telepathy,1,Wobbuffet
+Shadow Tag,0,Wynaut
+Telepathy,1,Wynaut
+Shadow Tag,0,Mega Gengar
+Shed Skin,0,Metapod
+Shed Skin,0,Kakuna
+Shed Skin,0,Pupitar
+Shed Skin,0,Silcoon
+Shed Skin,0,Cascoon
+Sheer Force,1,Totodile
+Torrent,0,Totodile
+Sheer Force,1,Croconaw
+Torrent,0,Croconaw
+Sheer Force,1,Feraligatr
+Torrent,0,Feraligatr
+Sheer Force,0,Mega Camerupt
+Shell Armor,0,Omanyte
+Swift Swim,0,Omanyte
+Weak Armor,1,Omanyte
+Shell Armor,0,Omastar
+Swift Swim,0,Omastar
+Weak Armor,1,Omastar
+Shell Armor,1,Oshawott
+Torrent,0,Oshawott
+Shell Armor,1,Dewott
+Torrent,0,Dewott
+Shell Armor,1,Samurott
+Torrent,0,Samurott
+Shell Armor,0,Dwebble
+Sturdy,0,Dwebble
+Weak Armor,1,Dwebble
+Shell Armor,0,Crustle
+Sturdy,0,Crustle
+Weak Armor,1,Crustle
+Shell Armor,0,Turtonator
+Shell Armor,0,Chewtle
+Strong Jaw,0,Chewtle
+Swift Swim,1,Chewtle
+Shell Armor,0,Drednaw
+Strong Jaw,0,Drednaw
+Swift Swim,1,Drednaw
+Shell Armor,0,Mega Slowbro
+Shield Dust,0,Venomoth
+Tinted Lens,0,Venomoth
+Wonder Skin,1,Venomoth
+Skill Link,0,Mega Heracross
+Slow Start,0,Regigigas
+Slush Rush,0,Beartic
+Snow Cloak,0,Beartic
+Swift Swim,1,Beartic
+Slush Rush,1,Arctozolt
+Static,0,Arctozolt
+Volt Absorb,0,Arctozolt
+Slush Rush,1,Alolan Sandshrew
+Snow Cloak,0,Alolan Sandshrew
+Slush Rush,1,Alolan Sandslash
+Snow Cloak,0,Alolan Sandslash
+Sniper,1,Beedrill
+Swarm,0,Beedrill
+Sniper,1,Sobble
+Torrent,0,Sobble
+Sniper,1,Drizzile
+Torrent,0,Drizzile
+Sniper,1,Inteleon
+Torrent,0,Inteleon
+Snow Cloak,0,Alolan Vulpix
+Snow Warning,1,Alolan Vulpix
+Snow Cloak,0,Alolan Ninetales
+Snow Warning,1,Alolan Ninetales
+Snow Warning,0,Snover
+Soundproof,1,Snover
+Snow Warning,0,Abomasnow
+Soundproof,1,Abomasnow
+Snow Warning,0,Mega Abomasnow
+Solar Power,0,Mega Houndoom
+Solid Rock,0,Tirtouga
+Sturdy,0,Tirtouga
+Swift Swim,1,Tirtouga
+Solid Rock,0,Carracosta
+Sturdy,0,Carracosta
+Swift Swim,1,Carracosta
+Soul Heart,0,Magearna
+Soundproof,1,Shieldon
+Sturdy,0,Shieldon
+Soundproof,1,Bastiodon
+Sturdy,0,Bastiodon
+Speed Boost,0,Mega Blaziken
+Static,0,Electabuzz
+Vital Spirit,1,Electabuzz
+Static,0,Elekid
+Vital Spirit,1,Elekid
+Steadfast,1,Scyther
+Swarm,0,Scyther
+Technician,0,Scyther
+Steadfast,0,Mega Mewtwo Y
+Steadfast,0,Mega Mewtwo X
+Steelworker,0,Dhelmise
+Storm Drain,1,Lileep
+Suction Cups,0,Lileep
+Storm Drain,1,Cradily
+Suction Cups,0,Cradily
+Storm Drain,0,Finneon
+Swift Swim,0,Finneon
+Water Veil,1,Finneon
+Storm Drain,0,Lumineon
+Swift Swim,0,Lumineon
+Water Veil,1,Lumineon
+Strong Jaw,0,Tyrunt
+Sturdy,1,Tyrunt
+Strong Jaw,0,Mega Sharpedo
+Sturdy,0,Cosmoem
+Surge Surfer,0,Alolan Raichu
+Swarm,0,Kricketune
+Technician,1,Kricketune
+Swarm,0,Mothim
+Tinted Lens,1,Mothim
+Swarm,0,Grubbin
+Sweet Veil,0,Swirlix
+Unburden,1,Swirlix
+Sweet Veil,0,Slurpuff
+Unburden,1,Slurpuff
+Swift Swim,0,Mantine
+Water Absorb,0,Mantine
+Water Veil,1,Mantine
+Swift Swim,0,Huntail
+Water Veil,1,Huntail
+Swift Swim,0,Buizel
+Water Veil,1,Buizel
+Swift Swim,0,Floatzel
+Water Veil,1,Floatzel
+Swift Swim,0,Mantyke
+Water Absorb,0,Mantyke
+Water Veil,1,Mantyke
+Swift Swim,0,Mega Swampert
+Synchronize,0,Mew
+Synchronize,0,Ralts
+Telepathy,1,Ralts
+Trace,0,Ralts
+Synchronize,0,Kirlia
+Telepathy,1,Kirlia
+Trace,0,Kirlia
+Synchronize,0,Gardevoir
+Telepathy,1,Gardevoir
+Trace,0,Gardevoir
+Technician,0,Marshadow
+Technician,0,Mega Scizor
+Teravolt,0,Zekrom
+Teravolt,0,Black Kyurem
+Thick Fat,0,Mega Venusaur
+Tough Claws,0,Mega Charizard Y
+Tough Claws,0,Mega Charizard X
+Tough Claws,0,Mega Aerodactyl
+Tough Claws,0,Mega Metagross
+Trace,0,Mega Alakazam
+Transistor,0,Regieleki
+Truant,0,Slakoth
+Truant,0,Slaking
+Turboblaze,0,Reshiram
+Turboblaze,0,White Kyurem
+Unaware,0,Cosmog
+Unnerve,0,Calyrex
+Victory Star,0,Victini
+Vital Spirit,0,Vigoroth
+Volt Absorb,0,Zeraora
+Wandering Spirit,0,Runerigus
+Water Absorb,0,Volcanion
+Water Absorb,1,Dewpider
+Water Bubble,0,Dewpider
+Water Absorb,1,Araquanid
+Water Bubble,0,Araquanid
+Wimp Out,0,Wimpod
+Wonder Guard,0,Shedinja

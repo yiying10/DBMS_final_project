@@ -64,8 +64,12 @@ body {
     overflow-y: auto;
 }
 
-h1 {
+h1{
     color: #1a3a5f;
+}
+
+b, strong {
+    color: #3b5f8f;
 }
 
 /* 使用者資訊區域 */
@@ -89,7 +93,7 @@ h1 {
 .login-button {
     padding: 5px 15px;
     font-size: 14px;
-    background-color: #007BFF;
+    background-color: #102a49;
     color: white;
     border: none;
     border-radius: 5px;
@@ -99,7 +103,7 @@ h1 {
 }
 
 .login-button:hover {
-    background-color: #0056b3;
+    background-color: #3b5f8f;
 }
 
 /* 添加頁面特定的樣式 */

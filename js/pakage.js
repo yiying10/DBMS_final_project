@@ -85,14 +85,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 顯示通知的函數
     function showNotification(message) {
-        const notification = document.createElement('div');
-        notification.className = 'notification';
-        notification.textContent = message;
-        document.body.appendChild(notification);
-
-        setTimeout(() => {
-            notification.remove();
-        }, 3000);
+        alert(message);
     }
 
     // 綁定加入卡冊按鈕事件

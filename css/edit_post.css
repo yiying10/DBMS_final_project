@@ -1,0 +1,84 @@
+body {
+    background-color: #f0f2f5;
+}
+
+/* 編輯貼文表單容器樣式 */
+.edit-post-form {
+    max-width: 800px;
+    width: 100%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+}
+
+.edit-post-form h2 {
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.edit-post-form textarea {
+    width: 100%;
+    height: 200px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    resize: vertical;
+    margin-bottom: 15px;
+    font-family: inherit;
+}
+
+/* 按鈕容器 */
+.edit-post-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* 按鈕組樣式 */
+.button-group {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+/* 更新按鈕樣式 */
+.edit-post-form button[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px 24px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.3s;
+    width: 120px;
+    text-align: center;
+}
+
+.edit-post-form button[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+/* 取消按鈕樣式 */
+.cancel-btn {
+    background-color: #f44336;
+    color: white;
+    padding: 8px 24px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    width: 120px;
+    text-align: center;
+    display: inline-block;
+}
+
+.cancel-btn:hover {
+    background-color: #da190b;
+} 

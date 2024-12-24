@@ -12,8 +12,8 @@ body {
 }
 
 .card-item {
-    width: 100px;
-    height: 150px;
+    width: 150px;
+    height: 225px;
     perspective: 1000px;
     margin-bottom: 20px;
 }
@@ -63,6 +63,7 @@ body {
     max-width: 90%;
     height: auto;
     border-radius: 5px;
+    margin-bottom: 10px;
 }
 
 .draw-button {
@@ -138,4 +139,9 @@ body {
 
 .card-results.show {
     opacity: 1;
+}
+
+.card-info.card-name {
+    font-size: 14px;
+    font-weight: bold;
 }

@@ -209,6 +209,7 @@ $selected_pokemon['image_url'] = $pokemonImagePath;
             <li><a href="../php/illustrated_book.php">卡牌圖鑑</a></li>
             <li><a href="../php/pakage.php">抽卡區</a></li>
             <li><a href="../php/booklet.php">卡冊</a></li>
+            <li><a href="../php/forum.php" id="forum-link">論壇</a></li>
             <li><a href="../php/reference.php">關於我們</a></li>
         </ul>
     </nav>
