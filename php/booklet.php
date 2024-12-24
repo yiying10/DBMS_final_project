@@ -23,6 +23,13 @@ $stmt->bind_param("i", $user_id);
 $stmt->execute();
 $result = $stmt->get_result();
 $cards = $result->fetch_all(MYSQLI_ASSOC);
+
+// 將每個寶可夢名稱的第一個字母改成大寫
+foreach ($cards as &$card) {
+    $card['pokemon_name'] = ucfirst($card['pokemon_name']);
+}
+unset($card); // 解除引用
+
 $stmt->close();
 $conn->close();
 ?>
@@ -36,6 +43,254 @@ $conn->close();
     <link rel="stylesheet" href="../css/styles.css" />
     <link rel="stylesheet" href="../css/booklet.css" />
 </head>
+
+<script>
+    /**
+     * 從卡冊移除指定 card_id 的卡
+     */
+    function removeCard(cardId) {
+        if (!confirm('確定要移除這張卡片嗎？')) {
+            return;
+        }
+        fetch('../php/booklet_remove.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ card_id: cardId })
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    alert('卡片已移除！');
+                    const cardItem = document.querySelector(`.card-item[data-card-id="${cardId}"]`);
+                    if (cardItem) cardItem.remove();
+                } else {
+                    alert('移除卡片失敗：' + data.message);
+                }
+            })
+            .catch(err => {
+                console.error('移除卡片時發生錯誤', err);
+                alert('移除卡片時發生錯誤');
+            });
+    }
+
+    /**
+     * 點擊卡片時，生成並繪製卡片到 Canvas（等比例縮放字體）
+     */
+    function generateCard(imageUrl, name, rarity, type1, type2, background_image_url) {
+        const pokemonData = {
+            name,
+            rarity,
+            type1,
+            type2,
+            ability: {
+                name: "",
+                description: ""
+            }
+        };
+
+        const canvas = document.getElementById('cardCanvas');
+        if (!canvas) {
+            console.error('找不到 #cardCanvas');
+            return;
+        }
+        const ctx = canvas.getContext('2d');
+
+        // 寶可夢圖片檔名
+        const displayName = pokemonData.name;
+        const imageFileName = displayName.toLowerCase().replace(/\s+/g, '-');
+        const pokemonImagePath = `../images/pokemon_images/${imageFileName}.png`;
+
+        // 載入背景圖
+        const bgImg = new Image();
+        bgImg.crossOrigin = "Anonymous";
+        bgImg.onerror = function () {
+            console.error('背景圖片載入失敗:', background_image_url);
+        };
+        bgImg.onload = function () {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // 外層圓角
+            const outerRadius = Math.min(canvas.width, canvas.height) * 0.04;
+            roundRect(ctx, 0, 0, canvas.width, canvas.height, outerRadius);
+            ctx.save();
+            ctx.clip();
+            ctx.drawImage(bgImg, 0, 0, canvas.width, canvas.height);
+            ctx.restore();
+
+            // 內層白底，邊距固定取最短邊的 6%
+            const margin = Math.min(canvas.width, canvas.height) * 0.06;
+            const innerW = canvas.width - margin * 2;
+            const innerH = canvas.height - margin * 2;
+            const innerRadius = Math.min(canvas.width, canvas.height) * 0.03;
+            roundRect(ctx, margin, margin, innerW, innerH, innerRadius);
+            ctx.save();
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.98)';
+            ctx.fill();
+            ctx.restore();
+
+            // 檢查寶可夢圖片
+            fetch(pokemonImagePath)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('找不到指定寶可夢圖片：' + pokemonImagePath);
+                    }
+                    if (!pokemonData.rarity) {
+                        throw new Error('No rarity defined');
+                    }
+                    return true;
+                })
+                .then(() => {
+                    const pokemonImg = new Image();
+                    pokemonImg.crossOrigin = "Anonymous";
+                    pokemonImg.onload = function () {
+                        // 繪製寶可夢
+                        const pokeX = canvas.width * 0.16;
+                        const pokeY = canvas.height * 0.15;
+                        const pokeW = canvas.width * 0.68;
+                        const pokeH = canvas.height * 0.35;
+                        ctx.drawImage(pokemonImg, pokeX, pokeY, pokeW, pokeH);
+
+                        // 繪製文字
+                        drawCardText(ctx, canvas, pokemonData, pokeX, pokeY, pokeW, pokeH);
+                    };
+                    pokemonImg.src = pokemonImagePath;
+                })
+                .catch(err => {
+                    console.log('跳過卡片生成:', err.message);
+                });
+        };
+        bgImg.src = background_image_url;
+    }
+
+    /**
+     * 繪製文字 (等比例字體)
+     */
+    function drawCardText(ctx, canvas, pokemonData, pokeX, pokeY, pokeW, pokeH) {
+        // 名稱擺在寶可夢下方 + 一些間距
+        let y = pokeY + pokeH + canvas.height * 0.05;
+
+        // 寶可夢名稱
+        ctx.textAlign = 'left';
+        ctx.fillStyle = '#333';
+        ctx.font = `bold ${canvas.width * 0.08}px "Cinzel", "Noto Sans TC", serif`;
+        let xName = canvas.width * 0.18;
+        ctx.fillText(pokemonData.name, xName, y);
+
+        // 分隔線
+        y += canvas.height * 0.02;
+        ctx.beginPath();
+        ctx.strokeStyle = '#ddd';
+        ctx.lineWidth = 1;
+        ctx.moveTo(xName, y);
+        ctx.lineTo(canvas.width * 0.82, y);
+        ctx.stroke();
+
+        // 稀有度
+        y += canvas.height * 0.04;
+        ctx.font = `${canvas.width * 0.05}px "Cinzel", "Noto Sans TC", serif`;
+        ctx.fillStyle = '#333';
+        ctx.fillText('稀有度', xName, y);
+
+        ctx.font = `bold ${canvas.width * 0.05}px "Cinzel", "Noto Sans TC", serif`;
+        ctx.fillText(pokemonData.rarity || '', xName + canvas.width * 0.15, y);
+
+        // 屬性
+        if (pokemonData.type1) {
+            y += canvas.height * 0.04;
+            ctx.font = `${canvas.width * 0.05}px "Cinzel", "Noto Sans TC", serif`;
+            ctx.fillText('屬性', xName, y);
+
+            ctx.font = `bold ${canvas.width * 0.05}px "Cinzel", "Noto Sans TC", serif`;
+            const types = pokemonData.type2
+                ? `${pokemonData.type1} / ${pokemonData.type2}`
+                : pokemonData.type1;
+            ctx.fillText(types, xName + canvas.width * 0.15, y);
+        }
+
+        // 若有特性（這裡是空的示範）
+        if (pokemonData.ability && pokemonData.ability.name) {
+            y += canvas.height * 0.04;
+            ctx.font = `${canvas.width * 0.05}px "Cinzel", "Noto Sans TC", serif`;
+            ctx.fillText('特性', xName, y);
+
+            ctx.font = `bold ${canvas.width * 0.05}px "Cinzel", "Noto Sans TC", serif`;
+            ctx.fillText(pokemonData.ability.name, xName + canvas.width * 0.15, y);
+
+            // 如果有描述
+            if (pokemonData.ability.description) {
+                y += canvas.height * 0.04;
+                ctx.font = `${canvas.width * 0.04}px "Cinzel", "Noto Sans TC", serif`;
+                const maxWidth = canvas.width * 0.64;
+                wrapText(ctx, pokemonData.ability.description, xName, y, maxWidth, canvas.height * 0.05);
+            }
+        }
+    }
+
+    /**
+     * 圓角矩形
+     */
+    function roundRect(ctx, x, y, width, height, radius) {
+        ctx.beginPath();
+        ctx.moveTo(x + radius, y);
+        ctx.lineTo(x + width - radius, y);
+        ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+        ctx.lineTo(x + width, y + height - radius);
+        ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+        ctx.lineTo(x + radius, y + height);
+        ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+        ctx.lineTo(x, y + radius);
+        ctx.quadraticCurveTo(x, y, x + radius, y);
+        ctx.closePath();
+    }
+
+    /**
+     * 自動換行：以「每字」為單位 (可自行改成以空白分隔)
+     */
+    function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
+        const words = text.split('');
+        let line = '';
+        for (let n = 0; n < words.length; n++) {
+            const testLine = line + words[n];
+            const metrics = ctx.measureText(testLine);
+            const testWidth = metrics.width;
+            if (testWidth > maxWidth && n > 0) {
+                ctx.fillText(line, x, y);
+                line = words[n];
+                y += lineHeight;
+            } else {
+                line = testLine;
+            }
+        }
+        ctx.fillText(line, x, y);
+    }
+
+    /**
+     * 下載卡片 (Canvas 上的內容)
+     */
+    function downloadCard(imageUrl, background_image_url) {
+        const canvas = document.getElementById('cardCanvas');
+        if (!canvas) {
+            console.error('找不到 #cardCanvas');
+            return;
+        }
+        try {
+            const fileName = `${imageUrl.split('/').pop().split('.')[0].charAt(0).toUpperCase() +
+                imageUrl.split('/').pop().split('.')[0].slice(1)
+                }_${background_image_url.split('/').pop().split('.')[0]}.png`;
+
+            const dataURL = canvas.toDataURL('image/png', 1.0);
+            const link = document.createElement('a');
+            link.download = fileName;
+            link.href = dataURL;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        } catch (error) {
+            console.error('下載過程發生錯誤:', error);
+            alert('下載失敗: ' + error.message);
+        }
+    }
+</script>
 
 <body data-page="booklet">
     <!-- 側邊欄 -->
@@ -56,37 +311,33 @@ $conn->close();
         <!-- 卡片列表容器 -->
         <div class="card-container">
             <?php foreach ($cards as $card): ?>
-                <div 
-                     class="card-item" 
-                     data-card-id="<?php echo $card['id']; ?>"
-                     onclick="viewCard(
+                <div class="card-item" data-card-id="<?php echo $card['id']; ?>" onclick="generateCard(
                          '<?php echo htmlspecialchars($card['image_url']); ?>',
                          '<?php echo htmlspecialchars($card['pokemon_name']); ?>',
                          '<?php echo htmlspecialchars($card['rarity']); ?>',
                          '<?php echo htmlspecialchars($card['type1']); ?>',
-                         '<?php echo htmlspecialchars($card['type2']); ?>'
-                     )"
-                >
-                    <img 
-                         src="<?php echo htmlspecialchars($card['image_url']); ?>"
-                         alt="<?php echo htmlspecialchars($card['pokemon_name']); ?>" 
-                         class="card-image" 
-                    />
+                         '<?php echo htmlspecialchars($card['type2']); ?>',
+                         '<?php echo htmlspecialchars($card['background_image_url']); ?>'
+                     )">
+                    <img src="<?php echo htmlspecialchars($card['image_url']); ?>"
+                        alt="<?php echo htmlspecialchars($card['pokemon_name']); ?>" class="card-image" />
                     <div class="card-info">
                         <p class="card-name"><?php echo htmlspecialchars($card['pokemon_name']); ?></p>
                         <p class="card-rarity"><?php echo htmlspecialchars($card['rarity']); ?></p>
                         <p class="card-type">
-                            <?php 
-                                echo htmlspecialchars($card['type1']); 
-                                echo $card['type2'] ? "/ " . htmlspecialchars($card['type2']) : ""; 
+                            <?php
+                            echo htmlspecialchars($card['type1']);
+                            echo $card['type2'] ? "/ " . htmlspecialchars($card['type2']) : "";
                             ?>
                         </p>
                         <!-- 移除卡片按鈕：需要阻止冒泡，避免點到 card-item 時也觸發 onclick -->
-                        <button class="remove-button" onclick="event.stopPropagation(); removeCard(<?php echo $card['id']; ?>)">
+                        <button class="remove-button"
+                            onclick="event.stopPropagation(); removeCard(<?php echo $card['id']; ?>)">
                             移除
                         </button>
-                        <!-- 下載卡片按鈕（此範例只是直接下載圖片） -->
-                        <button class="download-button" onclick="event.stopPropagation(); downloadCard('<?php echo htmlspecialchars($card['image_url']); ?>')">
+                        <!-- 下載卡片按鈕：下載 Canvas 上繪製好的卡片 -->
+                        <button class="download-button"
+                            onclick="event.stopPropagation(); downloadCard('<?php echo htmlspecialchars($card['image_url']); ?>','<?php echo htmlspecialchars($card['background_image_url']); ?>')">
                             下載
                         </button>
                     </div>
@@ -94,18 +345,9 @@ $conn->close();
             <?php endforeach; ?>
         </div>
 
-        <!-- 卡片預覽區域 -->
-        <div class="preview-container">
-            <h2>卡片預覽</h2>
-            <div class="preview-card">
-                <img src="" alt="卡片預覽" class="preview-image" />
-                <div class="preview-info">
-                    <p class="preview-name"></p>
-                    <p class="preview-rarity"></p>
-                    <p class="preview-type"></p>
-                </div>
-            </div>
-        </div>
+        <!-- Canvas：請酌情調整大小 (越大看起來越清晰) -->
+        <canvas id="cardCanvas" width="250" height="380" style="border: 1px solid #ccc; margin-top: 20px;"></canvas>
+
     </main>
 
     <style>
@@ -114,6 +356,7 @@ $conn->close();
             flex-wrap: wrap;
             gap: 10px;
         }
+
         .card-item {
             width: 150px;
             cursor: pointer;
@@ -122,13 +365,20 @@ $conn->close();
             overflow: hidden;
             transition: transform 0.2s;
         }
+
         .card-item:hover {
             transform: scale(1.05);
         }
+
         .card-image {
             width: 100%;
             height: auto;
         }
+
+        .card-info {
+            padding: 5px;
+        }
+
         .remove-button,
         .download-button {
             margin-top: 5px;
@@ -140,109 +390,13 @@ $conn->close();
             cursor: pointer;
             transition: background-color 0.3s;
         }
+
         .remove-button:hover,
         .download-button:hover {
             background-color: #0056b3;
         }
-        .preview-container {
-            margin-top: 20px;
-        }
-        .preview-card {
-            display: flex;
-            align-items: center;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            overflow: hidden;
-            transition: transform 0.2s;
-            width: 400px;
-            padding: 10px;
-        }
-        .preview-image {
-            width: 150px;
-            height: auto;
-        }
-        .preview-info {
-            margin-left: 20px;
-        }
-        .preview-name,
-        .preview-rarity,
-        .preview-type {
-            margin: 0;
-        }
     </style>
 
-    <script>
-        /**
-         * 點擊卡片時，更新右側「卡片預覽」區域
-         * @param {string} imageUrl  寶可夢圖片路徑
-         * @param {string} name      寶可夢名稱
-         * @param {string} rarity    稀有度
-         * @param {string} type1     屬性1
-         * @param {string} type2     屬性2
-         */
-        function viewCard(imageUrl, name, rarity, type1, type2) {
-            const previewImage = document.querySelector('.preview-image');
-            const previewName = document.querySelector('.preview-name');
-            const previewRarity = document.querySelector('.preview-rarity');
-            const previewType = document.querySelector('.preview-type');
-
-            // 更新預覽圖
-            previewImage.src = imageUrl;
-
-            // 更新文字資訊
-            previewName.textContent = name;
-            previewRarity.textContent = rarity;
-
-            // 如果有第二屬性，就用 "/ " 連接
-            const types = type2 ? `${type1} / ${type2}` : type1;
-            previewType.textContent = types;
-        }
-
-        /**
-         * 從卡冊移除指定 card_id 的卡
-         * @param {number} cardId
-         */
-        function removeCard(cardId) {
-            if (!confirm('確定要移除這張卡片嗎？')) {
-                return;
-            }
-            // 這裡以 fetch 方式呼叫後端 PHP (見 booklet_remove.php)
-            fetch('../php/booklet_remove.php', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ card_id: cardId })
-            })
-            .then(res => res.json())
-            .then(data => {
-                if (data.success) {
-                    alert('卡片已移除！');
-                    // 將畫面上的卡片 DOM 刪除
-                    const cardItem = document.querySelector(`.card-item[data-card-id="${cardId}"]`);
-                    if (cardItem) {
-                        cardItem.remove();
-                    }
-                } else {
-                    alert('移除卡片失敗：' + data.message);
-                }
-            })
-            .catch(err => {
-                console.error('移除卡片時發生錯誤', err);
-                alert('移除卡片時發生錯誤');
-            });
-        }
-
-        /**
-         * 下載卡片（簡易示範：直接下載該寶可夢圖。若需下載 Canvas，請改到 generate.php）
-         * @param {string} imageUrl
-         */
-        function downloadCard(imageUrl) {
-            const link = document.createElement('a');
-            link.href = imageUrl;
-            link.download = 'my_pokemon.png'; // 檔名可自行決定
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        }
-    </script>
 </body>
+
 </html>
