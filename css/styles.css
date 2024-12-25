@@ -13,7 +13,8 @@ body {
 
 /* 側邊導覽列樣式 */
 .sidebar {
-    background-color: #102a49; /* 深藍色 */
+    background-color: #102a49;
+    /* 深藍色 */
     color: #ffffff;
     width: 200px;
     padding: 20px;
@@ -42,7 +43,8 @@ body {
 }
 
 .sidebar a:hover {
-    background-color: #3b5f8f; /* 淡藍色的 hover 效果 */
+    background-color: #3b5f8f;
+    /* 淡藍色的 hover 效果 */
 }
 
 .sidebar li a.active {
@@ -64,30 +66,36 @@ body {
     overflow-y: auto;
 }
 
-h1{
+h1 {
     color: #1a3a5f;
 }
 
-b, strong {
+b,
+strong {
     color: #3b5f8f;
 }
 
-/* 使用者資訊區域 */
+/* 使用者��訊區域 */
 .user-info {
     position: absolute;
     top: 10px;
     right: 20px;
     display: flex;
     align-items: center;
-    justify-content: flex-end; /* 向右對齊 */
-    gap: 10px; /* 控制「歡迎」與按鈕之間的距離 */
-    white-space: nowrap; /* 防止換行 */
+    justify-content: flex-end;
+    /* 向右對齊 */
+    gap: 10px;
+    /* 控制「歡迎」與按鈕之間的距離 */
+    white-space: nowrap;
+    /* 防止換行 */
 }
 
 .welcome {
     font-size: 16px;
-    margin: 0; /* 移除多餘的內外距 */
-    color: #1a3a5f; /* 可調整成適合的顏色 */
+    margin: 0;
+    /* 移除多餘的內外距 */
+    color: #1a3a5f;
+    /* 可調整成適合的顏色 */
 }
 
 .login-button {
@@ -98,7 +106,8 @@ b, strong {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    white-space: nowrap; /* 防止按鈕文字換行 */
+    white-space: nowrap;
+    /* 防止按鈕文字換行 */
     transition: background-color 0.3s;
 }
 
@@ -112,4 +121,82 @@ body[data-page="illustrated_book"] .sidebar li a[href*="illustrated_book.php"],
 body[data-page="booklet"] .sidebar li a[href*="booklet.php"],
 body[data-page="package"] .sidebar li a[href*="package.php"] {
     background-color: #e3f2fd;
+}
+
+#coin-claim {
+    margin: 20px auto;
+    padding: 25px;
+    background-color: #f8f9fa;
+    border-radius: 12px;
+    text-align: center;
+    max-width: 600px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.coin-box {
+    margin: 20px 0;
+    padding: 15px;
+    background-color: white;
+    border-radius: 8px;
+}
+
+.claim-button {
+    padding: 12px 30px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.claim-button:hover {
+    background-color: #45a049;
+    transform: translateY(-2px);
+}
+
+.claim-button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+    transform: none;
+}
+
+#claim-status {
+    margin: 15px 0;
+    color: #666;
+    font-size: 0.95em;
+    line-height: 1.4;
+}
+
+.coin-display {
+    display: inline-flex;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 5px 10px;
+    border-radius: 20px;
+    margin-right: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.coin-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}
+
+#coin-amount {
+    color: #333;
+    font-weight: bold;
+}
+
+.ready-to-claim {
+    background-color: #4CAF50 !important;
+    color: white !important;
+    cursor: pointer !important;
+}
+
+.claim-button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
 }
