@@ -62,8 +62,8 @@
 }
 
 .left-panel h2 {
-    margin-top: 0;
-    padding-top: 0;
+    margin: 0;
+    padding: 10px 0;
 }
 
 /* 右侧面板 */
@@ -82,7 +82,111 @@
     margin-left: 300px;
 }
 
-/* 搜索表单 */
+/* 背景選項區域 */
+.background-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 15px;
+    padding: 20px;
+}
+
+.background-option {
+    width: 120px;
+    height: 120px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.background-option:hover {
+    transform: translateY(-5px);
+    border-color: #007bff;
+}
+
+.background-option.selected {
+    border-color: #007bff;
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+}
+
+.background-option img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Canvas 容器 */
+.canvas-container {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#cardCanvas {
+    border: 1px solid #ccc;
+    margin: 20px auto;
+    border-radius: 25px;
+    width: 350px;
+    height: 525px;
+}
+
+/* 儲存選項按鈕 */
+.save-options {
+    margin-top: 20px;
+}
+
+.save-options button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    background-color: #102a49;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.save-options button:hover {
+    background-color: #2c5aa0;
+}
+
+/* 背景類型選擇器 */
+.background-type-selector {
+    margin-bottom: 20px;
+    text-align: center;
+    border: 1px solid #ddd;
+    display: inline-flex;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.background-type-selector button {
+    padding: 8px 25px;
+    background-color: #f8f9fa;
+    border: none;
+    cursor: pointer;
+    position: relative;
+}
+
+.background-type-selector button:first-child {
+    border-right: 1px solid #ddd;
+}
+
+.background-type-selector button.active {
+    background-color: #2c5aa0;
+    color: white;
+}
+
+/* 背景分區隱藏顯示 */
+.background-section {
+    display: none;
+}
+
+.background-section.active {
+    display: block;
+}
+
+/* 搜索表單 */
 .search-form {
     width: 100%;
     margin-bottom: 20px;
@@ -100,7 +204,7 @@
 .search-form button {
     width: 100%;
     padding: 10px;
-    background-color: #1e4b8d;
+    background-color: #102a49;
     color: white;
     border: none;
     border-radius: 5px;
@@ -110,83 +214,4 @@
 
 .search-form button:hover {
     background-color: #2c5aa0;
-}
-
-/* 卡片列表 */
-.card-list {
-    max-height: calc(100vh - 100px);
-    overflow-y: auto;
-    width: 100%;
-    padding: 0;
-    list-style: none;
-}
-
-.card-item {
-    background-color: white;
-    margin: 10px 0;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    display: flex;
-    align-items: center;
-}
-
-.card-item img {
-    width: 80px;
-    height: 80px;
-    object-fit: contain;
-    margin-right: 15px;
-}
-
-.card-info {
-    flex: 1;
-    color: #000;
-}
-
-.card-info p {
-    margin: 5px 0;
-    color: #000;
-}
-
-.card-item button {
-    background-color: #102a49;
-    color: white;
-    border: none;
-    padding: 8px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.card-item button:hover {
-    background-color: #1e4b8d;
-}
-
-/* Canvas 容器 */
-.canvas-container {
-    position: fixed;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-#downloadButton {
-    background-color: #102a49;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 10px;
-    transition: background-color 0.3s;
-}
-
-#downloadButton:hover {
-    background-color: #1e4b8d;
 }

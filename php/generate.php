@@ -88,117 +88,6 @@ $selected_pokemon['image_url'] = $pokemonImagePath;
     <title>卡牌生成</title>
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/generate.css">
-    <style>
-        .content {
-            display: flex;
-            gap: 20px;
-        }
-
-        .left-panel {
-            flex: 0 0 300px;
-        }
-
-        .right-panel {
-            flex: 1;
-        }
-
-        .background-options {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-            gap: 15px;
-            padding: 20px;
-        }
-
-        .background-option {
-            width: 120px;
-            height: 120px;
-            border: 2px solid #ccc;
-            border-radius: 8px;
-            overflow: hidden;
-            cursor: pointer;
-            transition: transform 0.3s ease, border-color 0.3s ease;
-        }
-
-        .background-option:hover {
-            transform: translateY(-5px);
-            border-color: #007bff;
-        }
-
-        .background-option.selected {
-            border-color: #007bff;
-            box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
-        }
-
-        .background-option img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .canvas-container {
-            margin-top: 20px;
-            text-align: center;
-        }
-
-        #cardCanvas {
-            border: 1px solid #ccc;
-            margin: 20px auto;
-            border-radius: 25px;
-        }
-
-        .save-options {
-            margin-top: 20px;
-        }
-
-        .save-options button {
-            padding: 10px 20px;
-            margin: 0 10px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .save-options button:hover {
-            background-color: #0056b3;
-        }
-
-        .background-type-selector {
-            margin-bottom: 20px;
-            text-align: center;
-            border: 1px solid #ddd;
-            display: inline-flex;
-            border-radius: 5px;
-            overflow: hidden;
-        }
-
-        .background-type-selector button {
-            padding: 8px 25px;
-            background-color: #f8f9fa;
-            border: none;
-            cursor: pointer;
-            position: relative;
-        }
-
-        .background-type-selector button:first-child {
-            border-right: 1px solid #ddd;
-        }
-
-        .background-type-selector button.active {
-            background-color: #007bff;
-            color: white;
-        }
-
-        .background-section {
-            display: none;
-        }
-
-        .background-section.active {
-            display: block;
-        }
-    </style>
 </head>
 
 <body data-page="generate">
@@ -209,6 +98,7 @@ $selected_pokemon['image_url'] = $pokemonImagePath;
             <li><a href="../php/illustrated_book.php">卡牌圖鑑</a></li>
             <li><a href="../php/pakage.php">抽卡區</a></li>
             <li><a href="../php/booklet.php">卡冊</a></li>
+            <li><a href="../php/forum.php" id="forum-link">論壇</a></li>
             <li><a href="../php/reference.php">關於我們</a></li>
         </ul>
     </nav>
