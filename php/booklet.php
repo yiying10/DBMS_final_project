@@ -277,14 +277,14 @@ unset($card);
                             pokeImg.crossOrigin = 'anonymous';
                             pokeImg.onload = () => {
                                 // 畫寶可夢
-                                const pokeW = cWidth * 0.6;
-                                const pokeH = cHeight * 0.4;
-                                const pokeX = (cWidth - pokeW) / 2;
-                                const pokeY = margin + 10;
+                                const pokeW = cWidth * 0.68;
+                                const pokeH = cHeight * 0.35;
+                                const pokeX = cWidth * 0.16;
+                                const pokeY = cWidth * 0.15;
                                 ctx.drawImage(pokeImg, pokeX, pokeY, pokeW, pokeH);
 
                                 // 畫文字
-                                drawCardText(ctx, cWidth, cHeight, card, pokeX, pokeY + pokeH);
+                                drawCardText(ctx, canvas, card, pokeX, pokeY, pokeW, pokeH);
                                 // 回傳 DataURL
                                 const url = canvas.toDataURL('image/png');
                                 resolve(url);
@@ -301,37 +301,61 @@ unset($card);
         /**
          * 在 Canvas 上繪製文字
          */
-        function drawCardText(ctx, w, h, card, baseX, baseY) {
-            const fontSizeTitle = w * 0.08;
-            const fontSizeLabel = w * 0.05;
-            const marginTop = h * 0.02;
-            let y = baseX + pokeH + h * 0.05;
-            // 卡名
+        function drawCardText(ctx, canvas, card, pokeX, pokeY, pokeW, pokeH) {
+            let y = pokeY + pokeH + canvas.height * 0.05;
+
+            // 名稱
             ctx.textAlign = 'left';
             ctx.fillStyle = '#333';
-            ctx.font = `bold ${fontSizeTitle}px sans-serif`;
-            let textY = baseY + marginTop + fontSizeTitle;
-            ctx.fillText(card.pokemon_name, w / 2, textY);
+            ctx.font = `bold ${canvas.width * 0.08}px "Cinzel", "Noto Sans TC", serif`;
+            const xName = canvas.width * 0.18;
+            ctx.fillText(card.pokemon_name || '', xName, y);
 
             // 分隔線
-            textY += marginTop;
+            y += canvas.height * 0.02;
             ctx.beginPath();
-            ctx.strokeStyle = '#aaa';
-            ctx.moveTo(w * 0.2, textY);
-            ctx.lineTo(w * 0.8, textY);
+            ctx.strokeStyle = '#ddd';
+            ctx.lineWidth = 1;
+            ctx.moveTo(xName, y);
+            ctx.lineTo(canvas.width * 0.82, y);
             ctx.stroke();
 
             // 稀有度
-            textY += marginTop + fontSizeLabel;
-            ctx.font = `${fontSizeLabel}px sans-serif`;
-            ctx.fillStyle = '#555';
-            ctx.fillText(`稀有度: ${card.Rarity}`, w / 2, textY);
+            y += canvas.height * 0.04;
+            ctx.font = `${canvas.width * 0.05}px "Cinzel", "Noto Sans TC", serif`;
+            ctx.fillText('稀有度', xName, y);
+
+            ctx.font = `bold ${canvas.width * 0.05}px "Cinzel", "Noto Sans TC", serif`;
+            ctx.fillText(card.Rarity || '', xName + canvas.width * 0.15, y);
 
             // 屬性
             if (card.Type1) {
-                textY += marginTop + fontSizeLabel;
-                const t = card.Type2 ? `${card.Type1} / ${card.Type2}` : card.Type1;
-                ctx.fillText(`屬性: ${t}`, w / 2, textY);
+                y += canvas.height * 0.04;
+                ctx.font = `${canvas.width * 0.05}px "Cinzel", "Noto Sans TC", serif`;
+                ctx.fillText('屬性', xName, y);
+
+                ctx.font = `bold ${canvas.width * 0.05}px "Cinzel", "Noto Sans TC", serif`;
+                const types = card.type2
+                    ? `${card.type1} / ${card.type2}`
+                    : card.type1;
+                ctx.fillText(types, xName + canvas.width * 0.15, y);
+            }
+
+            // 特性
+            if (card.Ability) {
+                y += canvas.height * 0.04;
+                ctx.font = `${canvas.width * 0.05}px "Cinzel", "Noto Sans TC", serif`;
+                ctx.fillText('特性', xName, y);
+
+                ctx.font = `bold ${canvas.width * 0.05}px "Cinzel", "Noto Sans TC", serif`;
+                ctx.fillText(card.Ability, xName + canvas.width * 0.15, y);
+
+                if (card.Description) {
+                    y += canvas.height * 0.04;
+                    ctx.font = `${canvas.width * 0.04}px "Cinzel", "Noto Sans TC", serif`;
+                    const maxWidth = canvas.width * 0.64;
+                    wrapText(ctx, card.Description, xName, y, maxWidth, canvas.height * 0.05);
+                }
             }
         }
 
@@ -423,7 +447,23 @@ unset($card);
                 closeCardModal();
             }
         });
-
+        function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
+            const words = text.split('');
+            let line = '';
+            for (let n = 0; n < words.length; n++) {
+                const testLine = line + words[n];
+                const metrics = ctx.measureText(testLine);
+                const testWidth = metrics.width;
+                if (testWidth > maxWidth && n > 0) {
+                    ctx.fillText(line, x, y);
+                    line = words[n];
+                    y += lineHeight;
+                } else {
+                    line = testLine;
+                }
+            }
+            ctx.fillText(line, x, y);
+        }
         /**
          * 下載放大圖
          */
