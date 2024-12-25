@@ -3,7 +3,7 @@ CREATE TABLE booklet (
     user_id INT NOT NULL,
     card_id INT NOT NULL,
     pokemon_name VARCHAR(255) NOT NULL,
-   Rarity VARCHAR(50) DEFAULT NULL,  
+    Rarity VARCHAR(50) DEFAULT NULL,  
     Type1 VARCHAR(50) NOT NULL,                 
     Type2 VARCHAR(50) DEFAULT NULL,  
     image_url VARCHAR(255),
