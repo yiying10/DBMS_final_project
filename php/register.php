@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                   </script>";
         } else {
             // 帳號不存在，插入新資料
-            $insertUserQuery = "INSERT INTO account (user_name, account, password) VALUES (?, ?, ?)";
+            $insertUserQuery = "INSERT INTO account (user_name, account, password, coins) VALUES (?, ?, ?, 100)";
             $stmt = $conn->prepare($insertUserQuery);
             $stmt->bind_param("sss", $user_name, $account, $password);
 

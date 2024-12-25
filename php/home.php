@@ -1,6 +1,34 @@
 <?php
 session_start();
 $is_logged_in = isset($_SESSION['user_name']);
+$coins = 0; // 預設代幣數量為0
+
+// 建立數據庫連接
+try {
+    $db = new PDO('mysql:host=localhost;dbname=pokemon;charset=utf8', 'root', '');
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
+    // 確保 account 表有 coins 欄位，如果沒有則添加
+    $sql = "SHOW COLUMNS FROM account LIKE 'coins'";
+    $result = $db->query($sql);
+    if ($result->rowCount() == 0) {
+        $sql = "ALTER TABLE account ADD coins INT DEFAULT 0";
+        $db->exec($sql);
+    }
+
+    // 如果用戶已登入，獲取代幣數量
+    if ($is_logged_in) {
+        $user_id = $_SESSION['user_id'];
+        $sql = "SELECT COALESCE(coins, 0) as coins FROM account WHERE user_id = ?";
+        $stmt = $db->prepare($sql);
+        $stmt->execute([$user_id]);
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        $coins = $user['coins'] ?? 0; // 如果沒有值就默認為0
+    }
+    
+} catch(PDOException $e) {
+    error_log("Database Error: " . $e->getMessage());
+}
 ?>
 
 <!DOCTYPE html>
@@ -29,9 +57,12 @@ $is_logged_in = isset($_SESSION['user_name']);
     <header>
         <div class="user-info">
             <ul>
-                <!-- 動態顯示登入 / 註冊 或使用者名稱 -->
                 <?php if ($is_logged_in): ?>
                     <div class="user-info">
+                        <span class="coin-display">
+                            <img src="../images/coin-icon.png" alt="代幣" class="coin-icon">
+                            <span id="coin-amount"><?php echo $coins; ?></span>
+                        </span>
                         <p class="welcome">歡迎, <?php echo htmlspecialchars($_SESSION['user_name']); ?></p>
                         <a href="../php/logout.php">
                             <button class="login-button">登出</button>
@@ -55,7 +86,7 @@ $is_logged_in = isset($_SESSION['user_name']);
         <ul>
         <br><li><strong>創造專屬卡牌</strong>：挑選你最愛的寶可夢，設計專屬的屬性、技能與能力，甚至可以匯入自己的圖片，讓每張卡牌都是獨一無二的！</li>
         <br><li><strong>每日登入抽卡</strong>：每天登入即可參加一次抽卡活動，看看今天的運氣如何，獲得驚喜的卡牌收藏！</li>
-        <br><li><strong>分享與收藏</strong>：完成卡牌設計後，將你的作品分享到社群，與朋友交流創意，還能收藏其他玩家的作品。</li>
+        <br><li><strong>分享與收藏</strong>：完成牌設計後，將你的作品分享到社群，與朋友交流創意，還能收藏其他玩家的作品。</li>
         <br></ul>
         <br><hr><br>
         <br><h1>立即加入，開始創作！</h1>
@@ -63,9 +94,18 @@ $is_logged_in = isset($_SESSION['user_name']);
             註冊你的帳號，探索無限的可能性，加入這個充滿熱情與創意的社群！
         </p>
         <br><p>快來體驗吧，讓你的寶可夢故事更加精彩！</p>
+        <br><hr><br>
+        </section>
+        <section id="coin-claim">
+            <h2>代幣領取區</h2>
+            <div class="coin-box">
+                <p>每5秒可領取一次抽卡代幣</p>
+                <div id="claim-status"></div>
+                <button id="claim-button" class="claim-button">領取代幣</button>
+            </div>
         </section>
     </main>
-
+ 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const isLoggedIn = <?php echo $is_logged_in ? 'true' : 'false'; ?>;
@@ -98,6 +138,90 @@ $is_logged_in = isset($_SESSION['user_name']);
             });
         });
     </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const isLoggedIn = <?php echo $is_logged_in ? 'true' : 'false'; ?>;
+            const claimButton = document.getElementById("claim-button");
+            const claimStatus = document.getElementById("claim-status");
+            const coinAmount = document.getElementById("coin-amount");
+            let countdownTimer;
+
+            if (isLoggedIn) {
+                checkClaimStatus();
+                
+                claimButton.addEventListener("click", async function() {
+                    if (!claimButton.disabled) {
+                        claimButton.disabled = true;
+                        await claimCoin();
+                    }
+                });
+            } else {
+                claimButton.disabled = true;
+                claimStatus.innerHTML = "請先登入再領取代幣";
+            }
+
+            async function claimCoin() {
+                try {
+                    const response = await fetch('../php/claim_coin.php', {
+                        method: 'POST'
+                    });
+                    const data = await response.json();
+                    
+                    if (data.success) {
+                        coinAmount.textContent = data.coins;
+                        claimStatus.innerHTML = `成功領取代幣！當前擁有 ${data.coins} 個代幣`;
+                        startCountdown(5); // 開始5秒倒數
+                    } else {
+                        claimStatus.innerHTML = data.message;
+                        claimButton.disabled = false;
+                    }
+                } catch (error) {
+                    claimStatus.innerHTML = "領取失敗，請稍後再試";
+                    claimButton.disabled = false;
+                }
+            }
+
+            function startCountdown(seconds) {
+                clearInterval(countdownTimer);
+                let remainingTime = seconds;
+                
+                function updateCountdown() {
+                    if (remainingTime > 0) {
+                        claimButton.disabled = true;
+                        claimStatus.innerHTML = `距離下次領取還有 ${remainingTime} 秒`;
+                        remainingTime--;
+                    } else {
+                        clearInterval(countdownTimer);
+                        claimButton.disabled = false;
+                        claimStatus.innerHTML = "可以領取代幣";
+                        claimButton.classList.add('ready-to-claim'); // 可以加入特殊樣式
+                    }
+                }
+                
+                updateCountdown();
+                countdownTimer = setInterval(updateCountdown, 1000);
+            }
+
+            async function checkClaimStatus() {
+                try {
+                    const response = await fetch('../php/check_claim_status.php');
+                    const data = await response.json();
+                    
+                    if (data.canClaim) {
+                        claimButton.disabled = false;
+                        claimStatus.innerHTML = "可以領取代幣";
+                        claimButton.classList.add('ready-to-claim');
+                    } else if (data.remainingTime > 0) {
+                        startCountdown(Math.ceil(data.remainingTime));
+                    }
+                } catch (error) {
+                    claimStatus.innerHTML = "無法檢查領取狀態";
+                }
+            }
+        });
+    </script>
+
+    
 </body>
 
 </html>
