@@ -1,5 +1,8 @@
 <?php
 session_start();
+$is_logged_in = isset($_SESSION['user_name']);
+$coins = 0; // 預設代幣數量為0
+
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
     exit();
@@ -14,6 +17,18 @@ $dbname = "Pokemon";
 $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("資料庫連接失敗：" . $conn->connect_error);
+}
+
+// 如果用戶已登入，獲取代幣數量
+if ($is_logged_in) {
+    $user_id = $_SESSION['user_id'];
+    $sql = "SELECT COALESCE(coins, 0) as coins FROM account WHERE user_id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    $stmt->bind_result($coins);
+    $stmt->fetch();
+    $stmt->close();
 }
 
 // 取得用戶的卡冊內容
@@ -31,8 +46,6 @@ foreach ($cards as &$card) {
     $card['pokemon_name'] = ucfirst($card['pokemon_name']);
 }
 unset($card);
-
-
 ?>
 
 <!DOCTYPE html>
@@ -152,6 +165,29 @@ unset($card);
 </head>
 
 <body data-page="booklet">
+    <header>
+        <div class="user-info">
+            <ul>
+                <?php if ($is_logged_in): ?>
+                    <div class="user-info">
+                        <span class="coin-display">
+                            <img src="../images/coin-icon.png" alt="代幣" class="coin-icon">
+                            <span id="coin-amount"><?php echo $coins; ?></span>
+                        </span>
+                        <p class="welcome">歡迎, <?php echo htmlspecialchars($_SESSION['user_name']); ?></p>
+                        <a href="../php/logout.php">
+                            <button class="login-button">登出</button>
+                        </a>
+                    </div>
+                <?php else: ?>
+                    <a href="../html/login.html" class="login-button-link">
+                        <button class="login-button">登入 / 註冊</button>
+                    </a>
+                <?php endif; ?>
+            </ul>
+        </div>
+    </header>
+
     <!-- 側邊欄 -->
     <nav class="sidebar">
         <ul>

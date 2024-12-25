@@ -16,6 +16,19 @@ if ($db->connect_error) {
 
 // 檢查是否已登入
 $is_logged_in = isset($_SESSION['user_name']);
+$coins = 0; // 預設代幣數量為0
+
+if ($is_logged_in) {
+    $user_id = $_SESSION['user_id'];
+    $sql = "SELECT COALESCE(coins, 0) as coins FROM account WHERE user_id = ?";
+    $stmt = $db->prepare($sql);
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    $stmt->bind_result($coins);
+    $stmt->fetch();
+    $stmt->close();
+}
+
 if (!$is_logged_in) {
     header("Location: login.php");
     exit();
@@ -130,6 +143,29 @@ $db->close();
     <link rel="stylesheet" href="../css/forum.css">
 </head>
 <body data-page="forum">
+    <header>
+        <div class="user-info">
+            <ul>
+                <?php if ($is_logged_in): ?>
+                    <div class="user-info">
+                        <span class="coin-display">
+                            <img src="../images/coin-icon.png" alt="代幣" class="coin-icon">
+                            <span id="coin-amount"><?php echo $coins; ?></span>
+                        </span>
+                        <p class="welcome">歡迎, <?php echo htmlspecialchars($_SESSION['user_name']); ?></p>
+                        <a href="../php/logout.php">
+                            <button class="login-button">登出</button>
+                        </a>
+                    </div>
+                <?php else: ?>
+                    <a href="../html/login.html" class="login-button-link">
+                        <button class="login-button">登入 / 註冊</button>
+                    </a>
+                <?php endif; ?>
+            </ul>
+        </div>
+    </header>
+
     <nav class="sidebar">
         <ul>
             <li><a href="../php/home.php">首頁</a></li>

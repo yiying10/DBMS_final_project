@@ -86,7 +86,7 @@ try {
         <ul>
         <br><li><strong>創造專屬卡牌</strong>：挑選你最愛的寶可夢，設計專屬的屬性、技能與能力，甚至可以匯入自己的圖片，讓每張卡牌都是獨一無二的！</li>
         <br><li><strong>每日登入抽卡</strong>：每天登入即可參加一次抽卡活動，看看今天的運氣如何，獲得驚喜的卡牌收藏！</li>
-        <br><li><strong>分享與收藏</strong>：完成設計後，將你的作品分享到社群，與朋友交流創意，還能收藏其他玩家的作品。</li>
+        <br><li><strong>分享與收藏</strong>：完成��計後，將你的作品分享到社群，與朋友交流創意，還能收藏其他玩家的作品。</li>
         <br></ul>
         <br><hr><br>
         <br><h1>立即加入，開始創作！</h1>
@@ -112,6 +112,7 @@ try {
             const cardGenerationLink = document.getElementById("card-generation-link");
             const pakageLink = document.getElementById("pakage-link");
             const bookletLink = document.getElementById("booklet-link");
+            const forumLink = document.getElementById("forum-link");
 
             // 卡牌生成區權限控制
             cardGenerationLink.addEventListener("click", function (e) {
@@ -131,6 +132,14 @@ try {
 
             // 卡冊權限控制
             bookletLink.addEventListener("click", function (e) {
+                if (!isLoggedIn) {
+                    e.preventDefault();
+                    alert("登入後即可使用");
+                }
+            });
+
+            // 論壇權限控制
+            forumLink.addEventListener("click", function (e) {
                 if (!isLoggedIn) {
                     e.preventDefault();
                     alert("登入後即可使用");
