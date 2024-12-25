@@ -81,7 +81,6 @@ function generateRandomCards($rarities, $conn)
             <li><a href="../php/illustrated_book.php">卡牌圖鑑</a></li>
             <li><a href="../php/pakage.php">抽卡區</a></li>
             <li><a href="../php/booklet.php">卡冊</a></li>
-            <li><a href="../php/forum.php" id="forum-link">論壇</a></li>
             <li><a href="../php/reference.php">關於我們</a></li>
         </ul>
     </nav>
@@ -123,13 +122,20 @@ function generateRandomCards($rarities, $conn)
                         <div class="card-item">
                             <div class="card-inner">
                                 <div class="card-back">
-                                    <div class="pokemon-logo">Pokemon</div>
+                                    <img src="../images/card_back.png" width="100" height="auto">
                                 </div>
                                 <div class="card-front">
                                     <img src="<?php echo htmlspecialchars($card['image_url']); ?>"
                                         alt="<?php echo htmlspecialchars($card['Name']); ?>">
                                     <p class="card-info card-name">
                                         <?php echo htmlspecialchars($card['Name']); ?>
+                                    </p>
+                                    <p class="card-info card-rarity">
+                                        <?php echo htmlspecialchars($card['Rarity']); ?>
+                                    </p>
+                                    <p class="card-info card-type">
+                                        <?php echo htmlspecialchars($card['Type1']); ?>
+                                        <?php echo $card['Type2'] ? "/ " . htmlspecialchars($card['Type2']) : ""; ?>
                                     </p>
                                 </div>
                             </div>

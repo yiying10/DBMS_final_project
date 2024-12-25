@@ -209,7 +209,6 @@ $selected_pokemon['image_url'] = $pokemonImagePath;
             <li><a href="../php/illustrated_book.php">卡牌圖鑑</a></li>
             <li><a href="../php/pakage.php">抽卡區</a></li>
             <li><a href="../php/booklet.php">卡冊</a></li>
-            <li><a href="../php/forum.php" id="forum-link">論壇</a></li>
             <li><a href="../php/reference.php">關於我們</a></li>
         </ul>
     </nav>
@@ -475,6 +474,7 @@ $selected_pokemon['image_url'] = $pokemonImagePath;
                 alert("請先選擇一個背景！");
                 return;
             }
+
             const bgPath = selectedBg.getAttribute('onclick').match(/'([^']+)'/)[1];
             const backgroundImageUrl = '../images/card_background/' + bgPath;
 
@@ -482,9 +482,11 @@ $selected_pokemon['image_url'] = $pokemonImagePath;
                 name: currentPokemonData.name,
                 rarity: currentPokemonData.rarity,
                 type1: currentPokemonData.type1,
-                type2: currentPokemonData.type2,
+                type2: currentPokemonData.type2 || '',
                 image_url: currentPokemonData.image_url,
-                background_image_url: backgroundImageUrl
+                background_image_url: backgroundImageUrl,
+                Ability: currentPokemonData.ability ? currentPokemonData.ability.name : '',
+                ability_description: currentPokemonData.ability ? currentPokemonData.ability.description : ''
             }];
 
             fetch('../php/booklet_add.php', {
@@ -492,17 +494,27 @@ $selected_pokemon['image_url'] = $pokemonImagePath;
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)
             })
-                .then(response => response.json())
+                .then(response => {
+                    // 先檢查響應的內容類型
+                    const contentType = response.headers.get('content-type');
+                    if (contentType && contentType.includes('application/json')) {
+                        return response.json();
+                    }
+                    // 如果不是 JSON，則讀取文本內容
+                    return response.text().then(text => {
+                        throw new Error('伺服器返回非 JSON 格式：' + text);
+                    });
+                })
                 .then(data => {
                     if (data.success) {
                         alert('卡片已成功加入卡冊！');
                     } else {
-                        alert('加入卡冊失敗: ' + data.message);
+                        alert('加入卡冊失敗: ' + (data.message || '未知錯誤'));
                     }
                 })
                 .catch(error => {
                     console.error('Error:', error);
-                    alert('發生錯誤，請稍後再試。');
+                    alert('發生錯誤：' + error.message);
                 });
         }
 

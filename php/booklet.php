@@ -23,15 +23,16 @@ $stmt->bind_param("i", $user_id);
 $stmt->execute();
 $result = $stmt->get_result();
 $cards = $result->fetch_all(MYSQLI_ASSOC);
+$stmt->close();
+$conn->close();
 
-// 將每個寶可夢名稱的第一個字母改成大寫
+// 若想將寶可夢名稱的第一個字母改成大寫，可保留
 foreach ($cards as &$card) {
     $card['pokemon_name'] = ucfirst($card['pokemon_name']);
 }
-unset($card); // 解除引用
+unset($card);
 
-$stmt->close();
-$conn->close();
+
 ?>
 
 <!DOCTYPE html>
@@ -42,255 +43,113 @@ $conn->close();
     <title>我的卡冊</title>
     <link rel="stylesheet" href="../css/styles.css" />
     <link rel="stylesheet" href="../css/booklet.css" />
+
+    <style>
+        /* 縮圖容器 */
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .card-item {
+            width: 170px;
+            cursor: pointer;
+            text-align: center;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.2s;
+            background-color: #fff;
+            padding: 5px;
+        }
+
+        .card-item:hover {
+            transform: scale(1.04);
+        }
+
+        .card-image {
+            width: 100%;
+            height: auto;
+        }
+
+        .card-name {
+            font-weight: bold;
+        }
+
+        /* 彈跳視窗 */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+            /* 預設隱藏 */
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            min-width: 320px;
+            max-width: 600px;
+            position: relative;
+            text-align: center;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 18px;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        .modal-image {
+            width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            max-height: 700px;
+        }
+
+        .modal-info {
+            margin-top: 10px;
+        }
+
+        .modal-actions {
+            margin-top: 15px;
+        }
+
+        .remove-button,
+        .download-button {
+            margin: 0 10px;
+            padding: 6px 12px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .remove-button:hover,
+        .download-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
-
-<script>
-    /**
-     * 從卡冊移除指定 card_id 的卡
-     */
-    function removeCard(cardId) {
-        if (!confirm('確定要移除這張卡片嗎？')) {
-            return;
-        }
-        fetch('../php/booklet_remove.php', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ card_id: cardId })
-        })
-            .then(res => res.json())
-            .then(data => {
-                if (data.success) {
-                    alert('卡片已移除！');
-                    const cardItem = document.querySelector(`.card-item[data-card-id="${cardId}"]`);
-                    if (cardItem) cardItem.remove();
-                } else {
-                    alert('移除卡片失敗：' + data.message);
-                }
-            })
-            .catch(err => {
-                console.error('移除卡片時發生錯誤', err);
-                alert('移除卡片時發生錯誤');
-            });
-    }
-
-    /**
-     * 點擊卡片時，生成並繪製卡片到 Canvas（等比例縮放字體）
-     */
-    function generateCard(imageUrl, name, rarity, type1, type2, background_image_url) {
-        const pokemonData = {
-            name,
-            rarity,
-            type1,
-            type2,
-            ability: {
-                name: "",
-                description: ""
-            }
-        };
-
-        const canvas = document.getElementById('cardCanvas');
-        if (!canvas) {
-            console.error('找不到 #cardCanvas');
-            return;
-        }
-        const ctx = canvas.getContext('2d');
-
-        // 寶可夢圖片檔名
-        const displayName = pokemonData.name;
-        const imageFileName = displayName.toLowerCase().replace(/\s+/g, '-');
-        const pokemonImagePath = `../images/pokemon_images/${imageFileName}.png`;
-
-        // 載入背景圖
-        const bgImg = new Image();
-        bgImg.crossOrigin = "Anonymous";
-        bgImg.onerror = function () {
-            console.error('背景圖片載入失敗:', background_image_url);
-        };
-        bgImg.onload = function () {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            // 外層圓角
-            const outerRadius = Math.min(canvas.width, canvas.height) * 0.04;
-            roundRect(ctx, 0, 0, canvas.width, canvas.height, outerRadius);
-            ctx.save();
-            ctx.clip();
-            ctx.drawImage(bgImg, 0, 0, canvas.width, canvas.height);
-            ctx.restore();
-
-            // 內層白底，邊距固定取最短邊的 6%
-            const margin = Math.min(canvas.width, canvas.height) * 0.06;
-            const innerW = canvas.width - margin * 2;
-            const innerH = canvas.height - margin * 2;
-            const innerRadius = Math.min(canvas.width, canvas.height) * 0.03;
-            roundRect(ctx, margin, margin, innerW, innerH, innerRadius);
-            ctx.save();
-            ctx.fillStyle = 'rgba(255, 255, 255, 0.98)';
-            ctx.fill();
-            ctx.restore();
-
-            // 檢查寶可夢圖片
-            fetch(pokemonImagePath)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('找不到指定寶可夢圖片：' + pokemonImagePath);
-                    }
-                    if (!pokemonData.rarity) {
-                        throw new Error('No rarity defined');
-                    }
-                    return true;
-                })
-                .then(() => {
-                    const pokemonImg = new Image();
-                    pokemonImg.crossOrigin = "Anonymous";
-                    pokemonImg.onload = function () {
-                        // 繪製寶可夢
-                        const pokeX = canvas.width * 0.16;
-                        const pokeY = canvas.height * 0.15;
-                        const pokeW = canvas.width * 0.68;
-                        const pokeH = canvas.height * 0.35;
-                        ctx.drawImage(pokemonImg, pokeX, pokeY, pokeW, pokeH);
-
-                        // 繪製文字
-                        drawCardText(ctx, canvas, pokemonData, pokeX, pokeY, pokeW, pokeH);
-                    };
-                    pokemonImg.src = pokemonImagePath;
-                })
-                .catch(err => {
-                    console.log('跳過卡片生成:', err.message);
-                });
-        };
-        bgImg.src = background_image_url;
-    }
-
-    /**
-     * 繪製文字 (等比例字體)
-     */
-    function drawCardText(ctx, canvas, pokemonData, pokeX, pokeY, pokeW, pokeH) {
-        // 名稱擺在寶可夢下方 + 一些間距
-        let y = pokeY + pokeH + canvas.height * 0.05;
-
-        // 寶可夢名稱
-        ctx.textAlign = 'left';
-        ctx.fillStyle = '#333';
-        ctx.font = `bold ${canvas.width * 0.08}px "Cinzel", "Noto Sans TC", serif`;
-        let xName = canvas.width * 0.18;
-        ctx.fillText(pokemonData.name, xName, y);
-
-        // 分隔線
-        y += canvas.height * 0.02;
-        ctx.beginPath();
-        ctx.strokeStyle = '#ddd';
-        ctx.lineWidth = 1;
-        ctx.moveTo(xName, y);
-        ctx.lineTo(canvas.width * 0.82, y);
-        ctx.stroke();
-
-        // 稀有度
-        y += canvas.height * 0.04;
-        ctx.font = `${canvas.width * 0.05}px "Cinzel", "Noto Sans TC", serif`;
-        ctx.fillStyle = '#333';
-        ctx.fillText('稀有度', xName, y);
-
-        ctx.font = `bold ${canvas.width * 0.05}px "Cinzel", "Noto Sans TC", serif`;
-        ctx.fillText(pokemonData.rarity || '', xName + canvas.width * 0.15, y);
-
-        // 屬性
-        if (pokemonData.type1) {
-            y += canvas.height * 0.04;
-            ctx.font = `${canvas.width * 0.05}px "Cinzel", "Noto Sans TC", serif`;
-            ctx.fillText('屬性', xName, y);
-
-            ctx.font = `bold ${canvas.width * 0.05}px "Cinzel", "Noto Sans TC", serif`;
-            const types = pokemonData.type2
-                ? `${pokemonData.type1} / ${pokemonData.type2}`
-                : pokemonData.type1;
-            ctx.fillText(types, xName + canvas.width * 0.15, y);
-        }
-
-        // 若有特性（這裡是空的示範）
-        if (pokemonData.ability && pokemonData.ability.name) {
-            y += canvas.height * 0.04;
-            ctx.font = `${canvas.width * 0.05}px "Cinzel", "Noto Sans TC", serif`;
-            ctx.fillText('特性', xName, y);
-
-            ctx.font = `bold ${canvas.width * 0.05}px "Cinzel", "Noto Sans TC", serif`;
-            ctx.fillText(pokemonData.ability.name, xName + canvas.width * 0.15, y);
-
-            // 如果有描述
-            if (pokemonData.ability.description) {
-                y += canvas.height * 0.04;
-                ctx.font = `${canvas.width * 0.04}px "Cinzel", "Noto Sans TC", serif`;
-                const maxWidth = canvas.width * 0.64;
-                wrapText(ctx, pokemonData.ability.description, xName, y, maxWidth, canvas.height * 0.05);
-            }
-        }
-    }
-
-    /**
-     * 圓角矩形
-     */
-    function roundRect(ctx, x, y, width, height, radius) {
-        ctx.beginPath();
-        ctx.moveTo(x + radius, y);
-        ctx.lineTo(x + width - radius, y);
-        ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
-        ctx.lineTo(x + width, y + height - radius);
-        ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
-        ctx.lineTo(x + radius, y + height);
-        ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
-        ctx.lineTo(x, y + radius);
-        ctx.quadraticCurveTo(x, y, x + radius, y);
-        ctx.closePath();
-    }
-
-    /**
-     * 自動換行：以「每字」為單位 (可自行改成以空白分隔)
-     */
-    function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
-        const words = text.split('');
-        let line = '';
-        for (let n = 0; n < words.length; n++) {
-            const testLine = line + words[n];
-            const metrics = ctx.measureText(testLine);
-            const testWidth = metrics.width;
-            if (testWidth > maxWidth && n > 0) {
-                ctx.fillText(line, x, y);
-                line = words[n];
-                y += lineHeight;
-            } else {
-                line = testLine;
-            }
-        }
-        ctx.fillText(line, x, y);
-    }
-
-    /**
-     * 下載卡片 (Canvas 上的內容)
-     */
-    function downloadCard(imageUrl, background_image_url) {
-        const canvas = document.getElementById('cardCanvas');
-        if (!canvas) {
-            console.error('找不到 #cardCanvas');
-            return;
-        }
-        try {
-            const fileName = `${imageUrl.split('/').pop().split('.')[0].charAt(0).toUpperCase() +
-                imageUrl.split('/').pop().split('.')[0].slice(1)
-                }_${background_image_url.split('/').pop().split('.')[0]}.png`;
-
-            const dataURL = canvas.toDataURL('image/png', 1.0);
-            const link = document.createElement('a');
-            link.download = fileName;
-            link.href = dataURL;
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        } catch (error) {
-            console.error('下載過程發生錯誤:', error);
-            alert('下載失敗: ' + error.message);
-        }
-    }
-</script>
 
 <body data-page="booklet">
     <!-- 側邊欄 -->
@@ -301,103 +160,324 @@ $conn->close();
             <li><a href="../php/illustrated_book.php">卡牌圖鑑</a></li>
             <li><a href="../php/pakage.php" id="pakage-link">抽卡區</a></li>
             <li><a href="../php/booklet.php" id="booklet-link">我的卡冊</a></li>
-            <li><a href="../php/forum.php" id="forum-link">論壇</a></li>
             <li><a href="../php/reference.php">關於我們</a></li>
         </ul>
     </nav>
 
     <main class="content">
         <h1>我的卡冊</h1>
-
-        <!-- 卡片列表容器 -->
-        <div class="card-container">
-            <?php foreach ($cards as $card): ?>
-                <div class="card-item" data-card-id="<?php echo $card['id']; ?>" onclick="generateCard(
-                         '<?php echo htmlspecialchars($card['image_url']); ?>',
-                         '<?php echo htmlspecialchars($card['pokemon_name']); ?>',
-                         '<?php echo htmlspecialchars($card['rarity']); ?>',
-                         '<?php echo htmlspecialchars($card['type1']); ?>',
-                         '<?php echo htmlspecialchars($card['type2']); ?>',
-                         '<?php echo htmlspecialchars($card['background_image_url']); ?>'
-                     )">
-                    <img src="<?php echo htmlspecialchars($card['image_url']); ?>"
-                        alt="<?php echo htmlspecialchars($card['pokemon_name']); ?>" class="card-image" />
-                    <div class="card-info">
-                        <p class="card-name"><?php echo htmlspecialchars($card['pokemon_name']); ?></p>
-                        <p class="card-rarity"><?php echo htmlspecialchars($card['rarity']); ?></p>
-                        <p class="card-type">
-                            <?php
-                            echo htmlspecialchars($card['type1']);
-                            echo $card['type2'] ? "/ " . htmlspecialchars($card['type2']) : "";
-                            ?>
-                        </p>
-                        <!-- 移除卡片按鈕：需要阻止冒泡，避免點到 card-item 時也觸發 onclick -->
-                        <button class="remove-button"
-                            onclick="event.stopPropagation(); removeCard(<?php echo $card['id']; ?>)">
-                            移除
-                        </button>
-                        <!-- 下載卡片按鈕：下載 Canvas 上繪製好的卡片 -->
-                        <button class="download-button"
-                            onclick="event.stopPropagation(); downloadCard('<?php echo htmlspecialchars($card['image_url']); ?>','<?php echo htmlspecialchars($card['background_image_url']); ?>')">
-                            下載
-                        </button>
-                    </div>
-                </div>
-            <?php endforeach; ?>
-        </div>
-
-        <!-- Canvas：請酌情調整大小 (越大看起來越清晰) -->
-        <canvas id="cardCanvas" width="250" height="380" style="border: 1px solid #ccc; margin-top: 20px;"></canvas>
-
+        <!-- 縮圖容器 -->
+        <div class="card-container" id="cardContainer"></div>
     </main>
 
-    <style>
-        .card-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
+    <!-- 彈跳視窗（顯示放大卡牌） -->
+    <div class="modal-overlay" id="cardModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeCardModal()">✕</button>
+            <img id="modalImage" class="modal-image" src="" alt="放大卡牌圖" />
+            <div class="modal-info">
+                <p id="modalName"></p>
+                <p id="modalRarity"></p>
+                <p id="modalType"></p>
+            </div>
+            <div class="modal-actions">
+                <button class="download-button" id="modalDownloadBtn">下載</button>
+                <button class="remove-button" id="modalRemoveBtn">移除</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 從 PHP 取得卡片資料
+        const phpCards = <?php echo json_encode($cards, JSON_UNESCAPED_UNICODE); ?>;
+        console.log('PHP Cards:', phpCards);
+        // 用來存放繪製好的 DataURL (縮圖 + 大圖)
+        let cardDataList = [];
+
+        // 頁面載入後開始繪製
+        window.onload = function () {
+            drawAllCards(phpCards);
+        };
+
+        /**
+         * 為所有卡片生成「縮圖」「大圖」，並顯示在畫面上
+         */
+        function drawAllCards(cards) {
+            const promises = cards.map(card => createBothImages(card));
+            // 等全部繪製完成，再來把 DOM 建立好
+            Promise.all(promises).then(results => {
+                cardDataList = results; // results是一個陣列，每個元素都是 {...card, smallImage, largeImage}
+                // 建立縮圖 DOM
+                results.forEach(data => createCardItemDOM(data));
+            }).catch(err => {
+                console.error('繪製卡片時發生錯誤：', err);
+            });
         }
 
-        .card-item {
-            width: 150px;
-            cursor: pointer;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            overflow: hidden;
-            transition: transform 0.2s;
+        /**
+         * 同時建立「縮圖(250x350)」與「放大圖(500x700)」
+         */
+        function createBothImages(card) {
+            return Promise.all([
+                drawCardDataURL(card, 250, 350),
+                drawCardDataURL(card, 500, 700)
+            ]).then(([smallImage, largeImage]) => {
+                return {
+                    ...card,
+                    smallImage,
+                    largeImage
+                };
+            });
         }
 
-        .card-item:hover {
-            transform: scale(1.05);
+        /**
+         * 繪製單張卡，並回傳該 Canvas 的 DataURL
+         * 為避免彼此干擾，每次都用新的 Canvas
+         */
+        function drawCardDataURL(card, cWidth, cHeight) {
+            return new Promise((resolve, reject) => {
+                const canvas = document.createElement('canvas');
+                canvas.width = cWidth;
+                canvas.height = cHeight;
+                const ctx = canvas.getContext('2d');
+
+                const { pokemon_name, Rarity, Type1, Type2, image_url, background_image_url } = card;
+
+                // 讀取背景
+                const bgImg = new Image();
+                bgImg.crossOrigin = 'anonymous';
+                bgImg.onerror = () => reject(`無法載入背景：${background_image_url}`);
+                bgImg.onload = () => {
+                    // 清空
+                    ctx.clearRect(0, 0, cWidth, cHeight);
+
+                    // 畫背景 + 圓角
+                    roundRect(ctx, 0, 0, cWidth, cHeight, 25);
+                    ctx.save();
+                    ctx.clip();
+                    ctx.drawImage(bgImg, 0, 0, cWidth, cHeight);
+                    ctx.restore();
+
+                    // 白色內框
+                    const margin = 20;
+                    roundRect(ctx, margin, margin, cWidth - margin * 2, cHeight - margin * 2, 15);
+                    ctx.save();
+                    ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+                    ctx.fill();
+                    ctx.restore();
+
+                    // 讀取寶可夢圖片
+                    fetch(image_url)
+                        .then(response => {
+                            if (!response.ok) throw new Error('寶可夢圖片不存在：' + image_url);
+                            return true;
+                        })
+                        .then(() => {
+                            const pokeImg = new Image();
+                            pokeImg.crossOrigin = 'anonymous';
+                            pokeImg.onload = () => {
+                                // 畫寶可夢
+                                const pokeW = cWidth * 0.6;
+                                const pokeH = cHeight * 0.4;
+                                const pokeX = (cWidth - pokeW) / 2;
+                                const pokeY = margin + 10;
+                                ctx.drawImage(pokeImg, pokeX, pokeY, pokeW, pokeH);
+
+                                // 畫文字
+                                drawCardText(ctx, cWidth, cHeight, card, pokeX, pokeY + pokeH);
+                                // 回傳 DataURL
+                                const url = canvas.toDataURL('image/png');
+                                resolve(url);
+                            };
+                            pokeImg.onerror = () => reject(`無法載入寶可夢：${image_url}`);
+                            pokeImg.src = image_url;
+                        })
+                        .catch(err => reject(err.message));
+                };
+                bgImg.src = background_image_url;
+            });
         }
 
-        .card-image {
-            width: 100%;
-            height: auto;
+        /**
+         * 在 Canvas 上繪製文字
+         */
+        function drawCardText(ctx, w, h, card, baseX, baseY) {
+            const fontSizeTitle = w * 0.08;
+            const fontSizeLabel = w * 0.05;
+            const marginTop = h * 0.02;
+            let y = baseX + pokeH + h * 0.05;
+            // 卡名
+            ctx.textAlign = 'left';
+            ctx.fillStyle = '#333';
+            ctx.font = `bold ${fontSizeTitle}px sans-serif`;
+            let textY = baseY + marginTop + fontSizeTitle;
+            ctx.fillText(card.pokemon_name, w / 2, textY);
+
+            // 分隔線
+            textY += marginTop;
+            ctx.beginPath();
+            ctx.strokeStyle = '#aaa';
+            ctx.moveTo(w * 0.2, textY);
+            ctx.lineTo(w * 0.8, textY);
+            ctx.stroke();
+
+            // 稀有度
+            textY += marginTop + fontSizeLabel;
+            ctx.font = `${fontSizeLabel}px sans-serif`;
+            ctx.fillStyle = '#555';
+            ctx.fillText(`稀有度: ${card.Rarity}`, w / 2, textY);
+
+            // 屬性
+            if (card.Type1) {
+                textY += marginTop + fontSizeLabel;
+                const t = card.Type2 ? `${card.Type1} / ${card.Type2}` : card.Type1;
+                ctx.fillText(`屬性: ${t}`, w / 2, textY);
+            }
         }
 
-        .card-info {
-            padding: 5px;
+        /**
+         * 畫出圓角矩形
+         */
+        function roundRect(ctx, x, y, w, h, r) {
+            ctx.beginPath();
+            ctx.moveTo(x + r, y);
+            ctx.lineTo(x + w - r, y);
+            ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+            ctx.lineTo(x + w, y + h - r);
+            ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+            ctx.lineTo(x + r, y + h);
+            ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+            ctx.lineTo(x, y + r);
+            ctx.quadraticCurveTo(x, y, x + r, y);
+            ctx.closePath();
         }
 
-        .remove-button,
-        .download-button {
-            margin-top: 5px;
-            padding: 5px 10px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
+        /**
+         * 建立「縮圖」的卡 DOM，放到頁面上
+         * @param {*} cardObj  包含 smallImage, largeImage
+         */
+        function createCardItemDOM(cardObj) {
+            const container = document.getElementById('cardContainer');
+            const div = document.createElement('div');
+            div.className = 'card-item';
+            div.dataset.cardId = cardObj.card_id;
+
+            // 縮圖
+            const img = document.createElement('img');
+            img.className = 'card-image';
+            img.src = cardObj.smallImage;
+            img.alt = cardObj.pokemon_name;
+
+            // 名稱
+            const pName = document.createElement('p');
+            pName.className = 'card-name';
+            pName.textContent = cardObj.pokemon_name;
+
+            // 點擊時打開彈窗
+            div.addEventListener('click', () => {
+                openCardModal(cardObj.card_id);
+            });
+
+            div.appendChild(img);
+            div.appendChild(pName);
+            container.appendChild(div);
         }
 
-        .remove-button:hover,
-        .download-button:hover {
-            background-color: #0056b3;
-        }
-    </style>
+        /**
+         * 打開 Modal，顯示放大圖
+         */
+        function openCardModal(cardId) {
+            console.log('Opening modal for card_id:', cardId);
+            console.log('Available cards:', cardDataList);
 
+            const cardObj = cardDataList.find(c => c.card_id === cardId);
+            if (!cardObj) {
+                console.error('找不到卡片:', cardId);
+                return;
+            }
+
+            const modal = document.getElementById('cardModal');
+            modal.classList.add('active');
+
+            // 更新彈窗內容
+            document.getElementById('modalImage').src = cardObj.largeImage;
+            document.getElementById('modalName').textContent = cardObj.pokemon_name;
+            document.getElementById('modalRarity').textContent = '稀有度: ' + cardObj.Rarity;
+            let t = cardObj.Type2 ? `${cardObj.Type1} / ${cardObj.Type2}` : cardObj.Type1;
+            document.getElementById('modalType').textContent = '屬性: ' + t;
+
+            // 綁定下載/移除按鈕
+            document.getElementById('modalDownloadBtn').onclick = () => downloadCard(cardObj);
+            document.getElementById('modalRemoveBtn').onclick = () => removeCard(cardObj.card_id);
+        }
+
+        /**
+         * 關閉 Modal
+         */
+        function closeCardModal() {
+            document.getElementById('cardModal').classList.remove('active');
+        }
+        // 點擊背景關閉
+        document.getElementById('cardModal').addEventListener('click', e => {
+            if (e.target.id === 'cardModal') {
+                closeCardModal();
+            }
+        });
+
+        /**
+         * 下載放大圖
+         */
+        function downloadCard(cardObj) {
+            try {
+                const link = document.createElement('a');
+                link.href = cardObj.largeImage;
+                const safeName = cardObj.pokemon_name.replace(/\s+/g, '_');
+                link.download = safeName + '.png';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            } catch (err) {
+                alert('下載失敗: ' + err);
+            }
+        }
+
+        /**
+         * 從卡冊移除
+         */
+        function removeCard(cardId) {
+            if (!confirm('確定要移除這張卡片嗎？')) return;
+
+            console.log('Removing card_id:', cardId);
+
+            fetch('../php/booklet_remove.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ card_id: cardId })
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        // 從 cardDataList 中移除該卡片
+                        cardDataList = cardDataList.filter(card => card.card_id !== cardId);
+
+                        // 移除 DOM
+                        const item = document.querySelector(`.card-item[data-card-id="${cardId}"]`);
+                        if (item) item.remove();
+
+                        // 關閉 Modal
+                        closeCardModal();
+
+                        alert('卡片已移除！');
+                    } else {
+                        alert('移除卡片失敗：' + data.message);
+                    }
+                })
+                .catch(err => {
+                    console.error('移除卡片時發生錯誤', err);
+                    alert('發生錯誤，請稍後再試');
+                });
+        }
+    </script>
 </body>
 
 </html>

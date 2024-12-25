@@ -40,8 +40,8 @@ if ($conn->connect_error) {
 }
 
 // 執行刪除
-$stmt = $conn->prepare("DELETE FROM booklet WHERE id = ? AND user_id = ?");
-$stmt->bind_param("ii", $cardId, $user_id);
+$stmt = $conn->prepare("DELETE FROM booklet WHERE card_id = ? AND user_id = ?");
+$stmt->bind_param("si", $cardId, $user_id);
 
 if ($stmt->execute()) {
     if ($stmt->affected_rows > 0) {
