@@ -1,6 +1,7 @@
 <?php
 session_start();
 $is_logged_in = isset($_SESSION['user_name']);
+$coins = 0; // 預設代幣數量為0
 
 if (!$is_logged_in) {
     header("Location: login.php");
@@ -19,6 +20,18 @@ if ($conn->connect_error) {
     die("資料庫連接失敗：" . $conn->connect_error);
 }
 
+// 如果用戶已登入，獲取代幣數量
+if ($is_logged_in) {
+    $user_id = $_SESSION['user_id'];
+    $sql = "SELECT COALESCE(coins, 0) as coins FROM account WHERE user_id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    $stmt->bind_result($coins);
+    $stmt->fetch();
+    $stmt->close();
+}
+
 // 定義可能的卡包類型和對應稀有度
 $card_packs = [
     '普通卡包' => ['Common'],
@@ -28,65 +41,40 @@ $card_packs = [
 
 // 預設不顯示卡片
 $random_cards = [];
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // 隨機選擇一個卡包類型
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'draw_card') {
+    // 調用 reduct_coins.php 來扣款
+    $cost = 10; // 每次抽卡扣 10 金幣
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, "http://localhost/path/to/deduct_coins.php"); // 修改為 deduct_coins.php 的實際路徑
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode(['cost' => $cost]));
+    $response = curl_exec($ch);
+    curl_close($ch);
+
+    $result = json_decode($response, true);
+    if (!$result['success']) {
+        // 返回餘額不足的錯誤
+        header('Content-Type: application/json');
+        echo json_encode(['success' => false, 'message' => $result['message']]);
+        exit;
+    }
+
+    // 如果扣款成功，繼續生成卡片
     $random_pack = array_rand($card_packs);
     $random_cards = generateRandomCards($card_packs[$random_pack], $conn);
 
-    // 如果是 AJAX 請求，返回 JSON 數據
-    if (
-        !empty($_SERVER['HTTP_X_REQUESTED_WITH']) &&
-        strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest'
-    ) {
-        header('Content-Type: application/json');
-        echo json_encode([
-            'cards' => $random_cards,
-            'backgrounds' => [
-                'Common' => '../images/card_background/normal/',
-                'Rare' => '../images/card_background/rare/',
-                'Legendary' => '../images/card_background/rare/'
-            ]
-        ]);
-        exit;
-    }
-
-    // 在 PHP 部分添加處理加入卡冊的 AJAX 請求
-    if (isset($_POST['action']) && $_POST['action'] === 'add_to_booklet') {
-        $user_id = $_SESSION['user_id'];
-        $cards = json_decode($_POST['cards'], true);
-
-        $success = true;
-        $message = '';
-
-        foreach ($cards as $card) {
-            $stmt = $conn->prepare("INSERT INTO booklet (user_id, pokemon_name, Rarity, Type1, Type2, image_url, background_image_url) VALUES (?, ?, ?, ?, ?, ?, ?)");
-
-            // 使用卡片中保存的實際背景路徑
-            $background_path = $card['background_image_url'];
-
-            $stmt->bind_param(
-                "issssss",
-                $user_id,
-                $card['Name'],
-                $card['Rarity'],
-                $card['Type1'],
-                $card['Type2'],
-                $card['image_url'],
-                $background_path
-            );
-
-            if (!$stmt->execute()) {
-                $success = false;
-                $message = $stmt->error;
-                break;
-            }
-        }
-
-        header('Content-Type: application/json');
-        echo json_encode(['success' => $success, 'message' => $message]);
-        exit;
-    }
+    header('Content-Type: application/json');
+    echo json_encode([
+        'success' => true,
+        'cards' => $random_cards,
+        'coins' => $result['new_balance'], // 更新後的餘額
+    ]);
+    exit;
 }
+
+
 
 // 隨機生成卡片
 function generateRandomCards($rarities, $conn)
@@ -148,12 +136,36 @@ function generateRandomCards($rarities, $conn)
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="user-id" content="<?php echo htmlspecialchars($user_id); ?>">
     <title>抽卡區</title>
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/pakage.css">
 </head>
 
 <body>
+    <header>
+        <div class="user-info">
+            <ul>
+                <?php if ($is_logged_in): ?>
+                    <div class="user-info">
+                        <span class="coin-display">
+                            <img src="../images/coin-icon.png" alt="代幣" class="coin-icon">
+                            <span id="coin-amount"><?php echo $coins; ?></span>
+                        </span>
+                        <p class="welcome">歡迎, <?php echo htmlspecialchars($_SESSION['user_name']); ?></p>
+                        <a href="../php/logout.php">
+                            <button class="login-button">登出</button>
+                        </a>
+                    </div>
+                <?php else: ?>
+                    <a href="../html/login.html" class="login-button-link">
+                        <button class="login-button">登入 / 註冊</button>
+                    </a>
+                <?php endif; ?>
+            </ul>
+        </div>
+    </header>
+
     <nav class="sidebar">
         <ul>
             <li><a href="../php/home.php">首頁</a></li>
@@ -235,7 +247,7 @@ function generateRandomCards($rarities, $conn)
     </main>
 
     <script>
-        // 隨機選擇背景圖片
+        // 隨機選擇景圖片
         function getBackgroundByRarity(rarity) {
             // 定義每個稀有度對應的背景圖片目錄和可用的背景圖片名稱
             const backgroundFiles = {
@@ -618,10 +630,10 @@ function generateRandomCards($rarities, $conn)
                                 alert('加入卡冊失敗：' + data.message);
                             }
                         })
-                        .catch(error => {
-                            console.error('加入卡冊時發生錯誤:', error);
-                            alert('發生錯誤，請稍後再試');
-                        });
+                        //.catch(error => {
+                        //    console.error('加入卡冊時發生錯誤:', error);
+                        //    alert('發生錯誤，請稍後再試');
+                        //});
                 }
 
                 // 修改再抽一次按鈕的事件處理
@@ -654,6 +666,12 @@ function generateRandomCards($rarities, $conn)
                 button.addEventListener('click', function (e) {
                     e.preventDefault();
 
+                    // 顯示確認對話框
+                    const userConfirmed = confirm('確定要花10皮卡幣抽卡嗎?');
+                    if (!userConfirmed) {
+                        return; // 如果用戶取消，則不進行後續操作
+                    }
+
                     fetch('pakage.php', {
                         method: 'POST',
                         headers: {
@@ -661,23 +679,23 @@ function generateRandomCards($rarities, $conn)
                             'X-Requested-With': 'XMLHttpRequest'
                         }
                     })
-                        .then(response => response.json())
-                        .then(data => {
-                            window.cardData = data;
-                            if (data.cards && data.cards.length > 0) {
-                                // 隱藏卡包容器
-                                const packContainer = document.getElementById('packContainer');
-                                if (packContainer) {
-                                    packContainer.style.display = 'none';
-                                }
-
-                                processAndDrawCards(data.cards);
+                    .then(response => response.json())
+                    .then(data => {
+                        window.cardData = data;
+                        if (data.cards && data.cards.length > 0) {
+                            // 隱藏卡包容器
+                            const packContainer = document.getElementById('packContainer');
+                            if (packContainer) {
+                                packContainer.style.display = 'none';
                             }
-                        })
-                        .catch(error => {
-                            console.error('抽卡時發生錯誤:', error);
-                            alert('發生錯誤，請稍後再試');
-                        });
+
+                            processAndDrawCards(data.cards);
+                        }
+                    })
+                    //.catch(error => {
+                    //    console.error('抽卡時發生錯誤:', error);
+                    //    alert('發生錯誤，請稍後再試');
+                    //});
                 });
             });
         });
@@ -923,6 +941,7 @@ function generateRandomCards($rarities, $conn)
             transform: rotateY(180deg);
         }
     </style>
+    <script src="../js/pakage.js"></script>
 </body>
 
 </html>

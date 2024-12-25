@@ -1,6 +1,30 @@
 <?php
 session_start();
 $is_logged_in = isset($_SESSION['user_name']);
+$coins = 0; // 預設代幣數量為0
+
+// 如果用戶已登入，獲取代幣數量
+if ($is_logged_in) {
+    $user_id = $_SESSION['user_id'];
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "Pokemon";
+
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    if ($conn->connect_error) {
+        die("資料庫連接失敗：" . $conn->connect_error);
+    }
+
+    $sql = "SELECT COALESCE(coins, 0) as coins FROM account WHERE user_id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    $stmt->bind_result($coins);
+    $stmt->fetch();
+    $stmt->close();
+    $conn->close();
+}
 ?>
 
 <!DOCTYPE html>
@@ -14,6 +38,29 @@ $is_logged_in = isset($_SESSION['user_name']);
 </head>
 
 <body data-page="reference">
+    <header>
+        <div class="user-info">
+            <ul>
+                <?php if ($is_logged_in): ?>
+                    <div class="user-info">
+                        <span class="coin-display">
+                            <img src="../images/coin-icon.png" alt="代幣" class="coin-icon">
+                            <span id="coin-amount"><?php echo $coins; ?></span>
+                        </span>
+                        <p class="welcome">歡迎, <?php echo htmlspecialchars($_SESSION['user_name']); ?></p>
+                        <a href="../php/logout.php">
+                            <button class="login-button">登出</button>
+                        </a>
+                    </div>
+                <?php else: ?>
+                    <a href="../html/login.html" class="login-button-link">
+                        <button class="login-button">登入 / 註冊</button>
+                    </a>
+                <?php endif; ?>
+            </ul>
+        </div>
+    </header>
+
     <nav class="sidebar">
         <ul>
             <li><a href="../php/home.php">首頁</a></li>
@@ -25,21 +72,6 @@ $is_logged_in = isset($_SESSION['user_name']);
             <li><a href="../php/reference.php">關於我們</a></li>
         </ul>
     </nav>
-
-    </header>
-    <div class="user-info">
-        <?php if ($is_logged_in): ?>
-            <p class="welcome">歡迎, <?php echo htmlspecialchars($_SESSION['user_name']); ?></p>
-            <a href="../php/logout.php">
-                <button class="login-button">登出</button>
-            </a>
-        <?php else: ?>
-            <a href="../html/login.html" class="login-button-link">
-                <button class="login-button">登入 / 註冊</button>
-            </a>
-        <?php endif; ?>
-    </div>
-    </header>
 
     <main class="content">
         <section id="about">
@@ -83,6 +115,15 @@ $is_logged_in = isset($_SESSION['user_name']);
 
             // 卡冊權限控制
             bookletLink.addEventListener("click", function (e) {
+                if (!isLoggedIn) {
+                    e.preventDefault();
+                    alert("登入後即可使用");
+                }
+            });
+
+            // 論壇權限控制
+            const forumLink = document.getElementById("forum-link");
+            forumLink.addEventListener("click", function (e) {
                 if (!isLoggedIn) {
                     e.preventDefault();
                     alert("登入後即可使用");
