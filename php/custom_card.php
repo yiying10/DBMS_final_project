@@ -1,8 +1,123 @@
 <?php
 session_start();
-if (!isset($_SESSION['user_id'])) {
-    header('Location: ../html/login.html');
-    exit();
+
+// 數據庫連接代碼
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "Pokemon";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+if ($conn->connect_error) {
+    die("連接失敗: " . $conn->connect_error);
+}
+$conn->set_charset("utf8");
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // 查詢最大的自定義ID
+    $maxIdQuery = "SELECT MAX(ID) as max_id FROM df_pokemon WHERE ID >= 899";
+    $result = $conn->query($maxIdQuery);
+    $row = $result->fetch_assoc();
+    $newId = ($row['max_id'] === null) ? 899 : $row['max_id'] + 1;
+    
+    // 獲取表單數據
+    $cardName = $_POST['card-name'];
+    $cardType1 = $_POST['card-type'];
+    $cardType2 = $_POST['card-secondary-type'];
+    $cardRarity = $_POST['card-rarity'];
+    $cardPower = $_POST['card-power'];
+    
+    // 獲取新增的表單數據
+    $ability = $_POST['ability'];
+    $abilityDescription = $_POST['ability-description'];
+    
+    // 處理上傳的圖片
+    $image = $_FILES['card-image'];
+    
+    // 修改圖片目錄
+    $uploadDir = "../images/pokemon_images/";
+    if (!file_exists($uploadDir)) {
+        mkdir($uploadDir, 0777, true);
+    }
+
+    // 使用卡片名稱作為文件名（添加文件擴展名）
+    $fileExtension = pathinfo($image['name'], PATHINFO_EXTENSION);
+    $imageFileName = $cardName . '.' . $fileExtension;
+    $imagePath = $uploadDir . $imageFileName;
+    
+    // 移動上傳的文件
+    if (move_uploaded_file($image['tmp_name'], $imagePath)) {
+        $imageUrl = "images/pokemon_images/" . $imageFileName;
+        
+        // 準備變量
+        $type2 = ($cardType2 !== '無') ? $cardType2 : '';
+        $generation = 'Custom';
+
+        // 開始事務處理
+        $conn->begin_transaction();
+
+        try {
+            // 插入寶可夢數據
+            $sql = "INSERT INTO df_pokemon (ID, Name, Type1, Type2, Rarity, Total, image_url, Generation) 
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("isssssss", 
+                $newId,
+                $cardName, 
+                $cardType1,
+                $type2,
+                $cardRarity,
+                $cardPower,
+                $imageUrl,
+                $generation
+            );
+            $stmt->execute();
+            
+            // 插入 ability 表數據
+            $sqlAbility = "INSERT INTO ability (Ability, Hidden, Name) VALUES (?, 0, ?)";
+            $stmtAbility = $conn->prepare($sqlAbility);
+            $stmtAbility->bind_param("ss", $ability, $cardName);
+            $stmtAbility->execute();
+            
+            // 插入 ability_description 表數據
+            $sqlAbilityDesc = "INSERT INTO ability_description (Name, Generation, Description) VALUES (?, 'Custom', ?)";
+            $stmtAbilityDesc = $conn->prepare($sqlAbilityDesc);
+            $stmtAbilityDesc->bind_param("ss", $ability, $abilityDescription);
+            $stmtAbilityDesc->execute();
+            
+            $conn->commit();
+            
+            // 關閉所有語句
+            $stmt->close();
+            $stmtAbility->close();
+            $stmtAbilityDesc->close();
+            
+            echo "<script>
+                    alert('新寶可夢已成功添加到圖鑑！');
+                    window.location.href = '../php/illustrated_book.php';
+                  </script>";
+            exit();
+        } catch (Exception $e) {
+            // 發生錯誤時回滾
+            $conn->rollback();
+            
+            // 關閉所有已準備的語句
+            if (isset($stmt)) {
+                $stmt->close();
+            }
+            if (isset($stmtAbility)) {
+                $stmtAbility->close();
+            }
+            if (isset($stmtAbilityDesc)) {
+                $stmtAbilityDesc->close();
+            }
+            
+            echo "Error: " . $e->getMessage();
+        }
+    } else {
+        echo "圖片上傳失敗";
+    }
 }
 ?>
 
@@ -67,10 +182,29 @@ if (!isset($_SESSION['user_id'])) {
             background-color: #fff; /* 背景顏色 */
             text-align: center; /* 文字居中 */
         }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        /* 移除數字入框的上下箭頭 */
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        input[type="number"] {
+            -moz-appearance: textfield;
+        }
     </style>
 </head>
 <body>
-    <!-- 包含導航欄等共用元素 -->
+    <!-- 包含導航欄等共用元件 -->
     <nav class="sidebar">
         <ul>
             <li><a href="../php/home.php">首頁</a></li>
@@ -86,26 +220,99 @@ if (!isset($_SESSION['user_id'])) {
     
     <main class="content">
         <h1>自製卡牌</h1>
-        <form id="custom-card-form" enctype="multipart/form-data">
+        <form id="custom-card-form" method="POST" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="card-image">上傳卡牌圖片：</label>
-                <input type="file" id="card-image" name="card-image" accept="image/*" required>
+                <input type="file" id="card-image" name="card-image" accept="image/*" required onchange="previewImage(event)">
+            </div>
+            
+            <div class="form-group" id="image-preview-container" style="display: none;">
+                <label>預覽圖片：</label>
+                <img id="image-preview" src="" alt="卡牌預覽" style="max-width: 300px; max-height: 300px; border: 1px solid #ccc; border-radius: 4px;">
             </div>
             
             <div class="form-group">
-                <label for="card-type">選擇屬性：</label>
-                <select id="card-type" name="card-type" required>
-                    <option value="">請選擇屬性</option>
-                    <option value="fire">火</option>
-                    <option value="water">水</option>
-                    <option value="grass">草</option>
-                    <option value="electric">電</option>
-                    <!-- 可以添加更多屬性 -->
+                <label for="card-rarity">稀有度：</label>
+                <select id="card-rarity" name="card-rarity" required>
+                    <option value="Common">Common</option>
+                    <option value="Baby">Baby</option>
+                    <option value="Mythical">Mythical</option>
+                    <option value="Legendary">Legendary</option>
                 </select>
             </div>
             
             <div class="form-group">
-                <label for="card-name">卡牌名稱：</label>
+                <label for="card-type">主要屬性：</label>
+                <select id="card-type" name="card-type" required>
+                    <option value="Ghost">Ghost</option>
+                    <option value="Grass">Grass</option>
+                    <option value="Psychic">Psychic</option>
+                    <option value="Dark">Dark</option>
+                    <option value="Bug">Bug</option>
+                    <option value="Steel">Steel</option>
+                    <option value="Rock">Rock</option>
+                    <option value="Normal">Normal</option>
+                    <option value="Fairy">Fairy</option>
+                    <option value="Ground">Ground</option>
+                    <option value="Poison">Poison</option>
+                    <option value="Fire">Fire</option>
+                    <option value="Ice">Ice</option>
+                    <option value="Electric">Electric</option>
+                    <option value="Water">Water</option>
+                    <option value="Dragon">Dragon</option>
+                    <option value="Fighting">Fighting</option>
+                    <option value="Flying">Flying</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="card-secondary-type">次要屬性：</label>
+                <select id="card-secondary-type" name="card-secondary-type">
+                    <option value="無">無</option>
+                    <option value="Ghost">Ghost</option>
+                    <option value="Grass">Grass</option>
+                    <option value="Psychic">Psychic</option>
+                    <option value="Dark">Dark</option>
+                    <option value="Bug">Bug</option>
+                    <option value="Steel">Steel</option>
+                    <option value="Rock">Rock</option>
+                    <option value="Normal">Normal</option>
+                    <option value="Fairy">Fairy</option>
+                    <option value="Ground">Ground</option>
+                    <option value="Poison">Poison</option>
+                    <option value="Fire">Fire</option>
+                    <option value="Ice">Ice</option>
+                    <option value="Electric">Electric</option>
+                    <option value="Water">Water</option>
+                    <option value="Dragon">Dragon</option>
+                    <option value="Fighting">Fighting</option>
+                    <option value="Flying">Flying</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="card-power">能力值總和：</label>
+                <input type="number" 
+                       id="card-power" 
+                       name="card-power" 
+                       placeholder="請輸入1-1000之間的數值"
+                       min="1" 
+                       max="1000" 
+                       required>
+            </div>
+            
+            <div class="form-group">
+                <label for="ability">能力名稱：</label>
+                <input type="text" id="ability" name="ability" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="ability-description">能力描述：</label>
+                <input type="text" id="ability-description" name="ability-description" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="card-name">卡牌名：</label>
                 <input type="text" id="card-name" name="card-name" required>
             </div>
             
@@ -118,7 +325,22 @@ if (!isset($_SESSION['user_id'])) {
     </main>
     
     <script>
-        // 處理表單提交和預覽的JavaScript代碼將在這裡
+        function previewImage(event) {
+            const file = event.target.files[0];
+            const previewContainer = document.getElementById('image-preview-container');
+            const imagePreview = document.getElementById('image-preview');
+
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    imagePreview.src = e.target.result;
+                    previewContainer.style.display = 'block';
+                }
+                reader.readAsDataURL(file);
+            } else {
+                previewContainer.style.display = 'none';
+            }
+        }
     </script>
 </body>
 </html> 
