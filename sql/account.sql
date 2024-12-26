@@ -6,5 +6,5 @@ CREATE TABLE account (
     account VARCHAR(50) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
     coins INT DEFAULT 100,
-    last_claim_time DATETIME
+    last_claim_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

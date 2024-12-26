@@ -1,7 +1,6 @@
 <?php
 session_start();
 $is_logged_in = isset($_SESSION['user_name']);
-$coins = 0; // 預設代幣數量為0
 
 // 開啟錯誤顯示
 error_reporting(E_ALL);
@@ -23,18 +22,6 @@ if ($conn->connect_error) {
 
 // 設定字符集
 $conn->set_charset("utf8mb4");
-
-// 如果用戶已登入，獲取代幣數量
-if ($is_logged_in) {
-    $user_id = $_SESSION['user_id'];
-    $sql = "SELECT COALESCE(coins, 0) as coins FROM account WHERE user_id = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $user_id);
-    $stmt->execute();
-    $stmt->bind_result($coins);
-    $stmt->fetch();
-    $stmt->close();
-}
 ?>
 
 <!DOCTYPE html>
@@ -47,45 +34,20 @@ if ($is_logged_in) {
 </head>
 
 <body data-page="illustrated_book">
-    <header>
-        <div class="user-info">
-            <ul>
-                <?php if ($is_logged_in): ?>
-                    <div class="user-info">
-                        <span class="coin-display">
-                            <img src="../images/coin-icon.png" alt="代幣" class="coin-icon">
-                            <span id="coin-amount"><?php echo $coins; ?></span>
-                        </span>
-                        <p class="welcome">歡迎, <?php echo htmlspecialchars($_SESSION['user_name']); ?></p>
-                        <a href="../php/logout.php">
-                            <button class="login-button">登出</button>
-                        </a>
-                    </div>
-                <?php else: ?>
-                    <a href="../html/login.html" class="login-button-link">
-                        <button class="login-button">登入 / 註冊</button>
-                    </a>
-                <?php endif; ?>
-            </ul>
-        </div>
-    </header>
-
     <!-- Sidebar -->
     <nav class="sidebar">
         <ul>
             <li><a href="../php/home.php">首頁</a></li>
-            <li><a href="../php/generate.php" id="card-generation-link" onclick="checkLogin(event)">卡牌生成區</a></li>
+            <li><a href="../php/generate.php" id="card-generation-link">卡牌生成區</a></li>
             <li><a href="../php/illustrated_book.php">卡牌圖鑑</a></li>
-            <li><a href="../php/pakage.php" id="pakage-link" onclick="checkLogin(event)">抽卡區</a></li>
-            <li><a href="../php/booklet.php" id="booklet-link" onclick="checkLogin(event)">卡冊</a></li>
-            <li><a href="../php/forum.php" id="forum-link" onclick="checkLogin(event)">論壇</a></li>
+            <li><a href="../php/pakage.php" id="pakage-link">抽卡區</a></li>
+            <li><a href="../php/booklet.php" id="booklet-link">卡冊</a></li>
             <li><a href="../php/reference.php">關於我們</a></li>
         </ul>
     </nav>
 
     <!-- Main Content -->
     <main class="content">
-        <h1>卡牌圖鑑</h1>
         <div class="pokedex-container">
             <div class="search-filter-section">
                 <input type="text" class="search-box" placeholder="搜尋寶可夢...">
@@ -226,24 +188,6 @@ if ($is_logged_in) {
             </div>
         </div>
     </div>
-
-    <script>
-        function redirectToCardGenerator(name, rarity, type, imagePath, type2) {
-            <?php if (!$is_logged_in): ?>
-                alert("登入後即可使用");
-                return;
-            <?php endif; ?>
-            // 如果已登入，則執行跳轉邏輯
-            window.location.href = `../php/card_generator.php?name=${encodeURIComponent(name)}&rarity=${encodeURIComponent(rarity)}&type=${encodeURIComponent(type)}&imagePath=${encodeURIComponent(imagePath)}&type2=${encodeURIComponent(type2)}`;
-        }
-
-        function checkLogin(event) {
-            <?php if (!$is_logged_in): ?>
-                event.preventDefault();
-                alert("登入後即可使用");
-            <?php endif; ?>
-        }
-    </script>
 </body>
 
 </html>
