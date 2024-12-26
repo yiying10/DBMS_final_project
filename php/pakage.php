@@ -42,7 +42,7 @@ $card_packs = [
 // 預設不顯示卡片
 $random_cards = [];
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // 檢查是否是加入卡冊的請求
+    // 檢查是否是加��卡冊的請求
     if (isset($_POST['action']) && $_POST['action'] === 'add_to_booklet') {
         header('Content-Type: application/json');
 
@@ -674,6 +674,48 @@ function generateRandomCards($rarities, $conn)
         }
 
         document.addEventListener('DOMContentLoaded', function () {
+            // 定義抽卡函數
+            function drawCard() {
+                // 顯示確認對話框
+                const userConfirmed = confirm('確定要花10皮卡幣抽卡嗎?');
+                if (!userConfirmed) {
+                    return;
+                }
+
+                // 發送 AJAX 請求
+                fetch('pakage.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                    body: 'action=draw_card'
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            // 更新金幣顯示
+                            document.getElementById('coin-amount').textContent = data.new_balance;
+
+                            // 處理卡片顯示
+                            window.cardData = data;
+                            if (data.cards && data.cards.length > 0) {
+                                const packContainer = document.getElementById('packContainer');
+                                if (packContainer) {
+                                    packContainer.style.display = 'none';
+                                }
+                                processAndDrawCards(data.cards);
+                            }
+                        } else {
+                            alert(data.message || '抽卡失敗');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('抽卡時發生錯誤:', error);
+                        alert('發生錯誤，請稍後再試');
+                    });
+            }
+
             // 綁定加入卡冊按鈕事件
             document.addEventListener('click', function (e) {
                 if (e.target.classList.contains('collection-button')) {
@@ -713,25 +755,8 @@ function generateRandomCards($rarities, $conn)
 
                 // 修改再抽一次按鈕的事件處理
                 if (e.target.classList.contains('draw-button')) {
-                    e.preventDefault(); // 防止表單提交
-
-                    // 隱藏當前卡片結果
-                    const cardResults = document.getElementById('cardResults');
-                    if (cardResults) {
-                        cardResults.style.display = 'none';
-                    }
-
-                    // 顯示卡包容器
-                    const packContainer = document.getElementById('packContainer');
-                    if (packContainer) {
-                        packContainer.style.display = 'flex';
-                    }
-
-                    // 重置卡包按鈕狀態
-                    const packButtons = document.querySelectorAll('.pack-button');
-                    packButtons.forEach(button => {
-                        button.disabled = false;
-                    });
+                    e.preventDefault();
+                    drawCard(); // 直接調用抽卡函數
                 }
             });
 
@@ -740,45 +765,7 @@ function generateRandomCards($rarities, $conn)
             packButtons.forEach(button => {
                 button.addEventListener('click', function (e) {
                     e.preventDefault();
-
-                    // 顯示確認對話框
-                    const userConfirmed = confirm('確定要花10皮卡幣抽卡嗎?');
-                    if (!userConfirmed) {
-                        return;
-                    }
-
-                    // 發送 AJAX 請求
-                    fetch('pakage.php', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/x-www-form-urlencoded',
-                            'X-Requested-With': 'XMLHttpRequest'
-                        },
-                        body: 'action=draw_card'
-                    })
-                        .then(response => response.json())
-                        .then(data => {
-                            if (data.success) {
-                                // 更新金幣顯示
-                                document.getElementById('coin-amount').textContent = data.new_balance;
-
-                                // 處理卡片顯示
-                                window.cardData = data;
-                                if (data.cards && data.cards.length > 0) {
-                                    const packContainer = document.getElementById('packContainer');
-                                    if (packContainer) {
-                                        packContainer.style.display = 'none';
-                                    }
-                                    processAndDrawCards(data.cards);
-                                }
-                            } else {
-                                alert(data.message || '抽卡失敗');
-                            }
-                        })
-                        .catch(error => {
-                            console.error('抽卡時發生錯誤:', error);
-                            alert('發生錯誤，請稍後再試');
-                        });
+                    drawCard(); // 直接調用抽卡函數
                 });
             });
         });
