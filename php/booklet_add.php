@@ -31,9 +31,9 @@ try {
         throw new Exception("數據庫連接失敗: " . $conn->connect_error);
     }
 
-    // 修改 SQL 語句，加入 user_id
-    $sql = "INSERT INTO booklet (card_id, user_id, pokemon_name, rarity, type1, type2, image_url, background_image_url, Ability, Description) 
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    // 修改 SQL 語句，只插入必要欄位
+    $sql = "INSERT INTO booklet (card_id, user_id, pokemon_name, background_image_url) 
+            VALUES (?, ?, ?, ?)";
 
     $stmt = $conn->prepare($sql);
     if (!$stmt) {
@@ -49,24 +49,15 @@ try {
     foreach ($data as $card) {
         // 遞增 card_id
         $maxId++;
-        $card_id = (string) $maxId;  // 轉換為字符串
+        $card_id = (string) $maxId;
 
-        // Ability 現在是直接的字符串
-        $ability = $card['Ability'] ?? '';
-        $ability_description = $card['ability_description'] ?? '';
-
+        // 修改 bind_param 參數
         $stmt->bind_param(
-            "sissssssss",
+            "siss",
             $card_id,
             $user_id,
             $card['name'],
-            $card['rarity'],
-            $card['type1'],
-            $card['type2'],
-            $card['image_url'],
-            $card['background_image_url'],
-            $ability,
-            $ability_description
+            $card['background_image_url']
         );
 
         if (!$stmt->execute()) {

@@ -33,7 +33,23 @@ if ($is_logged_in) {
 
 // 取得用戶的卡冊內容
 $user_id = $_SESSION['user_id'];
-$stmt = $conn->prepare("SELECT * FROM booklet WHERE user_id = ?");
+$stmt = $conn->prepare("
+    SELECT 
+        b.card_id,
+        b.pokemon_name,
+        b.background_image_url,
+        p.Type1,
+        p.Type2,
+        p.Rarity,
+        CONCAT('../images/pokemon_images/', p.Name, '.png') as image_url,
+        a.Ability,
+        ad.Description
+    FROM booklet b
+    LEFT JOIN df_pokemon p ON b.pokemon_name = p.Name
+    LEFT JOIN ability a ON b.pokemon_name = a.Name
+    LEFT JOIN ability_description ad ON a.Ability = ad.Name
+    WHERE b.user_id = ?
+");
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -248,7 +264,7 @@ unset($card);
                 // 建立縮圖 DOM
                 results.forEach(data => createCardItemDOM(data));
             }).catch(err => {
-                console.error('繪製卡片時發生錯誤：', err);
+                console.error('製卡片時發生錯誤：', err);
             });
         }
 
@@ -446,7 +462,7 @@ unset($card);
         }
 
         /**
-         * 打開 Modal，顯示放大圖
+         * 打開 Modal，顯示放大卡
          */
         function openCardModal(cardId) {
             console.log('Opening modal for card_id:', cardId);
