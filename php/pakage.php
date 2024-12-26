@@ -41,40 +41,114 @@ $card_packs = [
 
 // 預設不顯示卡片
 $random_cards = [];
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'draw_card') {
-    // 調用 reduct_coins.php 來扣款
-    $cost = 10; // 每次抽卡扣 10 金幣
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, "http://localhost/path/to/deduct_coins.php"); // 修改為 deduct_coins.php 的實際路徑
-    curl_setopt($ch, CURLOPT_POST, 1);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode(['cost' => $cost]));
-    $response = curl_exec($ch);
-    curl_close($ch);
-
-    $result = json_decode($response, true);
-    if (!$result['success']) {
-        // 返回餘額不足的錯誤
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // 檢查是否是加入卡冊的請求
+    if (isset($_POST['action']) && $_POST['action'] === 'add_to_booklet') {
         header('Content-Type: application/json');
-        echo json_encode(['success' => false, 'message' => $result['message']]);
-        exit;
+
+        try {
+            $cards = json_decode($_POST['cards'], true);
+            if (!$cards) {
+                throw new Exception('無效的卡片數據');
+            }
+
+            // 開始資料庫交易
+            $conn->begin_transaction();
+
+            // 插入卡片到用戶的卡冊
+            $insert_sql = "INSERT INTO user_cards (user_id, pokemon_name, rarity, type1, type2) VALUES (?, ?, ?, ?, ?)";
+            $stmt = $conn->prepare($insert_sql);
+
+            foreach ($cards as $card) {
+                $stmt->bind_param(
+                    "issss",
+                    $user_id,
+                    $card['Name'],
+                    $card['Rarity'],
+                    $card['Type1'],
+                    $card['Type2']
+                );
+
+                if (!$stmt->execute()) {
+                    throw new Exception('插入卡片失敗');
+                }
+            }
+
+            // 提交交易
+            $conn->commit();
+
+            echo json_encode([
+                'success' => true,
+                'message' => '成功加入卡冊'
+            ]);
+            exit;
+
+        } catch (Exception $e) {
+            // 如果出錯，回滾交易
+            $conn->rollback();
+            echo json_encode([
+                'success' => false,
+                'message' => '加入卡冊失敗：' . $e->getMessage()
+            ]);
+            exit;
+        }
     }
 
-    // 如果扣款成功，繼續生成卡片
-    $random_pack = array_rand($card_packs);
-    $random_cards = generateRandomCards($card_packs[$random_pack], $conn);
+    // 處理抽卡請求的代碼保持不變
+    if (
+        !empty($_SERVER['HTTP_X_REQUESTED_WITH']) &&
+        strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest'
+    ) {
+        header('Content-Type: application/json');
 
-    header('Content-Type: application/json');
-    echo json_encode([
-        'success' => true,
-        'cards' => $random_cards,
-        'coins' => $result['new_balance'], // 更新後的餘額
-    ]);
-    exit;
+        // 檢查餘額
+        if ($coins < 10) {
+            echo json_encode([
+                'success' => false,
+                'message' => '餘額不足，需要10個金幣才能抽卡'
+            ]);
+            exit;
+        }
+
+        try {
+            // 開始資料庫交易
+            $conn->begin_transaction();
+
+            // 扣除金幣
+            $update_sql = "UPDATE account SET coins = coins - 10 WHERE user_id = ?";
+            $stmt = $conn->prepare($update_sql);
+            $stmt->bind_param("i", $user_id);
+            $result = $stmt->execute();
+
+            if (!$result) {
+                throw new Exception("更新金幣失敗");
+            }
+
+            // 生成卡片
+            $random_pack = array_rand($card_packs);
+            $random_cards = generateRandomCards($card_packs[$random_pack], $conn);
+
+            // 提交交易
+            $conn->commit();
+
+            echo json_encode([
+                'success' => true,
+                'cards' => $random_cards,
+                'new_balance' => $coins - 10
+            ]);
+            exit;
+
+        } catch (Exception $e) {
+            // 如果出錯，回滾交易
+            $conn->rollback();
+            echo json_encode([
+                'success' => false,
+                'message' => '抽卡過程中發生錯誤: ' . $e->getMessage()
+            ]);
+            exit;
+        }
+    }
 }
-
-
 
 // 隨機生成卡片
 function generateRandomCards($rarities, $conn)
@@ -440,22 +514,10 @@ function generateRandomCards($rarities, $conn)
             // 獲取或創建結果容器
             let cardResults = document.getElementById('cardResults');
             if (!cardResults) {
-                console.log('創建新的 cardResults 容器');
                 cardResults = document.createElement('div');
                 cardResults.id = 'cardResults';
                 cardResults.className = 'card-results';
                 document.querySelector('main').appendChild(cardResults);
-            }
-
-            // 確保容器可見
-            cardResults.style.display = 'block';
-            cardResults.style.visibility = 'visible';
-            cardResults.style.opacity = '1';
-
-            // 隱藏卡包容器
-            const packContainer = document.getElementById('packContainer');
-            if (packContainer) {
-                packContainer.style.display = 'none';
             }
 
             // 生成 HTML
@@ -479,106 +541,107 @@ function generateRandomCards($rarities, $conn)
                 <button class="draw-button">再抽一次</button>
             `;
 
-            console.log('準備插入的 HTML:', htmlContent);
             cardResults.innerHTML = htmlContent;
-            console.log('HTML 已插入');
 
             // 處理卡片圖像
-            cards.forEach((cardData, index) => {
-                console.log('處理卡片:', cardData);
+            cards.forEach((card, index) => {
                 const canvas = document.querySelectorAll('.card-canvas')[index];
                 const ctx = canvas.getContext('2d');
 
-                // 載入背景圖片
-                const loadCard = () => {
-                    const backgroundImg = new Image();
-                    backgroundImg.onerror = () => {
-                        console.error('背景圖片載入失敗:', cardData.Rarity);
-                        // 重試載入背景
-                        setTimeout(loadCard, 500);
-                    };
+                // 載入卡片
+                const loadCard = async () => {
+                    try {
+                        // 載入背景圖片
+                        const backgroundImg = new Image();
+                        const rarityConfig = backgroundConfig[card.Rarity] || backgroundConfig['Common'];
+                        const randomFile = rarityConfig.files[Math.floor(Math.random() * rarityConfig.files.length)];
+                        const backgroundPath = `${rarityConfig.path}${randomFile}`;
 
-                    backgroundImg.onload = () => {
-                        ctx.drawImage(backgroundImg, 0, 0, canvas.width, canvas.height);
+                        await new Promise((resolve, reject) => {
+                            backgroundImg.onload = resolve;
+                            backgroundImg.onerror = reject;
+                            backgroundImg.src = backgroundPath;
+                        });
 
                         // 載入寶可夢圖片
                         const pokemonImg = new Image();
-                        pokemonImg.onerror = () => {
-                            console.error('寶可夢圖片載入失敗:', cardData.Name);
-                            // 重試載入寶可夢圖片
-                            setTimeout(loadCard, 500);
-                        };
+                        const imagePath = card.image_url;
 
-                        pokemonImg.onload = () => {
-                            // 清除畫布
-                            ctx.clearRect(0, 0, canvas.width, canvas.height);
-                            // 重新繪製背景
-                            ctx.drawImage(backgroundImg, 0, 0, canvas.width, canvas.height);
+                        await new Promise((resolve, reject) => {
+                            pokemonImg.onload = resolve;
+                            pokemonImg.onerror = reject;
+                            pokemonImg.src = imagePath;
+                        });
 
-                            // 計算寶可夢圖片的位置和大小
-                            const pokemonSize = Math.min(canvas.width * 0.8, canvas.height * 0.6);
-                            const x = (canvas.width - pokemonSize) / 2;
-                            const y = canvas.height * 0.2;
+                        // 繪製卡片
+                        ctx.drawImage(backgroundImg, 0, 0, canvas.width, canvas.height);
 
-                            // 繪製寶可夢圖片
-                            ctx.drawImage(pokemonImg, x, y, pokemonSize, pokemonSize);
+                        // 計算寶可夢圖片的位置和大小
+                        const pokemonSize = Math.min(canvas.width * 0.8, canvas.height * 0.6);
+                        const x = (canvas.width - pokemonSize) / 2;
+                        const y = canvas.height * 0.2;
 
-                            // 添加文字信息
-                            ctx.fillStyle = 'black';
-                            ctx.textAlign = 'center';
+                        ctx.drawImage(pokemonImg, x, y, pokemonSize, pokemonSize);
 
-                            // 寶可夢名稱
-                            ctx.font = 'bold 20px Arial';
-                            ctx.fillText(cardData.Name, canvas.width / 2, canvas.height * 0.15);
+                        // 添加文字
+                        ctx.fillStyle = 'black';
+                        ctx.textAlign = 'center';
 
-                            // 稀有度
-                            ctx.font = '16px Arial';
-                            ctx.fillText(cardData.Rarity, canvas.width / 2, canvas.height * 0.85);
+                        // 寶可夢名稱
+                        ctx.font = 'bold 20px Arial';
+                        ctx.fillText(card.Name, canvas.width / 2, canvas.height * 0.15);
 
-                            // 屬性
-                            let typeText = cardData.Type1;
-                            if (cardData.Type2) {
-                                typeText += ' / ' + cardData.Type2;
-                            }
-                            ctx.fillText(typeText, canvas.width / 2, canvas.height * 0.9);
+                        // 稀有度
+                        ctx.font = '16px Arial';
+                        ctx.fillText(card.Rarity, canvas.width / 2, canvas.height * 0.85);
 
-                            console.log(`卡片 ${cardData.Name} 繪製完成`);
+                        // 屬性
+                        let typeText = card.Type1;
+                        if (card.Type2) {
+                            typeText += ' / ' + card.Type2;
+                        }
+                        ctx.fillText(typeText, canvas.width / 2, canvas.height * 0.9);
 
-                            // 保存背景圖片路徑到卡片數據中
-                            cardData.background_image_url = backgroundPath;
-                        };
-
-                        // 確保圖片路徑正確
-                        const imagePath = cardData.image_url.startsWith('../')
-                            ? cardData.image_url
-                            : `../images/pokemon_images/${cardData.Name.toLowerCase()}.png`;
-
-                        console.log('嘗試載入寶可夢圖片:', imagePath);
-                        pokemonImg.src = imagePath;
-                    };
-
-                    // 根據稀有度選擇背景
-                    const rarityBackground = window.cardData.backgrounds[cardData.Rarity];
-                    const backgroundColors = ['red', 'blue', 'green', 'purple', 'tiffany', 'darkgreen', 'darkblue', 'violet'];
-                    const randomColor = backgroundColors[Math.floor(Math.random() * backgroundColors.length)];
-                    const backgroundPath = `${rarityBackground}${randomColor}.png`;
-
-                    console.log('嘗試載入背景圖片:', backgroundPath);
-                    backgroundImg.src = backgroundPath;
+                    } catch (error) {
+                        console.error('載入卡片時發生錯誤:', error);
+                        ctx.fillStyle = 'red';
+                        ctx.textAlign = 'center';
+                        ctx.fillText('載入失敗', canvas.width / 2, canvas.height / 2);
+                    }
                 };
 
-                // 開始載入卡片
                 loadCard();
             });
 
             // 添加卡片翻轉事件
             document.querySelectorAll('.card-item').forEach(card => {
                 card.addEventListener('click', function () {
-                    console.log('卡片被點擊');
                     this.querySelector('.card-inner').classList.add('card-flipped');
                 });
             });
+
+            // 隱藏卡包容器
+            const packContainer = document.getElementById('packContainer');
+            if (packContainer) {
+                packContainer.style.display = 'none';
+            }
         }
+
+        // 添加背景圖片配置
+        const backgroundConfig = {
+            'Common': {
+                path: '../images/card_background/normal/',
+                files: ['darkblue.png', 'darkgreen.png', 'lightblue.png', 'pink.png', 'red.png', 'tiffany.png', 'violet.png']
+            },
+            'Rare': {
+                path: '../images/card_background/normal/',
+                files: ['darkblue.png', 'darkgreen.png', 'lightblue.png', 'pink.png', 'red.png', 'tiffany.png', 'violet.png']
+            },
+            'Legendary': {
+                path: '../images/card_background/rare/',
+                files: ['blackblue.png', 'blue.png', 'bluepurple.png', 'colorful.png', 'metalpurple.png', 'pink.png', 'razer.png', 'red.png', 'silver.png', 'whiteblue.png']
+            }
+        };
 
         // 初始化卡片
         function initializeCards() {
@@ -613,14 +676,25 @@ function generateRandomCards($rarities, $conn)
             // 綁定加入卡冊按鈕事件
             document.addEventListener('click', function (e) {
                 if (e.target.classList.contains('collection-button')) {
-                    const cards = window.cardData.cards;
+                    // 獲取所有卡片數據
+                    const cards = window.cardData.cards.map(card => ({
+                        name: card.Name,
+                        rarity: card.Rarity,
+                        type1: card.Type1,
+                        type2: card.Type2 || null,
+                        image_url: card.image_url,
+                        background_image_url: `${backgroundConfig[card.Rarity].path}${backgroundConfig[card.Rarity].files[Math.floor(Math.random() * backgroundConfig[card.Rarity].files.length)]}`,
+                        Ability: card.Ability || null,
+                        ability_description: card.Description || null
+                    }));
 
-                    fetch('pakage.php', {
+                    // 發送到 booklet_add.php 而不是 user_cards
+                    fetch('../php/booklet_add.php', {
                         method: 'POST',
                         headers: {
-                            'Content-Type': 'application/x-www-form-urlencoded',
+                            'Content-Type': 'application/json'
                         },
-                        body: `action=add_to_booklet&cards=${encodeURIComponent(JSON.stringify(cards))}`
+                        body: JSON.stringify(cards)
                     })
                         .then(response => response.json())
                         .then(data => {
@@ -630,10 +704,10 @@ function generateRandomCards($rarities, $conn)
                                 alert('加入卡冊失敗：' + data.message);
                             }
                         })
-                        //.catch(error => {
-                        //    console.error('加入卡冊時發生錯誤:', error);
-                        //    alert('發生錯誤，請稍後再試');
-                        //});
+                        .catch(error => {
+                            console.error('加入卡冊時發生錯誤:', error);
+                            alert('發生錯誤，請稍後再試');
+                        });
                 }
 
                 // 修改再抽一次按鈕的事件處理
@@ -669,33 +743,41 @@ function generateRandomCards($rarities, $conn)
                     // 顯示確認對話框
                     const userConfirmed = confirm('確定要花10皮卡幣抽卡嗎?');
                     if (!userConfirmed) {
-                        return; // 如果用戶取消，則不進行後續操作
+                        return;
                     }
 
+                    // 發送 AJAX 請求
                     fetch('pakage.php', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/x-www-form-urlencoded',
                             'X-Requested-With': 'XMLHttpRequest'
-                        }
+                        },
+                        body: 'action=draw_card'
                     })
-                    .then(response => response.json())
-                    .then(data => {
-                        window.cardData = data;
-                        if (data.cards && data.cards.length > 0) {
-                            // 隱藏卡包容器
-                            const packContainer = document.getElementById('packContainer');
-                            if (packContainer) {
-                                packContainer.style.display = 'none';
-                            }
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                // 更新金幣顯示
+                                document.getElementById('coin-amount').textContent = data.new_balance;
 
-                            processAndDrawCards(data.cards);
-                        }
-                    })
-                    //.catch(error => {
-                    //    console.error('抽卡時發生錯誤:', error);
-                    //    alert('發生錯誤，請稍後再試');
-                    //});
+                                // 處理卡片顯示
+                                window.cardData = data;
+                                if (data.cards && data.cards.length > 0) {
+                                    const packContainer = document.getElementById('packContainer');
+                                    if (packContainer) {
+                                        packContainer.style.display = 'none';
+                                    }
+                                    processAndDrawCards(data.cards);
+                                }
+                            } else {
+                                alert(data.message || '抽卡失敗');
+                            }
+                        })
+                        .catch(error => {
+                            console.error('抽卡時發生錯誤:', error);
+                            alert('發生錯誤，請稍後再試');
+                        });
                 });
             });
         });
