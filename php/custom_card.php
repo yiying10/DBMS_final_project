@@ -118,6 +118,43 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         echo "圖片上傳失敗";
     }
+
+    // 檢查卡牌名稱是否重複
+    $checkName = "SELECT COUNT(*) as count FROM df_pokemon WHERE Name = ?";
+    $stmtCheckName = $conn->prepare($checkName);
+    $stmtCheckName->bind_param("s", $cardName);
+    $stmtCheckName->execute();
+    $nameResult = $stmtCheckName->get_result()->fetch_assoc();
+    
+    // 檢查能力名稱是否重複
+    $checkAbility = "SELECT COUNT(*) as count FROM ability WHERE Ability = ?";
+    $stmtCheckAbility = $conn->prepare($checkAbility);
+    $stmtCheckAbility->bind_param("s", $ability);
+    $stmtCheckAbility->execute();
+    $abilityResult = $stmtCheckAbility->get_result()->fetch_assoc();
+    
+    // 檢查能力描述是否重複
+    $checkDesc = "SELECT COUNT(*) as count FROM ability_description WHERE Description = ?";
+    $stmtCheckDesc = $conn->prepare($checkDesc);
+    $stmtCheckDesc->bind_param("s", $abilityDescription);
+    $stmtCheckDesc->execute();
+    $descResult = $stmtCheckDesc->get_result()->fetch_assoc();
+
+    if ($nameResult['count'] > 0) {
+        echo "<script>alert('卡牌名稱已存在！'); history.back();</script>";
+        exit();
+    } else if ($abilityResult['count'] > 0) {
+        echo "<script>alert('能力名稱已存在！'); history.back();</script>";
+        exit();
+    } else if ($descResult['count'] > 0) {
+        echo "<script>alert('能力描述已存在！'); history.back();</script>";
+        exit();
+    }
+
+    // 關閉檢查用的語句
+    $stmtCheckName->close();
+    $stmtCheckAbility->close();
+    $stmtCheckDesc->close();
 }
 ?>
 
