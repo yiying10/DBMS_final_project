@@ -36,24 +36,35 @@ async function drawCardDataURL(cardData, width, height) {
     const ctx = canvas.getContext('2d');
 
     try {
+        ctx.save();
+        
+        // 先繪製圓角路徑
+        ctx.beginPath();
+        ctx.roundRect(0, 0, width, height, 20); // 使用新的 roundRect API
+        ctx.clip();
+
+        // 繪製背景圖片
         const backgroundImage = await loadImage(getBackgroundByRarity(cardData.Rarity));
         ctx.drawImage(backgroundImage, 0, 0, width, height);
 
-        const margin = width * 0.08;
-        roundRect(ctx, margin, margin, width - margin * 2, height - margin * 2, 15);
-        ctx.save();
+        // 繪製內部白色區域
+        const margin = width * 0.05;
+        ctx.beginPath();
+        ctx.roundRect(margin, margin, width - margin * 2, height - margin * 2, 15);
         ctx.fillStyle = 'rgba(255, 255, 255, 0.98)';
         ctx.fill();
-        ctx.restore();
 
+        // 繪製寶可夢圖片和文字
         const pokemonImage = await loadImage(cardData.image_url);
-        const pokeW = width * 0.68;
+        const pokeW = width * 0.7;
         const pokeH = height * 0.35;
-        const pokeX = width * 0.16;
-        const pokeY = width * 0.15;
+        const pokeX = (width - pokeW) / 2;
+        const pokeY = height * 0.12;
         ctx.drawImage(pokemonImage, pokeX, pokeY, pokeW, pokeH);
 
         drawCardText(ctx, canvas, cardData, pokeX, pokeY, pokeW, pokeH);
+        
+        ctx.restore();
 
         return canvas.toDataURL('image/png');
     } catch (error) {
@@ -218,7 +229,7 @@ function drawCard() {
         handleDrawCardResponse(data);
     })
     .catch(error => {
-        console.error('抽卡時發生錯誤:', error);
+        console.error('抽卡發生錯誤:', error);
         handleDrawCardError(error);
     });
 }
@@ -288,7 +299,7 @@ function addToCollection(cards) {
         }
     })
     .catch(error => {
-        console.error('加入卡冊時發生錯誤:', error);
+        console.error('加入卡冊���發生錯誤:', error);
         alert('發生錯誤，請稍後再試');
     });
 }
@@ -296,61 +307,57 @@ function addToCollection(cards) {
 // 添加 processAndDrawCards 函數
 async function processAndDrawCards(cards) {
     const cardContainer = document.querySelector('.card-container');
-    cardContainer.innerHTML = ''; // 清空現有卡片
+    cardContainer.innerHTML = '';
 
     for (const card of cards) {
-        // 創建卡片容器
         const cardItem = document.createElement('div');
         cardItem.className = 'card-item';
         
-        // 置卡片HTML結構
+        // 修改卡片 HTML 結構，確保背面圖片有圓角
         cardItem.innerHTML = `
             <div class="card-inner">
                 <div class="card-back">
-                    <img src="../images/card_back.png" alt="card back" width="250" height="350">
+                    <img src="../images/card_back.png" alt="card back" style="width: 100%; height: 100%; object-fit: cover; border-radius: 20px;">
                 </div>
                 <div class="card-front">
-                    <canvas class="card-canvas" width="250" height="350"></canvas>
+                    <img class="card-image" style="width: 100%; height: 100%; object-fit: contain; border-radius: 20px;">
                 </div>
             </div>
         `;
 
         cardContainer.appendChild(cardItem);
 
-        // 獲取canvas並繪製卡片
-        const canvas = cardItem.querySelector('.card-canvas');
         try {
             const dataUrl = await drawCardDataURL(card, 250, 350);
-            const img = new Image();
-            img.onload = function() {
-                const ctx = canvas.getContext('2d');
-                ctx.drawImage(img, 0, 0);
-            };
-            img.src = dataUrl;
+            const cardImage = cardItem.querySelector('.card-image');
+            cardImage.src = dataUrl;
         } catch (error) {
             console.error('Error drawing card:', error);
         }
 
-        // 添加翻牌效果
+        // 添加點擊事件
         cardItem.addEventListener('click', function() {
-            this.querySelector('.card-inner').classList.add('card-flipped');
+            const cardInner = this.querySelector('.card-inner');
+            cardInner.style.borderRadius = '20px'; // 確保翻轉時保持圓角
+            cardInner.classList.add('card-flipped');
         });
     }
 
-    // 顯示結果區域
     document.getElementById('cardResults').style.display = 'block';
 }
 
-function roundRect(ctx, x, y, width, height, radius) {
-    ctx.beginPath();
-    ctx.moveTo(x + radius, y);
-    ctx.lineTo(x + width - radius, y);
-    ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
-    ctx.lineTo(x + width, y + height - radius);
-    ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
-    ctx.lineTo(x + radius, y + height);
-    ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
-    ctx.lineTo(x, y + radius);
-    ctx.quadraticCurveTo(x, y, x + radius, y);
-    ctx.closePath();
+// 如果瀏覽器不支援 roundRect，添加這個 polyfill
+if (!CanvasRenderingContext2D.prototype.roundRect) {
+    CanvasRenderingContext2D.prototype.roundRect = function(x, y, width, height, radius) {
+        if (width < 2 * radius) radius = width / 2;
+        if (height < 2 * radius) radius = height / 2;
+        this.beginPath();
+        this.moveTo(x + radius, y);
+        this.arcTo(x + width, y, x + width, y + height, radius);
+        this.arcTo(x + width, y + height, x, y + height, radius);
+        this.arcTo(x, y + height, x, y, radius);
+        this.arcTo(x, y, x + width, y, radius);
+        this.closePath();
+        return this;
+    };
 }

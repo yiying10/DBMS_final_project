@@ -91,6 +91,7 @@ unset($card);
             transition: transform 0.2s;
             background-color: #fff;
             padding: 5px;
+
         }
 
         .card-item:hover {
@@ -220,7 +221,6 @@ unset($card);
 
     <main class="content">
         <h1>我的卡冊</h1>
-        <!-- 縮圖容器 -->
         <div class="card-container" id="cardContainer"></div>
     </main>
 
@@ -229,11 +229,6 @@ unset($card);
         <div class="modal-content">
             <button class="modal-close" onclick="closeCardModal()">✕</button>
             <img id="modalImage" class="modal-image" src="" alt="放大卡牌圖" />
-            <div class="modal-info">
-                <p id="modalName"></p>
-                <p id="modalRarity"></p>
-                <p id="modalType"></p>
-            </div>
             <div class="modal-actions">
                 <button class="download-button" id="modalDownloadBtn">下載</button>
                 <button class="remove-button" id="modalRemoveBtn">移除</button>
@@ -457,7 +452,6 @@ unset($card);
             });
 
             div.appendChild(img);
-            div.appendChild(pName);
             container.appendChild(div);
         }
 
