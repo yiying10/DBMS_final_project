@@ -38,6 +38,7 @@ $conn->set_charset("utf8mb4");
     <nav class="sidebar">
         <ul>
             <li><a href="../php/home.php">首頁</a></li>
+            <li><a href="../php/custom_card.php" id="custom-card-link">自製卡牌區</a></li>
             <li><a href="../php/generate.php" id="card-generation-link">卡牌生成區</a></li>
             <li><a href="../php/illustrated_book.php">卡牌圖鑑</a></li>
             <li><a href="../php/pakage.php" id="pakage-link">抽卡區</a></li>
