@@ -260,7 +260,7 @@ function generateRandomCards($rarities, $conn)
         <ul>
             <li><a href="../php/home.php">首頁</a></li>
             <li><a href="../php/custom_card.php">自製卡牌區</a></li>
-            <li><a href="../php/generate.php">卡牌生成</a></li>
+            <li><a href="../php/generate.php">卡牌生成區</a></li>
             <li><a href="../php/illustrated_book.php">卡牌圖鑑</a></li>
             <li><a href="../php/pakage.php">抽卡區</a></li>
             <li><a href="../php/booklet.php">卡冊</a></li>
