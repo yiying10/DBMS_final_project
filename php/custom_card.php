@@ -110,9 +110,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmtAbility->close();
         $stmtAbilityDesc->close();
 
+        // 直接輸出 JavaScript alert，然後等待用戶確認後再跳轉
         echo "<script>
-                alert('新寶可夢已成功添加到圖鑑！');
-                window.location.href = '../php/illustrated_book.php';
+                if(confirm('新寶可夢已成功添加到圖鑑！')) {
+                    window.location.href = '../php/illustrated_book.php';
+                }
               </script>";
         exit();
     } catch (Exception $e) {
@@ -240,7 +242,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             border-radius: 4px;
             /* 圓角 */
             cursor: pointer;
-            /* 鼠標指針 */
+            /* 鼠標指 */
             font-size: 16px;
             /* 字體大小 */
         }
@@ -288,11 +290,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
+    <?php
+    if (isset($_SESSION['success_message'])) {
+        echo "<script>
+                alert('新寶可夢已成功添加到圖鑑！');
+                window.location.href = '../php/illustrated_book.php';
+              </script>";
+        unset($_SESSION['success_message']);
+    }
+    ?>
     <!-- 包含導航欄等共用元件 -->
     <nav class="sidebar">
         <ul>
             <li><a href="../php/home.php">首頁</a></li>
-            <li><a href="../php/custom_card.php" id="custom-card-link">自製卡���區</a></li>
+            <li><a href="../php/custom_card.php" id="custom-card-link">自製卡牌區</a></li>
             <li><a href="../php/generate.php" id="card-generation-link">卡牌生成區</a></li>
             <li><a href="../php/illustrated_book.php">卡牌圖鑑</a></li>
             <li><a href="../php/pakage.php" id="pakage-link">抽卡區</a></li>

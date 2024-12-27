@@ -54,7 +54,7 @@ function redirectToCardGenerator(name, rarity, type1, imageUrl, type2) {
     });
 }
 
-function showDetails(name, rarity, type1, imageUrl, type2, total) {
+function showDetails(name, rarity, type1, imageUrl, type2, total, id) {
     const modal = document.getElementById('pokemonModal');
     
     // 設置模態框內容
@@ -65,12 +65,56 @@ function showDetails(name, rarity, type1, imageUrl, type2, total) {
     document.getElementById('modalTotal').textContent = total;
     document.getElementById('modalImage').src = imageUrl;
     
+    // 根據 ID 決定是否顯示刪除按鈕
+    const deleteButtonContainer = document.getElementById('deleteButtonContainer');
+    deleteButtonContainer.innerHTML = ''; // 清空現有內容
+    
+    if (id > 898) {
+        const deleteButton = document.createElement('button');
+        deleteButton.className = 'delete-btn';
+        deleteButton.textContent = '刪除';
+        deleteButton.onclick = () => deletePokemon(id, name);
+        deleteButtonContainer.appendChild(deleteButton);
+    }
+    
     // 顯示模態框
     requestAnimationFrame(() => {
         modal.style.display = 'flex';
         requestAnimationFrame(() => {
             modal.classList.add('show');
         });
+    });
+}
+
+// 添加刪除功能
+function deletePokemon(id, name) {
+    if (!confirm('確定要刪除這個寶可夢嗎？此操作將同時刪除相關的能力和描述，且無法撤銷。')) {
+        return;
+    }
+
+    fetch('../php/delete_pokemon.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            id: id,
+            name: name
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('寶可夢已成功刪除！');
+            closeModal();
+            location.reload(); // 重新載入頁面以更新顯示
+        } else {
+            alert('刪除失敗：' + data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('刪除過程中發生錯誤');
     });
 }
 

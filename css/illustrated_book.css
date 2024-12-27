@@ -183,9 +183,12 @@
 .modal-footer {
     text-align: center;
     margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
 }
 
-.close-modal-btn {
+.close-modal-btn, .delete-btn {
     background-color: #102a49;
     color: white;
     border: none;
@@ -198,4 +201,12 @@
 
 .close-modal-btn:hover {
     background-color: #798bcb;
+}
+
+.delete-btn {
+    background-color: #ff4444;
+}
+
+.delete-btn:hover {
+    background-color: #cc0000;
 }

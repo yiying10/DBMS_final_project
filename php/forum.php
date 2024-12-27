@@ -135,6 +135,7 @@ $db->close();
 ?>
 <!DOCTYPE html>
 <html lang="zh-Hant">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -142,6 +143,7 @@ $db->close();
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/forum.css">
 </head>
+
 <body data-page="forum">
     <header>
         <div class="user-info">
@@ -174,7 +176,7 @@ $db->close();
             <li><a href="../php/illustrated_book.php">卡牌圖鑑</a></li>
             <li><a href="../php/pakage.php" id="pakage-link">抽卡區</a></li>
             <li><a href="../php/booklet.php" id="booklet-link">卡冊</a></li>
-            <li><a href="../php/forum.php">論壇</a></li>
+            <li><a href="../php/forum.php" id="forum-link">論壇</a></li>
             <li><a href="../php/reference.php">關於我們</a></li>
         </ul>
     </nav>
@@ -203,14 +205,15 @@ $db->close();
                     <div class="post-header">
                         <span class="username"><?php echo htmlspecialchars($post['user_name']); ?></span>
                         <span class="post-time"><?php echo date('Y-m-d H:i', strtotime($post['created_at'])); ?></span>
-                        
+
                         <!-- 編輯與刪除按鈕 -->
                         <?php if ($post['user_name'] === $_SESSION['user_name']): ?>
                             <div class="post-actions">
                                 <a href="edit_post.php?id=<?php echo $post['id']; ?>" class="edit-btn">編輯</a>
                                 <form method="post" style="display: inline;">
                                     <input type="hidden" name="post_id" value="<?php echo $post['id']; ?>">
-                                    <button type="submit" name="delete_post" class="delete-btn" onclick="return confirm('確定要刪除這篇貼文及其留言嗎？')">刪除</button>
+                                    <button type="submit" name="delete_post" class="delete-btn"
+                                        onclick="return confirm('確定要刪除這篇貼文及其留言嗎？')">刪除</button>
                                 </form>
                             </div>
                         <?php endif; ?>
@@ -225,7 +228,8 @@ $db->close();
                             <div class="comment">
                                 <div class="comment-header">
                                     <span class="username"><?php echo htmlspecialchars($comment['user_name']); ?></span>
-                                    <span class="comment-time"><?php echo date('Y-m-d H:i', strtotime($comment['created_at'])); ?></span>
+                                    <span
+                                        class="comment-time"><?php echo date('Y-m-d H:i', strtotime($comment['created_at'])); ?></span>
                                 </div>
                                 <div class="comment-content">
                                     <?php echo nl2br(htmlspecialchars($comment['content'])); ?>
@@ -247,4 +251,5 @@ $db->close();
         </div>
     </main>
 </body>
+
 </html>

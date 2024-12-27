@@ -259,12 +259,12 @@ function generateRandomCards($rarities, $conn)
     <nav class="sidebar">
         <ul>
             <li><a href="../php/home.php">首頁</a></li>
-            <li><a href="../php/custom_card.php">自製卡牌區</a></li>
-            <li><a href="../php/generate.php">卡牌生成</a></li>
+            <li><a href="../php/custom_card.php" id="custom-card-link">自製卡牌區</a></li>
+            <li><a href="../php/generate.php" id="card-generation-link">卡牌生成區</a></li>
             <li><a href="../php/illustrated_book.php">卡牌圖鑑</a></li>
-            <li><a href="../php/pakage.php">抽卡區</a></li>
-            <li><a href="../php/booklet.php">卡冊</a></li>
-            <li><a href="../php/forum.php">論壇</a></li>
+            <li><a href="../php/pakage.php" id="pakage-link">抽卡區</a></li>
+            <li><a href="../php/booklet.php" id="booklet-link">卡冊</a></li>
+            <li><a href="../php/forum.php" id="forum-link">論壇</a></li>
             <li><a href="../php/reference.php">關於我們</a></li>
         </ul>
     </nav>

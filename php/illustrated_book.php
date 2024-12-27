@@ -135,7 +135,7 @@ $conn->set_charset("utf8mb4");
                                 echo '<button class="detail-btn" onclick="showDetails(\'' . htmlspecialchars($name) . '\', \'' .
                                     htmlspecialchars($rarity) . '\', \'' . htmlspecialchars($type) . '\', \'' .
                                     htmlspecialchars($imagePath) . '\', \'' . htmlspecialchars($row['Type2']) . '\', \'' .
-                                    htmlspecialchars($row['Total']) . '\')">詳細資訊</button>';
+                                    htmlspecialchars($row['Total']) . '\', \'' . htmlspecialchars($row['ID']) . '\')">詳細資訊</button>';
                                 echo '<button class="generate-btn" onclick="redirectToCardGenerator(\'' .
                                     htmlspecialchars($name) . '\', \'' .
                                     htmlspecialchars($rarity) . '\', \'' .
@@ -187,6 +187,7 @@ $conn->set_charset("utf8mb4");
                 </div>
             </div>
             <div class="modal-footer">
+                <div id="deleteButtonContainer"></div>
                 <button class="close-modal-btn" onclick="closeModal()">關閉</button>
             </div>
         </div>
