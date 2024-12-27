@@ -229,6 +229,11 @@ unset($card);
         <div class="modal-content">
             <button class="modal-close" onclick="closeCardModal()">✕</button>
             <img id="modalImage" class="modal-image" src="" alt="放大卡牌圖" />
+            <div class="modal-info">
+                <p id="modalName"></p>
+                <p id="modalRarity"></p>
+                <p id="modalType"></p>
+            </div>
             <div class="modal-actions">
                 <button class="download-button" id="modalDownloadBtn">下載</button>
                 <button class="remove-button" id="modalRemoveBtn">移除</button>
