@@ -37,15 +37,15 @@ if (!$is_logged_in) {
 // 發佈貼文功能
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['content']) && empty($_POST['post_id'])) {
     $content = trim($_POST['content']);
-    $user_name = $_SESSION['user_name'];
+    $user_id = $_SESSION['user_id'];
 
     if (empty($content)) {
         die("貼文內容不能為空！");
     }
 
-    $stmt = $db->prepare("INSERT INTO forum_posts (user_name, content, created_at) VALUES (?, ?, NOW())");
+    $stmt = $db->prepare("INSERT INTO forum_posts (user_id, content, created_at) VALUES (?, ?, NOW())");
     if ($stmt) {
-        $stmt->bind_param("ss", $user_name, $content);
+        $stmt->bind_param("is", $user_id, $content);
         if ($stmt->execute()) {
             $stmt->close();
             header("Location: forum.php");
@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['content']) && empty($
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['post_id'], $_POST['comment_content'])) {
     $post_id = $_POST['post_id'];
     $content = trim($_POST['comment_content']);
-    $user_name = $_SESSION['user_name'];
+    $user_id = $_SESSION['user_id'];
 
     if (empty($content)) {
         die("評論內容不能為空！");
@@ -78,9 +78,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['post_id'], $_POST['co
     }
     $stmt->close();
 
-    $stmt = $db->prepare("INSERT INTO comments (post_id, user_name, content, created_at) VALUES (?, ?, ?, NOW())");
+    $stmt = $db->prepare("INSERT INTO comments (post_id, user_id, content, created_at) VALUES (?, ?, ?, NOW())");
     if ($stmt) {
-        $stmt->bind_param("iss", $post_id, $user_name, $content);
+        $stmt->bind_param("iis", $post_id, $user_id, $content);
         if ($stmt->execute()) {
             $stmt->close();
             header("Location: forum.php");
@@ -96,7 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['post_id'], $_POST['co
 // 刪除貼文及其相關留言
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_post'])) {
     $post_id = $_POST['post_id'];
-    $user_name = $_SESSION['user_name'];
+    $user_id = $_SESSION['user_id'];
 
     // 刪除留言
     $stmt = $db->prepare("DELETE FROM comments WHERE post_id = ?");
@@ -107,8 +107,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_post'])) {
     $stmt->close();
 
     // 刪除貼文
-    $stmt = $db->prepare("DELETE FROM forum_posts WHERE id = ? AND user_name = ?");
-    $stmt->bind_param("is", $post_id, $user_name);
+    $stmt = $db->prepare("DELETE FROM forum_posts WHERE id = ? AND user_id = ?");
+    $stmt->bind_param("ii", $post_id, $user_id);
     if ($stmt->execute()) {
         $stmt->close();
         header("Location: forum.php");
@@ -120,11 +120,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_post'])) {
 
 // 獲取所有貼文和評論
 $posts = [];
-$result = $db->query("SELECT * FROM forum_posts ORDER BY created_at DESC");
+$sql = "SELECT f.*, a.user_name 
+        FROM forum_posts f 
+        JOIN account a ON f.user_id = a.user_id 
+        ORDER BY f.created_at DESC";
+$result = $db->query($sql);
 if ($result) {
     while ($post = $result->fetch_assoc()) {
         $post_id = $post['id'];
-        $comments_result = $db->query("SELECT * FROM comments WHERE post_id = $post_id ORDER BY created_at ASC");
+        $comments_sql = "SELECT c.*, a.user_name 
+                        FROM comments c 
+                        JOIN account a ON c.user_id = a.user_id 
+                        WHERE c.post_id = ? 
+                        ORDER BY c.created_at ASC";
+        $stmt = $db->prepare($comments_sql);
+        $stmt->bind_param("i", $post_id);
+        $stmt->execute();
+        $comments_result = $stmt->get_result();
         $post['comments'] = $comments_result ? $comments_result->fetch_all(MYSQLI_ASSOC) : [];
         $posts[] = $post;
     }
@@ -207,7 +219,7 @@ $db->close();
                         <span class="post-time"><?php echo date('Y-m-d H:i', strtotime($post['created_at'])); ?></span>
 
                         <!-- 編輯與刪除按鈕 -->
-                        <?php if ($post['user_name'] === $_SESSION['user_name']): ?>
+                        <?php if (intval($post['user_id']) === intval($_SESSION['user_id'])): ?>
                             <div class="post-actions">
                                 <a href="edit_post.php?id=<?php echo $post['id']; ?>" class="edit-btn">編輯</a>
                                 <form method="post" style="display: inline;">

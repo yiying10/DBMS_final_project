@@ -5,13 +5,9 @@ function getBackgroundByRarity(rarity) {
             path: '../images/card_background/normal/',
             files: ['darkblue.png', 'darkgreen.png', 'lightblue.png', 'pink.png', 'red.png', 'tiffany.png', 'violet.png']
         },
-        'Baby': {
-            path: '../images/card_background/normal/',
-            files: ['darkblue.png', 'darkgreen.png', 'lightblue.png', 'pink.png', 'red.png', 'tiffany.png', 'violet.png']
-        },
-        'Rare': {
-            path: '../images/card_background/normal/',
-            files: ['darkblue.png', 'darkgreen.png', 'lightblue.png', 'pink.png', 'red.png', 'tiffany.png', 'violet.png']
+        'Baby':  {
+            path: '../images/card_background/rare/',
+            files: ['blackblue.png', 'blue.png', 'bluepurple.png', 'colorful.png', 'metalpurple.png', 'pink.png', 'razer.png', 'red.png', 'silver.png', 'whiteblue.png']
         },
         'Lengendary': {
             path: '../images/card_background/rare/',

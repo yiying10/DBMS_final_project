@@ -219,7 +219,6 @@ try {
 
                     if (data.canClaim) {
                         claimButton.disabled = false;
-                        <button id="claim-button" class="claim-button">皮卡幣</button>
                         claimStatus.innerHTML = "可以領取皮卡幣";
                         claimButton.classList.add('ready-to-claim');
                     } else if (data.remainingTime > 0) {
