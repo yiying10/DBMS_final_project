@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit();
         }
     }
-    echo "帳號或密碼錯誤！";
+    echo "<script>alert('帳號或密碼錯誤！'); window.location.href='../html/login.html';</script>";
 }
 
 ?>

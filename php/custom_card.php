@@ -50,13 +50,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // 使用卡牌名稱作為檔案名稱
-    $newFileName = $cardName;  // 不轉換為小寫，保持原始名稱
-    // 移除任何不安全的字符
-    $newFileName = preg_replace('/[^\w\s-]/', '', $newFileName);
+    $newFileName = $cardName;
+    // 移除特殊字符，但保留中文字符
+    $newFileName = preg_replace('/[^\w\s\x{4e00}-\x{9fa5}-]/u', '', $newFileName);
     // 替換空格為連字符
     $newFileName = str_replace(' ', '-', $newFileName);
 
-    $uploadFile = $uploadDir . $newFileName . '.png';  // 分開加上副檔名
+    // 移除之前的時間戳部分
+    $uploadFile = $uploadDir . $newFileName . '.png';
+    $imageUrl = "images/pokemon_images/" . $newFileName . '.png';
 
     // 直接移動上傳的檔案
     if (move_uploaded_file($image['tmp_name'], $uploadFile)) {
@@ -180,7 +182,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>自製卡牌區 - R~Pokemon Go！</title>
+    <title>新增寶可夢 - R~Pokemon Go！</title>
     <link rel="stylesheet" href="../css/styles.css">
     <style>
         /* 自製卡牌區樣式 */
@@ -303,9 +305,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <nav class="sidebar">
         <ul>
             <li><a href="../php/home.php">首頁</a></li>
-            <li><a href="../php/custom_card.php" id="custom-card-link">自製卡牌區</a></li>
+            <li><a href="../php/custom_card.php" id="custom-card-link">新增寶可夢</a></li>
             <li><a href="../php/generate.php" id="card-generation-link">卡牌生成區</a></li>
-            <li><a href="../php/illustrated_book.php">卡牌圖鑑</a></li>
+            <li><a href="../php/illustrated_book.php">寶可夢圖鑑</a></li>
             <li><a href="../php/pakage.php" id="pakage-link">抽卡區</a></li>
             <li><a href="../php/booklet.php" id="booklet-link">卡冊</a></li>
             <li><a href="../php/forum.php" id="forum-link">論壇</a></li>
@@ -314,10 +316,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </nav>
 
     <main class="content">
-        <h1>自製卡牌</h1>
+        <h1>新增寶可夢</h1>
         <form id="custom-card-form" method="POST" enctype="multipart/form-data">
             <div class="form-group">
-                <label for="card-image">傳卡牌圖片：</label>
+                <label for="card-image">寶可夢圖片：</label>
                 <input type="file" id="card-image" name="card-image" accept="image/*" required
                     onchange="previewImage(event)">
             </div>
@@ -404,11 +406,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
 
             <div class="form-group">
-                <label for="card-name">卡牌名：</label>
+                <label for="card-name">寶可夢名稱：</label>
                 <input type="text" id="card-name" name="card-name" required>
             </div>
 
-            <button type="submit" class="submit-button">創建卡牌</button>
+            <button type="submit" class="submit-button">新增寶可夢</button>
         </form>
 
         <div id="preview-area">

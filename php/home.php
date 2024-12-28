@@ -7,7 +7,7 @@ $coins = 0; // 預設代幣數量為0
 try {
     $db = new PDO('mysql:host=localhost;dbname=pokemon;charset=utf8', 'root', '');
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    
+
     // 確保 account 表有 coins 欄位，如果沒有則添加
     $sql = "SHOW COLUMNS FROM account LIKE 'coins'";
     $result = $db->query($sql);
@@ -25,8 +25,8 @@ try {
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
         $coins = $user['coins'] ?? 0; // 如果沒有值就默認為0
     }
-    
-} catch(PDOException $e) {
+
+} catch (PDOException $e) {
     error_log("Database Error: " . $e->getMessage());
 }
 ?>
@@ -45,9 +45,9 @@ try {
     <nav class="sidebar">
         <ul>
             <li><a href="../php/home.php">首頁</a></li>
-            <li><a href="../php/custom_card.php" id="custom-card-link">自製卡牌區</a></li>
+            <li><a href="../php/custom_card.php" id="custom-card-link">新增寶可夢</a></li>
             <li><a href="../php/generate.php" id="card-generation-link">卡牌生成區</a></li>
-            <li><a href="../php/illustrated_book.php">卡牌圖鑑</a></li>
+            <li><a href="../php/illustrated_book.php">寶可夢圖鑑</a></li>
             <li><a href="../php/pakage.php" id="pakage-link">抽卡區</a></li>
             <li><a href="../php/booklet.php" id="booklet-link">卡冊</a></li>
             <li><a href="../php/forum.php" id="forum-link">論壇</a></li>
@@ -80,22 +80,34 @@ try {
 
     <main class="content">
         <section id="home">
-        <h1>歡迎來到寶可夢卡牌創作世界！</h1>
-        <br><hr><br>
-        <br><p>在這裡，你可以釋放你的創意，打造屬於你自己的獨特寶可夢卡牌！我們的網站提供簡單易用的工具，讓每位寶可夢愛好者都能輕鬆設計夢想中的卡牌。</p>
-        <br><h1>功能亮點：</h1>
-        <ul>
-        <br><li><strong>創造專屬卡牌</strong>：挑選你最愛的寶可夢，設計專屬的屬性、技能與能力，甚至可以匯入自己的圖片，讓每張卡牌都是獨一無二的！</li>
-        <br><li><strong>每日登入抽卡</strong>：每天登入即可參加一次抽卡活動，看看今天的運氣如何，獲得驚喜的卡牌收藏！</li>
-        <br><li><strong>分享與收藏</strong>：完成設計後，將你的作品分享到社群，與朋友交流創意，還能收藏其他玩家的作品。</li>
-        <br></ul>
-        <br><hr><br>
-        <br><h1>立即加入，開始創作！</h1>
-        <br><p>
-            註冊你的帳號，探索無限的可能性，加入這個充滿熱情與創意的社群！
-        </p>
-        <br><p>快來體驗吧，讓你的寶可夢故事更加精彩！</p>
-        <br><hr><br>
+            <h1>歡迎來到寶可夢卡牌創作世界！</h1>
+            <br>
+            <hr><br>
+            <br>
+            <p>在這裡，你可以釋放你的創意，打造屬於你自己的獨特寶可夢卡牌！我們的網站提供簡單易用的工具，讓每位寶可夢愛好者都能輕鬆設計夢想中的卡牌。</p>
+            <br>
+            <h1>功能亮點：</h1>
+            <ul>
+                <br>
+                <li><strong>創造專屬卡牌</strong>：挑選你最愛的寶可夢，設計專屬的屬性、技能與能力，甚至可以匯入自己的圖片，讓每張卡牌都是獨一無二的！</li>
+                <br>
+                <li><strong>每日登入抽卡</strong>：每天登入即可參加一次抽卡活動，看看今天的運氣如何，獲得驚喜的卡牌收藏！</li>
+                <br>
+                <li><strong>分享與收藏</strong>：完成設計後，將你的作品分享到社群，與朋友交流創意，還能收藏其他玩家的作品。</li>
+                <br>
+            </ul>
+            <br>
+            <hr><br>
+            <br>
+            <h1>立即加入，開始創作！</h1>
+            <br>
+            <p>
+                註冊你的帳號，探索無限的可能性，加入這個充滿熱情與創意的社群！
+            </p>
+            <br>
+            <p>快來體驗吧，讓你的寶可夢故事更加精彩！</p>
+            <br>
+            <hr><br>
         </section>
         <section id="coin-claim">
             <h2>代幣領取區</h2>
@@ -106,7 +118,7 @@ try {
             </div>
         </section>
     </main>
- 
+
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const isLoggedIn = <?php echo $is_logged_in ? 'true' : 'false'; ?>;
@@ -170,8 +182,8 @@ try {
             if (isLoggedIn) {
                 checkClaimStatus();
                 setInterval(checkClaimStatus, 1000); // 每秒檢查一次狀態
-                
-                claimButton.addEventListener("click", async function() {
+
+                claimButton.addEventListener("click", async function () {
                     if (!claimButton.disabled) {
                         await claimCoin();
                     }
@@ -187,7 +199,7 @@ try {
                         method: 'POST'
                     });
                     const data = await response.json();
-                    
+
                     if (data.success) {
                         coinAmount.textContent = data.coins;
                         claimStatus.innerHTML = `成功領取代幣！當前擁有 ${data.coins} 個代幣`;
@@ -204,7 +216,7 @@ try {
                 try {
                     const response = await fetch('../php/check_claim_status.php');
                     const data = await response.json();
-                    
+
                     if (data.canClaim) {
                         claimButton.disabled = false;
                         claimStatus.innerHTML = "可以領取代幣";
@@ -222,7 +234,7 @@ try {
         });
     </script>
 
-    
+
 </body>
 
 </html>
