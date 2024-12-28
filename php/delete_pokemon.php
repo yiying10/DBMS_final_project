@@ -38,16 +38,15 @@ if ($id <= 898) {
 $conn->begin_transaction();
 
 try {
-    // 1. 先找到該寶可夢的ability (Name)
-    $sql = "SELECT Name FROM ability WHERE Name LIKE ?";
+    // 1. 先找到該寶可夢的ability (使用精確匹配)
+    $sql = "SELECT Ability FROM ability WHERE Name = ?";
     $stmt = $conn->prepare($sql);
-    $searchPattern = "%" . $name . "%";  // 使用模糊匹配來找到相關的ability
-    $stmt->bind_param("s", $searchPattern);
+    $stmt->bind_param("s", $name);
     $stmt->execute();
     $result = $stmt->get_result();
     $abilities = [];
     while ($row = $result->fetch_assoc()) {
-        $abilities[] = $row['Name'];
+        $abilities[] = $row['Ability'];
     }
 
     // 2. 刪除ability_description中的記錄
@@ -60,13 +59,10 @@ try {
     }
 
     // 3. 刪除ability表中的記錄
-    if (!empty($abilities)) {
-        $sql = "DELETE FROM ability WHERE Name IN (" .
-            str_repeat('?,', count($abilities) - 1) . '?)';
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param(str_repeat('s', count($abilities)), ...$abilities);
-        $stmt->execute();
-    }
+    $sql = "DELETE FROM ability WHERE Name = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $name);
+    $stmt->execute();
 
     // 4. 刪除df_pokemon表中的記錄
     $sql = "DELETE FROM df_pokemon WHERE ID = ?";
