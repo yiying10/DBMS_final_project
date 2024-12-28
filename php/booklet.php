@@ -478,10 +478,7 @@ unset($card);
 
             // 更新彈窗內容
             document.getElementById('modalImage').src = cardObj.largeImage;
-            document.getElementById('modalName').textContent = cardObj.pokemon_name;
-            document.getElementById('modalRarity').textContent = '稀有度: ' + cardObj.Rarity;
-            let t = cardObj.Type2 ? `${cardObj.Type1} / ${cardObj.Type2}` : cardObj.Type1;
-            document.getElementById('modalType').textContent = '屬性: ' + t;
+
 
             // 綁定下載/移除按鈕
             document.getElementById('modalDownloadBtn').onclick = () => downloadCard(cardObj);

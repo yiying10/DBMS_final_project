@@ -110,11 +110,11 @@ try {
             <hr><br>
         </section>
         <section id="coin-claim">
-            <h2>代幣領取區</h2>
+            <h2>皮卡幣領取區</h2>
             <div class="coin-box">
-                <p>每5秒可領取一次抽卡代幣</p>
+                <p>每5秒可領取一次皮卡幣</p>
                 <div id="claim-status"></div>
-                <button id="claim-button" class="claim-button">領取代幣</button>
+                <button id="claim-button" class="claim-button">領取皮卡幣</button>
             </div>
         </section>
     </main>
@@ -219,7 +219,8 @@ try {
 
                     if (data.canClaim) {
                         claimButton.disabled = false;
-                        claimStatus.innerHTML = "可以領取代幣";
+                        <button id="claim-button" class="claim-button">皮卡幣</button>
+                        claimStatus.innerHTML = "可以領取皮卡幣";
                         claimButton.classList.add('ready-to-claim');
                     } else if (data.remainingTime > 0) {
                         claimButton.disabled = true;

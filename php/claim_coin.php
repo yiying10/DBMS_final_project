@@ -9,7 +9,7 @@ if (!isset($_SESSION['user_id'])) {
 try {
     $db = new PDO('mysql:host=localhost;dbname=pokemon;charset=utf8', 'root', '');
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    
+
     $user_id = $_SESSION['user_id'];
 
     // 檢查時間差
@@ -20,7 +20,7 @@ try {
 
     if ($user['time_diff'] < 5) {
         echo json_encode([
-            'success' => false, 
+            'success' => false,
             'message' => "還需等待 " . (5 - $user['time_diff']) . " 秒"
         ]);
         exit;
@@ -34,16 +34,16 @@ try {
 
     if ($stmt->rowCount() > 0) {
         echo json_encode([
-            'success' => true, 
+            'success' => true,
             'coins' => $new_coins,
-            'message' => '成功領取代幣！'
+            'message' => '成功領取皮卡幣！'
         ]);
     } else {
         echo json_encode(['success' => false, 'message' => '領取失敗']);
     }
-    
-} catch(PDOException $e) {
+
+} catch (PDOException $e) {
     error_log("Database Error: " . $e->getMessage());
     echo json_encode(['success' => false, 'message' => '領取失敗']);
 }
-?> 
+?>
