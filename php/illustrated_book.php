@@ -104,8 +104,7 @@ $conn->set_charset("utf8mb4");
                 <?php
                 // 顯示 SQL 查詢
                 $sql = "SELECT * FROM df_pokemon 
-                        WHERE image_url IS NOT NULL AND image_url != '' 
-                        AND Type1 IS NOT NULL AND Type1 != ''
+                        WHERE Type1 IS NOT NULL AND Type1 != ''
                         AND Rarity IS NOT NULL AND Rarity != ''";
 
                 echo "<!-- SQL 查詢: $sql -->";

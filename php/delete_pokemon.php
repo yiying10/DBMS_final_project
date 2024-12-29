@@ -38,6 +38,12 @@ if ($id <= 898) {
 $conn->begin_transaction();
 
 try {
+    // 0. 先刪除卡冊中相關的記錄
+    $sql = "DELETE FROM booklet WHERE pokemon_name = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $name);
+    $stmt->execute();
+
     // 1. 先找到該寶可夢的ability (使用精確匹配)
     $sql = "SELECT Ability FROM ability WHERE Name = ?";
     $stmt = $conn->prepare($sql);
